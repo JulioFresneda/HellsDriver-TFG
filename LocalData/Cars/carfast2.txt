@@ -1,0 +1,251 @@
+NeuralNetwork
+-102,7158203125
+0
+0
+>Neuron 0
+0
+input
+lineal
+speed
+>Neuron 1
+1
+input
+lineal
+wheelSteering
+>Neuron 2
+2
+input
+lineal
+bias
+>Neuron 3
+3
+input
+lineal
+distWall 0
+>Neuron 4
+4
+input
+lineal
+distWall 1
+>Neuron 5
+5
+input
+lineal
+distWall 2
+>Neuron 6
+6
+input
+lineal
+distWall 3
+>Neuron 7
+7
+input
+lineal
+distWall 4
+>Neuron 8
+8
+input
+lineal
+distWall 5
+>Neuron 9
+9
+input
+lineal
+distWall 6
+>Neuron 10
+10
+output
+tanh
+throttle
+>Neuron 11
+11
+output
+tanh
+brake
+>Neuron 12
+12
+output
+tanh
+turn
+<<
+>Connection 0
+0
+0
+10
+-0,566112006700758
+Enabled
+>Connection 1
+1
+0
+11
+0,285193872775062
+Enabled
+>Connection 2
+2
+0
+12
+0
+Enabled
+>Connection 3
+3
+1
+10
+0
+Enabled
+>Connection 4
+4
+1
+11
+0
+Enabled
+>Connection 5
+5
+1
+12
+0
+Enabled
+>Connection 6
+6
+2
+10
+0
+Enabled
+>Connection 7
+7
+2
+11
+0
+Enabled
+>Connection 8
+8
+2
+12
+0
+Enabled
+>Connection 9
+9
+3
+10
+0
+Enabled
+>Connection 10
+10
+3
+11
+0
+Enabled
+>Connection 11
+11
+3
+12
+-0,193053171179334
+Enabled
+>Connection 12
+12
+4
+10
+0
+Enabled
+>Connection 13
+13
+4
+11
+-0,557219231504489
+Enabled
+>Connection 14
+14
+4
+12
+0,667699061264578
+Enabled
+>Connection 15
+15
+5
+10
+0
+Enabled
+>Connection 16
+16
+5
+11
+-0,927176431545573
+Enabled
+>Connection 17
+17
+5
+12
+0
+Enabled
+>Connection 18
+18
+6
+10
+0
+Enabled
+>Connection 19
+19
+6
+11
+0
+Enabled
+>Connection 20
+20
+6
+12
+0
+Enabled
+>Connection 21
+21
+7
+10
+1,13082677160658
+Enabled
+>Connection 22
+22
+7
+11
+0
+Enabled
+>Connection 23
+23
+7
+12
+0
+Enabled
+>Connection 24
+24
+8
+10
+0
+Enabled
+>Connection 25
+25
+8
+11
+0
+Enabled
+>Connection 26
+26
+8
+12
+-0,394629409449676
+Enabled
+>Connection 27
+27
+9
+10
+0,46409169735229
+Enabled
+>Connection 28
+28
+9
+11
+0
+Enabled
+>Connection 29
+29
+9
+12
+0
+Enabled
+<<
