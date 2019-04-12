@@ -47,7 +47,10 @@ public class Race : MonoBehaviour
         foreach (GameObject g in race_drivers)
         {
             if (g.tag != "PlayerDriver") g.tag = "AIDriver";
+            g.transform.Find("MinimapCar").transform.localScale = new Vector3(50f, 50f, 50f);
         }
+
+        gameObject.GetComponent<Cameras>().StartCameras();
 
     }
 
