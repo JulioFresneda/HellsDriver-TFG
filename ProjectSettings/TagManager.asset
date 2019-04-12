@@ -10,6 +10,7 @@ TagManager:
   - CheckPoint
   - PlayerDriver
   - AIDriver
+  - Minimap
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - PostProcessing
   - Player
   - Vehicles
-  - 
+  - Minimap
   - 
   - 
   - 
