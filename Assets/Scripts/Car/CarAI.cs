@@ -65,7 +65,7 @@ namespace VehicleSystem
 
             inputs.Clear();
             inputs.Add(new Tuple<string, double>("speed", speed));
-            inputs.Add(new Tuple<string, double>("wheelSteering", wheelSteerAngle));
+            //inputs.Add(new Tuple<string, double>("wheelSteering", wheelSteerAngle));
             inputs.Add(new Tuple<string, double>("bias", 1));
             wallDistances.Clear();
             carRaycast.GenerateRays();
@@ -88,12 +88,32 @@ namespace VehicleSystem
             nn.SetInputValues(inputs);
             outputs = nn.OutputValuesWithName();
 
-            
+            double thr = 0;
+            double br = 0; ;
+            foreach (Tuple<string, double> o in outputs)
+            {
+                if (o.Item1 == "locksteering")
+                {
+                    this.GetComponentInParent<CarFitnessTest>().SetLock(o.Item2);
+                }
+               
+                if (o.Item1 == "throttle")
+                {
+                    thr = o.Item2;
+                }
+                if (o.Item1 == "brake") br = o.Item2;             
+            }
+
+            thr = (thr + 1) / 2;
+            br = (br + 1) / 2;
+            this.GetComponentInParent<CarFitnessTest>().SetThrottle(thr-br);
 
         }
 
         public NeuralNetwork GetNeuralNetwork()
         {
+            nn.lockweight = this.GetComponentInParent<CarFitnessTest>().lockweight;
+            nn.throttleweight = this.GetComponentInParent<CarFitnessTest>().throttleweight;
             return nn;
         }
 

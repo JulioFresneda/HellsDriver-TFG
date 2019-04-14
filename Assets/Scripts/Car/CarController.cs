@@ -50,6 +50,9 @@ namespace VehicleSystem
         float turnInputAI;
         public float TurnInputAI { get { return turnInputAI; } set { turnInputAI = value; } }
 
+        double lockSteeringAI;
+        public double LockSteeringAI { get { return lockSteeringAI; } set { lockSteeringAI = value; } }
+
 
         // The turn action is not uniform
 #pragma warning disable 0649
@@ -131,6 +134,7 @@ namespace VehicleSystem
                 brakeInputAI = 0f;
                 boostInputAI = 0f;
                 turnInputAI = 0f;
+                lockSteeringAI = 0f;
             }
             else
             {
@@ -182,7 +186,7 @@ namespace VehicleSystem
             {
                 
                 carAI.Speed = speed;
-                carAI.WheelSteerAngle = turnWheel[0].steerAngle;
+                //carAI.WheelSteerAngle = turnWheel[0].steerAngle;
                 carAI.Boost = boost;
 
                 carAI.AIUpdate();
@@ -193,6 +197,7 @@ namespace VehicleSystem
                     if (o.Item1 == "throttle") ThrottleInputAI = (float)o.Item2;
                     if (o.Item1 == "brake") BrakeInputAI = (float)o.Item2;
                     if (o.Item1 == "turn") TurnInputAI = (float)o.Item2;
+                    if (o.Item1 == "locksteering") LockSteeringAI = o.Item2;
                 }
             }
             else
@@ -224,12 +229,15 @@ namespace VehicleSystem
             }
             else
             {
+                
                 // Accelerate & brake
                 throttle = (float)(throttleInputAI) - (brakeInputAI);     
                 // Boost
                 boosting = (boostInputAI  > 0.5f);
                 // Turn
-                steering = turnInputCurve.Evaluate((float)(turnInputAI)) * steerAngle;
+                int ls = 0;
+                if (lockSteeringAI > 0) ls = 1;
+                steering = (1-ls) * turnInputCurve.Evaluate((float)(turnInputAI)) * steerAngle;
             }
 
             #endregion

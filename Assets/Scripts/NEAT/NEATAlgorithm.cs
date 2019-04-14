@@ -10,7 +10,7 @@ namespace NEAT
 
     public class NEATAlgorithm : MonoBehaviour
     {
-        public static EvolutionMode evolutionMode = EvolutionMode.EvolveSpeed;
+        public static EvolutionMode evolutionMode = EvolutionMode.EvolveDriving;
 
         public static System.Random rnd;
 
@@ -141,14 +141,15 @@ namespace NEAT
                 CompareByFitness cmpf = new CompareByFitness();
                 nn_poblation.Sort(cmpf);
                 NNToFile ntf = new NNToFile(nn_poblation[nn_poblation.Count-1]);
-                ntf.Write("C:/Users/Julio/Desktop/cars/carfast3.txt");
+                ntf.Write("C:/Users/Julio/Desktop/cars/carfast4.txt");
             }
-            
 
 
+            CompareByFitness cbf = new CompareByFitness();
+            nn_poblation.Sort(cbf);
 
             Debug.Log("Generation: " + generation);
-            Debug.Log("Best: " + nn_poblation[nn_poblation.Count - 1].GetFitness());
+            Debug.Log("Best: " + nn_poblation[nn_poblation.Count - 1].GetFitness() + " " + nn_poblation[nn_poblation.Count - 1].lockweight + " " + nn_poblation[nn_poblation.Count - 1].throttleweight);
 
             readyforevolve = false;
             Debug.Log("Inicio Evolve " + System.GC.GetTotalMemory(true));
@@ -440,7 +441,7 @@ namespace NEAT
                 // Inputs
                 List<string> sinputs = new List<string>();
                 sinputs.Add("speed");
-                sinputs.Add("wheelSteering");
+                //sinputs.Add("wheelSteering");
                 sinputs.Add("bias");
 
 
@@ -454,6 +455,7 @@ namespace NEAT
                 soutputs.Add("throttle");
                 soutputs.Add("brake");
                 soutputs.Add("turn");
+                soutputs.Add("locksteering");
 
                 return new NeuralNetwork(sinputs, soutputs);
             }

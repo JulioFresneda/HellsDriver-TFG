@@ -80,10 +80,9 @@ namespace VehicleSystem
                     }
                 }*/
 
-#if DEBUGGING
-                //if(!GetComponentInParent<CarFitnessTest>().DoneCalculatingFitness()) 
-                Debug.DrawRay(transform.position, transform.TransformDirection(raysDirection[i]), color);
-#endif
+
+                if(!GetComponentInParent<CarFitnessTest>().DoneCalculatingFitness()) Debug.DrawRay(transform.position, transform.TransformDirection(raysDirection[i]), color);
+
             }
 
            

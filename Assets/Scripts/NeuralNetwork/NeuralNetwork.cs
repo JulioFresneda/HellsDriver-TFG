@@ -8,6 +8,7 @@ namespace NeuralNet
     [Serializable]
     public class NeuralNetwork
     {
+
         private SortedDictionary<int, Neuron> neurons;
         private List<int> inputs;
         private List<int> outputs;
@@ -18,6 +19,9 @@ namespace NeuralNet
         private double shared_fitness;
         private int specie_id;
         public int nnid = -1;
+
+        public double lockweight;
+        public double throttleweight;
 
 
         public NeuralNetwork()

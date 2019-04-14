@@ -29,11 +29,22 @@ namespace VehicleSystem
 
         private double time_same_check;
 
+        private double num_lock;
+        private double total_lock;
 
+        private double mean_throttle;
+        private double total_throttle;
+
+        public double lockweight;
+        public double throttleweight;
 
         public void Awake()
         {
-
+            num_lock = 0;
+            total_throttle = 0;
+            total_lock = 0;
+            mean_throttle = 0;
+  
             MAX_TIME_RUNNING = 180;
             time_same_check = 0;
             initializationTime = Time.timeSinceLevelLoad;
@@ -41,6 +52,8 @@ namespace VehicleSystem
             num_checkpoints = checkpoints.Count;
             checkpoints_checked = new List<GameObject>();
 
+
+            // Checkstart in checkeds
             bool startcheck = false;
             for (int i = 0; i < checkpoints.Count && !startcheck; i++)
             {
@@ -53,31 +66,36 @@ namespace VehicleSystem
             }
 
 
-            fitness = -1000000;
+            fitness = 0;
             done_calculating_fitness = false;
         }
-
 
         private void Update()
         {
 
-
-
-            time_running = Time.timeSinceLevelLoad - initializationTime;
-
-
-            if (NEATAlgorithm.evolutionMode == EvolutionMode.EvolveDriving && time_running - time_same_check > MAX_TIME_SAME_CHECK) done_calculating_fitness = true;
-
-            if (time_running > MAX_TIME_RUNNING)
+            if (!done_calculating_fitness)
             {
-                done_calculating_fitness = true;
-                fitness = -10000000000;
+                // Time running
+                time_running = Time.timeSinceLevelLoad - initializationTime;
+
+                // If same check surpass limit
+                if (NEATAlgorithm.evolutionMode == EvolutionMode.EvolveDriving && time_running - time_same_check > MAX_TIME_SAME_CHECK)
+                {
+                    done_calculating_fitness = true;
+                    CalculateFitness();
+                }
+
+                // if time running surpass limit
+                if (time_running > MAX_TIME_RUNNING)
+                {
+                    done_calculating_fitness = true;
+                    CalculateFitness();
+                    if (NEATAlgorithm.evolutionMode == EvolutionMode.EvolveSpeed) fitness = -20000000000;
+                }
+
             }
 
-            if (!done_calculating_fitness && NEATAlgorithm.evolutionMode == EvolutionMode.EvolveDriving)
-            {
-                CalculateFitness();
-            }
+
 
 
         }
@@ -86,26 +104,30 @@ namespace VehicleSystem
         public void SetDoneCalculatingFitness(bool done) => done_calculating_fitness = done;
 
 
-
+        // If collision with border
         void OnCollisionEnter(Collision col)
         {
-            if (col.gameObject.tag == "Border")
+            if (col.gameObject.tag == "Border" && !done_calculating_fitness)
             {
                 done_calculating_fitness = true;
-                fitness = -100000000000;
+                CalculateFitness();
+                if(NEATAlgorithm.evolutionMode == EvolutionMode.EvolveSpeed) fitness = -100000000000;
             }
 
         }
 
+        // If checkpoint
         private void OnTriggerEnter(Collider col)
         {
             
 
-            if (NEATAlgorithm.evolutionMode == EvolutionMode.EvolveDriving && col.gameObject.tag == "CheckPoint")
+            if (NEATAlgorithm.evolutionMode == EvolutionMode.EvolveDriving && col.gameObject.tag == "CheckPoint" && !done_calculating_fitness)
             {
-                time_same_check = time_running;
+                
                 if (!checkpoints_checked.Contains(col.gameObject))
                 {
+                    
+                    time_same_check = time_running;
                     checkpoints_checked.Add(col.gameObject);
                     if (MAX_TIME_RUNNING < 180) MAX_TIME_RUNNING += 10;
                 }
@@ -126,22 +148,42 @@ namespace VehicleSystem
 
 
 
-        private void CalculateFitness()
+
+        public void SetLock(double lck)
+        {
+            if (lck > 0) num_lock++;
+            total_lock++;
+        }
+
+        public void SetThrottle(double thr)
         {
 
-
-      
-
-
-            if (checkpoints_checked.Count > 0) fitness = 50 * (checkpoints_checked.Count - 1) + Vector3.Distance(this.GetComponentInParent<Transform>().position, checkpoints_checked[checkpoints_checked.Count - 1].GetComponentInParent<Transform>().position);
+            mean_throttle += thr;
+            total_throttle++;
+        }
 
 
 
+        private void CalculateFitness()
+        {
+            if (done_calculating_fitness)
+            {
+                if (checkpoints_checked.Count > 0) fitness = 50 * (checkpoints_checked.Count - 1) + Vector3.Distance(this.GetComponentInParent<Transform>().position, checkpoints_checked[checkpoints_checked.Count - 1].GetComponentInParent<Transform>().position);
+
+                lockweight = 0.8 + 0.2 * (num_lock / total_lock);
+                throttleweight = 0.8 + 0.2 * (mean_throttle / total_throttle);
+
+                fitness = fitness * lockweight * throttleweight;
+
+            }
+            
+            
 
         }
 
 
         public double GetFitness() => fitness;
+
 
     }
 
