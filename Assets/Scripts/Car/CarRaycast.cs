@@ -82,7 +82,7 @@ namespace VehicleSystem
 
 
                 if(!GetComponentInParent<CarFitnessTest>().DoneCalculatingFitness()) Debug.DrawRay(transform.position, transform.TransformDirection(raysDirection[i]), color);
-
+           
             }
 
            
