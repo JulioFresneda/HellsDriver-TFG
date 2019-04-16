@@ -69,7 +69,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31390392b8a17364eb47d3b28086a0a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NEAT: 0
+  NEAT: 1
 --- !u!114 &4622804831639651432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,6 +191,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MAX_TIME_RUNNING: 30
   MAX_TIME_SAME_CHECK: 5
+  lockweight: 0
+  throttleweight: 0
 --- !u!1 &1102551953586039995
 GameObject:
   m_ObjectHideFlags: 0

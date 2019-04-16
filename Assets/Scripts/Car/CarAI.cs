@@ -46,7 +46,7 @@ namespace VehicleSystem
 
             inputs = new List<Tuple<string, double>>();
 
-
+            /*
             if (!NEAT)
             {
                 NNToFile ntf = new NNToFile();
@@ -54,7 +54,7 @@ namespace VehicleSystem
             }
             
 
-
+    */
 
 
         }
@@ -104,8 +104,6 @@ namespace VehicleSystem
                 if (o.Item1 == "brake") br = o.Item2;             
             }
 
-            thr = (thr + 1) / 2;
-            br = (br + 1) / 2;
             this.GetComponentInParent<CarFitnessTest>().SetThrottle(thr-br);
 
         }

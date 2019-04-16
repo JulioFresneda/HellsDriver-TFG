@@ -180,7 +180,7 @@ namespace VehicleSystem
         void FixedUpdate()
         {
 
-            
+            speed = transform.InverseTransformDirection(_rb.velocity).z * 3.6f;
 
             if (!isPlayer)
             {
@@ -206,7 +206,7 @@ namespace VehicleSystem
             }
 
             
-            speed = transform.InverseTransformDirection(_rb.velocity).z * 3.6f;
+            
 
             #region GET_INPUTS
 
@@ -231,13 +231,14 @@ namespace VehicleSystem
             {
                 
                 // Accelerate & brake
-                throttle = (float)(throttleInputAI) - (brakeInputAI);     
+                throttle = (float)(throttleInputAI) - (brakeInputAI);
                 // Boost
-                boosting = (boostInputAI  > 0.5f);
+                boosting = false;// (boostInputAI  > 0.5f);
                 // Turn
                 int ls = 0;
                 if (lockSteeringAI > 0) ls = 1;
-                steering = (1-ls) * turnInputCurve.Evaluate((float)(turnInputAI)) * steerAngle;
+                //steering = (1-ls) * turnInputCurve.Evaluate((float)(turnInputAI)) * steerAngle;
+                steering = (1 - ls) * (turnInputAI) * steerAngle;
             }
 
             #endregion
@@ -256,7 +257,8 @@ namespace VehicleSystem
             // Direction
             foreach (WheelCollider wheel in turnWheel)
             {
-                wheel.steerAngle = Mathf.Lerp(wheel.steerAngle, steering, steerSpeed);
+                //wheel.steerAngle = Mathf.Lerp(wheel.steerAngle, steering, steerSpeed);
+                wheel.steerAngle = steering;
             }
 
             foreach (WheelCollider wheel in wheels)

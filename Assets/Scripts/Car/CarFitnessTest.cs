@@ -168,12 +168,13 @@ namespace VehicleSystem
         {
             if (done_calculating_fitness)
             {
-                if (checkpoints_checked.Count > 0) fitness = 50 * (checkpoints_checked.Count - 1) + Vector3.Distance(this.GetComponentInParent<Transform>().position, checkpoints_checked[checkpoints_checked.Count - 1].GetComponentInParent<Transform>().position);
+                if (checkpoints_checked.Count > 0) fitness = 200 * (checkpoints_checked.Count - 1) + Vector3.Distance(this.GetComponentInParent<Transform>().position, checkpoints_checked[checkpoints_checked.Count - 1].GetComponentInParent<Transform>().position);
 
                 lockweight = 0.7 + 0.3 * (num_lock / total_lock);
-                throttleweight = 0.7 + 0.3 * (mean_throttle / total_throttle);
+                throttleweight = 0.8 + 0.2 * (mean_throttle / total_throttle);
 
                 fitness = fitness * lockweight * throttleweight;
+                //if (lockweight < 0.75) fitness = 0;
 
             }
             

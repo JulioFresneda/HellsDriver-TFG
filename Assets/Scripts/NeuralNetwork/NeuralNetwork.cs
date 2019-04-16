@@ -68,7 +68,8 @@ namespace NeuralNet
 
             for (int i = 0; i < soutputs.Count; i++)
             {
-                this.AddNeuron(i + sinputs.Count, Role.output, Activation_function.tanh, name: soutputs[i]);
+                if(soutputs[i] == "throttle" || soutputs[i] == "brake") this.AddNeuron(i + sinputs.Count, Role.output, Activation_function.sigmoid, name: soutputs[i]);
+                else this.AddNeuron(i + sinputs.Count, Role.output, Activation_function.tanh, name: soutputs[i]);
             }
 
 

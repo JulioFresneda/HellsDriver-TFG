@@ -14,9 +14,9 @@ namespace VehicleSystem
         private Vector3[] raysDirection;
 
         [SerializeField]
-        private int input_number_of_rays = 7;
+        private int input_number_of_rays = 8;
 
-        private static int number_of_rays = 7;
+        private static int number_of_rays = 8;
 
         private const int ray_length = 30;
 
