@@ -13,7 +13,7 @@ namespace VehicleSystem
     public class CarFitnessTest : MonoBehaviour
     {
         public int MAX_TIME_RUNNING = 30;
-        public int MAX_TIME_SAME_CHECK = 5;
+        private int MAX_TIME_SAME_CHECK = 15;
 
         private List<GameObject> checkpoints;
         private List<GameObject> checkpoints_checked;
@@ -79,9 +79,10 @@ namespace VehicleSystem
                 time_running = Time.timeSinceLevelLoad - initializationTime;
 
                 // If same check surpass limit
-                if (NEATAlgorithm.evolutionMode == EvolutionMode.EvolveDriving && time_running - time_same_check > MAX_TIME_SAME_CHECK)
+                if (NEATAlgorithm.evolutionMode == EvolutionMode.EvolveDriving && time_running - time_same_check > 15)
                 {
                     done_calculating_fitness = true;
+                  
                     CalculateFitness();
                 }
 
@@ -89,6 +90,7 @@ namespace VehicleSystem
                 if (time_running > MAX_TIME_RUNNING)
                 {
                     done_calculating_fitness = true;
+                   
                     CalculateFitness();
                     if (NEATAlgorithm.evolutionMode == EvolutionMode.EvolveSpeed) fitness = -20000000000;
                 }
@@ -110,6 +112,7 @@ namespace VehicleSystem
             if (col.gameObject.tag == "Border" && !done_calculating_fitness)
             {
                 done_calculating_fitness = true;
+              
                 CalculateFitness();
                 if(NEATAlgorithm.evolutionMode == EvolutionMode.EvolveSpeed) fitness = -100000000000;
             }

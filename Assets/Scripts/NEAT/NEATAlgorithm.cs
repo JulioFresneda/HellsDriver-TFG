@@ -37,6 +37,8 @@ namespace NEAT
 
         private int generation = 0;
 
+        public bool crosscopy = true;
+
 
 #pragma warning disable 0649
         [SerializeField]
@@ -150,6 +152,14 @@ namespace NEAT
 
             Debug.Log("Generation: " + generation);
             Debug.Log("Best: " + nn_poblation[nn_poblation.Count - 1].GetFitness() + " " + nn_poblation[nn_poblation.Count - 1].lockweight + " " + nn_poblation[nn_poblation.Count - 1].throttleweight);
+            double mean = 0;
+            foreach(NeuralNetwork nn in nn_poblation)
+            {
+                mean+=nn.GetFitness();
+            }
+            mean = mean / nn_poblation.Count;
+
+            Debug.Log("Mean: " + mean);
 
             readyforevolve = false;
             Debug.Log("Inicio Evolve " + System.GC.GetTotalMemory(true));
@@ -263,23 +273,50 @@ namespace NEAT
             nn_new_poblation.Clear();
 
             var dic = NNBySpecies(selected);
-            foreach(KeyValuePair<int,List<NeuralNetwork>> s in dic)
-            {    
-                for(int i=0; i<s.Value.Count*2-1; i++)
+
+            if (crosscopy)
+            {
+                foreach (KeyValuePair<int, List<NeuralNetwork>> s in dic)
                 {
-                    if (rnd.NextDouble() > 0.5) nn_new_poblation.Add(Crossover.GetCrossover(s.Value[rnd.Next(0, s.Value.Count)], s.Value[rnd.Next(0, s.Value.Count)]));
-                    else nn_new_poblation.Add(new NeuralNetwork(s.Value[rnd.Next(0, s.Value.Count)]));
+                    foreach (NeuralNetwork nn in s.Value)
+                    {
+                        nn_new_poblation.Add(new NeuralNetwork(nn));
+                        nn_new_poblation.Add(new NeuralNetwork(nn));
+                    }
+
+
                 }
-                if (nn_champions.ContainsKey(s.Key))
+
+                CompareByFitness cbf = new CompareByFitness();
+                nn_new_poblation.Sort(cbf);
+
+                for(int i=0; i<nn_champions.Count; i++)
                 {
-                    nn_new_poblation.Add(new NeuralNetwork(nn_champions[s.Key]));
-                }
-                else
-                {
-                    if (rnd.NextDouble() > 0.5) nn_new_poblation.Add(Crossover.GetCrossover(s.Value[rnd.Next(0, s.Value.Count)], s.Value[rnd.Next(0, s.Value.Count)]));
-                    else nn_new_poblation.Add(new NeuralNetwork(s.Value[rnd.Next(0, s.Value.Count)]));
+                    nn_new_poblation[i] = new NeuralNetwork(nn_champions[i]);
                 }
             }
+
+            else
+            {
+                foreach (KeyValuePair<int, List<NeuralNetwork>> s in dic)
+                {
+                    for (int i = 0; i < s.Value.Count * 2 - 1; i++)
+                    {
+                        if (rnd.NextDouble() > 0.5) nn_new_poblation.Add(Crossover.GetCrossover(s.Value[rnd.Next(0, s.Value.Count)], s.Value[rnd.Next(0, s.Value.Count)]));
+                        else nn_new_poblation.Add(new NeuralNetwork(s.Value[rnd.Next(0, s.Value.Count)]));
+                    }
+                    if (nn_champions.ContainsKey(s.Key))
+                    {
+                        nn_new_poblation.Add(new NeuralNetwork(nn_champions[s.Key]));
+                    }
+                    else
+                    {
+                        if (rnd.NextDouble() > 0.5) nn_new_poblation.Add(Crossover.GetCrossover(s.Value[rnd.Next(0, s.Value.Count)], s.Value[rnd.Next(0, s.Value.Count)]));
+                        else nn_new_poblation.Add(new NeuralNetwork(s.Value[rnd.Next(0, s.Value.Count)]));
+                    }
+                }
+            }
+            
         }
             
 
@@ -565,3 +602,35 @@ public class CompareBySpecieAndSharedFitness : IComparer<NeuralNetwork>
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

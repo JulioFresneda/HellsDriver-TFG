@@ -18,15 +18,15 @@ namespace NEAT
 
             if(NEATAlgorithm.evolutionMode == EvolutionMode.EvolveDriving)
             {
-                if (rnd.NextDouble() > 0.2)
+                if (rnd.NextDouble() > 0.1)
                 {
                     Mutation_MutateWeights(nn);
                 }
-                if (rnd.NextDouble() <= 0.05)
+                else if (rnd.NextDouble() <= 0.05)
                 {
                     Mutation_AddNeuron(nn);
                 }
-                if (rnd.NextDouble() <= 0.2)
+                else if (rnd.NextDouble() <= 0.2)
                 {
                     Mutation_AddConnection(nn);
                 }
@@ -182,7 +182,8 @@ namespace NEAT
         {
             Random rnd = NEATAlgorithm.rnd;
             // Change the weight in a range between -5% and +5%
-            return w + w * (0.01 * (rnd.NextDouble() * 2 - 1));
+            if( w != 0 ) return w + w * (0.02 * (rnd.NextDouble() * 2 - 1));
+            else return 0.02 * (rnd.NextDouble() * 2 - 1);
         }
 
     }
