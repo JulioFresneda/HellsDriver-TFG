@@ -11,6 +11,12 @@ namespace NEAT
     public class Mutation
     {
 
+        public static double MutateWeightsProbability = 0.1;
+        public static double AddNeuronProbability = 0.05;
+        public static double AddConnectionProbability = 0.2;
+        public static double RandomWeightsProbabilityWhenMutate = 0.1;
+        public static double MutateWeightsRange = 0.02;
+
 
         public static void Mutate(NeuralNetwork nn)
         {
@@ -18,15 +24,15 @@ namespace NEAT
 
             if(NEATAlgorithm.evolutionMode == EvolutionMode.EvolveDriving)
             {
-                if (rnd.NextDouble() > 0.1)
+                if (rnd.NextDouble() > MutateWeightsProbability)
                 {
                     Mutation_MutateWeights(nn);
                 }
-                else if (rnd.NextDouble() <= 0.05)
+                else if (rnd.NextDouble() <= AddNeuronProbability)
                 {
                     Mutation_AddNeuron(nn);
                 }
-                else if (rnd.NextDouble() <= 0.2)
+                else if (rnd.NextDouble() <= AddConnectionProbability)
                 {
                     Mutation_AddConnection(nn);
                 }
@@ -145,7 +151,7 @@ namespace NEAT
             {
                 foreach (KeyValuePair<int, Connection> c in nn.ConnectionsRef())
                 {
-                    if (rnd.NextDouble() > 0.1)
+                    if (rnd.NextDouble() > RandomWeightsProbabilityWhenMutate)
                     {
                         c.Value.SetWeight(MutateWeight(c.Value.Weight()));
                     }
@@ -182,8 +188,8 @@ namespace NEAT
         {
             Random rnd = NEATAlgorithm.rnd;
             // Change the weight in a range between -5% and +5%
-            if( w != 0 ) return w + w * (0.02 * (rnd.NextDouble() * 2 - 1));
-            else return 0.02 * (rnd.NextDouble() * 2 - 1);
+            if( w != 0 ) return w + w * (MutateWeightsRange * (rnd.NextDouble() * 2 - 1));
+            else return MutateWeightsRange * (rnd.NextDouble() * 2 - 1);
         }
 
     }

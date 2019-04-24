@@ -13,7 +13,7 @@ namespace VehicleSystem
     public class CarFitnessTest : MonoBehaviour
     {
         public int MAX_TIME_RUNNING = 30;
-        private int MAX_TIME_SAME_CHECK = 15;
+
 
         private List<GameObject> checkpoints;
         private List<GameObject> checkpoints_checked;

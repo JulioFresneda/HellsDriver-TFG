@@ -10,6 +10,70 @@ namespace NEAT
 
     public class NEATAlgorithm : MonoBehaviour
     {
+
+        /// <summary>
+        /// NEAT Hyperparameters
+        /// </summary>
+        [Header("NEAT Hyperparameters")]
+        [SerializeField]
+        private int NumberOfCars = 100;
+
+        [SerializeField]
+        private int CompatibilityThreshold = 24;
+
+        [SerializeField]
+        private bool CrossCopy = true;
+
+        [SerializeField]
+        [Range(0, 1)]
+        private double CrossProbability = 0.5;
+
+        [SerializeField]
+        private int SaveBestInGeneration = 100;
+
+        [SerializeField]
+        private bool SaveThisGeneration = false;
+
+        [SerializeField]
+        private EvolutionMode SelectEvolutionMode = EvolutionMode.EvolveDriving;
+
+
+        /// <summary>
+        /// Mutate hyperparameters
+        /// </summary>
+
+        [Header("Mutate Hyperparameters")]
+        [SerializeField]
+        [Range(0, 1)]
+        private double MutateWeightsProbability = 0.1;
+
+        [SerializeField]
+        [Range(0, 1)]
+        private double RandomWeightsProbabilityWhenMutate = 0.1;
+
+        [SerializeField]
+        [Range(0, 1)]
+        private double MutateWeightsRange = 0.02;
+
+        [SerializeField]
+        [Range(0, 1)]
+        public static double AddNeuronProbability = 0.05;
+
+        [SerializeField]
+        [Range(0, 1)]
+        public static double AddConnectionProbability = 0.2;
+
+
+        [Header("Reference objects")]
+#pragma warning disable 0649
+        [SerializeField]
+        private Transform start;
+
+        [SerializeField]
+        private GameObject car;
+#pragma warning restore 0649
+
+
         public static EvolutionMode evolutionMode = EvolutionMode.EvolveDriving;
 
         public static System.Random rnd;
@@ -17,12 +81,13 @@ namespace NEAT
         public static List<Connection> NewConnections;
         public static List<Tuple<Connection,int,int,int>> NewNeurons;
 
-        [SerializeField]
-        private int NUM_NN;
+        
 
         private static int INNOV_CONNECTION;
         private static int INNOV_NEURON;
-        private const int COMPATIBILITY_THRESHOLD = 24;
+
+
+        
 
         private List<NeuralNetwork> nn_poblation;
         private List<GameObject> cars;
@@ -37,20 +102,23 @@ namespace NEAT
 
         private int generation = 0;
 
-        public bool crosscopy = true;
+        private int carnumber = 0;
 
 
-#pragma warning disable 0649
-        [SerializeField]
-        private Transform start;
-
-        [SerializeField]
-        private GameObject car;
-#pragma warning restore 0649
 
         // Start is called before the first frame update
         void Awake()
         {
+            // Start static parameters
+            evolutionMode = SelectEvolutionMode;
+            Mutation.MutateWeightsProbability = MutateWeightsProbability;
+            Mutation.AddConnectionProbability = AddConnectionProbability;
+            Mutation.AddNeuronProbability = AddNeuronProbability;
+            Mutation.RandomWeightsProbabilityWhenMutate = RandomWeightsProbabilityWhenMutate;
+            Mutation.MutateWeightsRange = MutateWeightsRange;
+
+
+
             rnd = new System.Random(1);
             NewConnections = new List<Connection>();
             NewNeurons = new List<Tuple<Connection, int, int, int>>();
@@ -68,7 +136,7 @@ namespace NEAT
 
 
 
-            for (int i = 0; i < NUM_NN; i++)
+            for (int i = 0; i < NumberOfCars; i++)
             {
                 nn_poblation.Add(GenerateBasicNN());
             }
@@ -138,12 +206,14 @@ namespace NEAT
             
 
             
-            if(generation == 100)
+            if(generation == SaveBestInGeneration || SaveThisGeneration)
             {
                 CompareByFitness cmpf = new CompareByFitness();
                 nn_poblation.Sort(cmpf);
                 NNToFile ntf = new NNToFile(nn_poblation[nn_poblation.Count-1]);
-                ntf.Write("C:/Users/Julio/Desktop/cars/carfast4.txt");
+                string n = "C:/Users/Julio/Desktop/cars/car" + generation + "_" + carnumber + ".txt";
+                carnumber++;
+                ntf.Write(n);
             }
 
 
@@ -204,7 +274,7 @@ namespace NEAT
                 added = false;
                 for (int i = 0; i < nn_representation_previous_gen.Count && !added; i++)
                 {
-                    if (CompatibilityDistance(n, nn_representation_previous_gen[i]) < COMPATIBILITY_THRESHOLD)
+                    if (CompatibilityDistance(n, nn_representation_previous_gen[i]) < CompatibilityThreshold)
                     {
                         n.SetSpecie(i);
                         added = true;
@@ -274,7 +344,7 @@ namespace NEAT
 
             var dic = NNBySpecies(selected);
 
-            if (crosscopy)
+            if (CrossCopy)
             {
                 foreach (KeyValuePair<int, List<NeuralNetwork>> s in dic)
                 {
@@ -302,7 +372,7 @@ namespace NEAT
                 {
                     for (int i = 0; i < s.Value.Count * 2 - 1; i++)
                     {
-                        if (rnd.NextDouble() > 0.5) nn_new_poblation.Add(Crossover.GetCrossover(s.Value[rnd.Next(0, s.Value.Count)], s.Value[rnd.Next(0, s.Value.Count)]));
+                        if (rnd.NextDouble() > CrossProbability) nn_new_poblation.Add(Crossover.GetCrossover(s.Value[rnd.Next(0, s.Value.Count)], s.Value[rnd.Next(0, s.Value.Count)]));
                         else nn_new_poblation.Add(new NeuralNetwork(s.Value[rnd.Next(0, s.Value.Count)]));
                     }
                     if (nn_champions.ContainsKey(s.Key))
@@ -311,7 +381,7 @@ namespace NEAT
                     }
                     else
                     {
-                        if (rnd.NextDouble() > 0.5) nn_new_poblation.Add(Crossover.GetCrossover(s.Value[rnd.Next(0, s.Value.Count)], s.Value[rnd.Next(0, s.Value.Count)]));
+                        if (rnd.NextDouble() > CrossProbability) nn_new_poblation.Add(Crossover.GetCrossover(s.Value[rnd.Next(0, s.Value.Count)], s.Value[rnd.Next(0, s.Value.Count)]));
                         else nn_new_poblation.Add(new NeuralNetwork(s.Value[rnd.Next(0, s.Value.Count)]));
                     }
                 }
@@ -533,6 +603,9 @@ namespace NEAT
 
             return dic;
         }
+
+
+
 
     }
 
