@@ -16,6 +16,9 @@ namespace VehicleSystem
         [SerializeField]
         private int input_number_of_rays = 8;
 
+        [SerializeField]
+        private bool HasFitnessTest = true;
+
         private static int number_of_rays = 8;
 
         private const int ray_length = 30;
@@ -81,7 +84,7 @@ namespace VehicleSystem
                 }*/
 
 
-                if(!GetComponentInParent<CarFitnessTest>().DoneCalculatingFitness()) Debug.DrawRay(transform.position, transform.TransformDirection(raysDirection[i]), color);
+                if( HasFitnessTest && !GetComponentInParent<CarFitnessTest>().DoneCalculatingFitness()) Debug.DrawRay(transform.position, transform.TransformDirection(raysDirection[i]), color);
            
             }
 

@@ -46,15 +46,15 @@ namespace VehicleSystem
 
             inputs = new List<Tuple<string, double>>();
 
-            /*
+            
             if (!NEAT)
             {
                 NNToFile ntf = new NNToFile();
-                nn = ntf.Read("LocalData/Cars/carfast.txt");
+                nn = ntf.Read("AIs/car70_7.txt");
             }
             
 
-    */
+    
 
 
         }
@@ -87,24 +87,26 @@ namespace VehicleSystem
 
             nn.SetInputValues(inputs);
             outputs = nn.OutputValuesWithName();
+        
 
-            double thr = 0;
-            double br = 0; ;
-            foreach (Tuple<string, double> o in outputs)
+            if (NEAT)
             {
-                if (o.Item1 == "locksteering")
+                double thr = 0;
+                double br = 0; ;
+                foreach (Tuple<string, double> o in outputs)
                 {
-                    this.GetComponentInParent<CarFitnessTest>().SetLock(o.Item2);
-                }
-               
-                if (o.Item1 == "throttle")
-                {
-                    thr = o.Item2;
-                }
-                if (o.Item1 == "brake") br = o.Item2;             
-            }
+                    if (o.Item1 == "locksteering")
+                    {
+                        this.GetComponentInParent<CarFitnessTest>().SetLock(o.Item2);
+                    }
 
-            this.GetComponentInParent<CarFitnessTest>().SetThrottle(thr-br);
+                   
+                    if (o.Item1 == "brake") br = (o.Item2)*2;
+                }
+
+                this.GetComponentInParent<CarFitnessTest>().SetThrottle(1 - br);
+            }
+            
 
         }
 

@@ -194,8 +194,9 @@ namespace VehicleSystem
 
                 foreach (Tuple<string, double> o in carAI.GetOutputs())
                 {
-                    if (o.Item1 == "throttle") ThrottleInputAI = (float)o.Item2;
-                    if (o.Item1 == "brake") BrakeInputAI = (float)o.Item2;
+                    //if (o.Item1 == "throttle") ThrottleInputAI = (float)o.Item2;
+                    ThrottleInputAI = 1;
+                    if (o.Item1 == "brake") BrakeInputAI = (float)o.Item2*2;
                     if (o.Item1 == "turn") TurnInputAI = (float)o.Item2;
                     if (o.Item1 == "locksteering") LockSteeringAI = o.Item2;
                 }

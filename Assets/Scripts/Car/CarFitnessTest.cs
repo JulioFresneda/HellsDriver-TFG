@@ -27,7 +27,7 @@ namespace VehicleSystem
 
         private bool done_calculating_fitness;
 
-        private double time_same_check;
+        public double time_same_check;
 
         private double num_lock;
         private double total_lock;
@@ -37,6 +37,14 @@ namespace VehicleSystem
 
         public double lockweight;
         public double throttleweight;
+
+
+        public double minlock = 0;
+        public double minthrottle = 0;
+        public int checkbonus = 200;
+        public double minlockrange = 0.7;
+        public double minthrottlerange = 0.8;
+        public double max_time_same_check = 15;
 
         public void Awake()
         {
@@ -78,11 +86,13 @@ namespace VehicleSystem
                 // Time running
                 time_running = Time.timeSinceLevelLoad - initializationTime;
 
+     
+
                 // If same check surpass limit
                 if (NEATAlgorithm.evolutionMode == EvolutionMode.EvolveDriving && time_running - time_same_check > 15)
                 {
                     done_calculating_fitness = true;
-                  
+               
                     CalculateFitness();
                 }
 
@@ -132,7 +142,7 @@ namespace VehicleSystem
                     
                     time_same_check = time_running;
                     checkpoints_checked.Add(col.gameObject);
-                    if (MAX_TIME_RUNNING < 180) MAX_TIME_RUNNING += 10;
+
                 }
                 if (checkpoints.Contains(col.gameObject)) checkpoints.Remove(col.gameObject);
 
@@ -171,14 +181,17 @@ namespace VehicleSystem
         {
             if (done_calculating_fitness)
             {
-                if (checkpoints_checked.Count > 0) fitness = 200 * (checkpoints_checked.Count - 1) + Vector3.Distance(this.GetComponentInParent<Transform>().position, checkpoints_checked[checkpoints_checked.Count - 1].GetComponentInParent<Transform>().position);
+                if (checkpoints_checked.Count > 0) fitness = checkbonus * (checkpoints_checked.Count - 1) + Vector3.Distance(this.GetComponentInParent<Transform>().position, checkpoints_checked[checkpoints_checked.Count - 1].GetComponentInParent<Transform>().position);
 
-                lockweight = 0.7 + 0.3 * (num_lock / total_lock);
-                throttleweight = 0.8 + 0.2 * (mean_throttle / total_throttle);
+                lockweight = minlockrange + (1-minlockrange) * (num_lock / total_lock);
+                throttleweight = minthrottlerange + (1-minthrottlerange) * (mean_throttle / total_throttle);
 
                 fitness = fitness * lockweight * throttleweight;
-                //if (lockweight < 0.75) fitness = 0;
 
+                /*
+                if (lockweight < minlock) fitness = 0;
+                if (throttleweight < minthrottle) fitness = 0;
+                */
             }
             
             

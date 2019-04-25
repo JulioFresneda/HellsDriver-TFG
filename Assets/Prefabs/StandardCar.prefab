@@ -471,6 +471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input_number_of_rays: 7
+  HasFitnessTest: 0
 --- !u!114 &1696241134092581355
 MonoBehaviour:
   m_ObjectHideFlags: 0

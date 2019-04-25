@@ -22,6 +22,9 @@ namespace NEAT
         private int CompatibilityThreshold = 24;
 
         [SerializeField]
+        private bool NewNeuralNet = true;
+
+        [SerializeField]
         private bool CrossCopy = true;
 
         [SerializeField]
@@ -37,6 +40,35 @@ namespace NEAT
         [SerializeField]
         private EvolutionMode SelectEvolutionMode = EvolutionMode.EvolveDriving;
 
+        /// <summary>
+        /// FitnessTest hyperparameters
+        /// </summary>
+
+        [Header("Fitness Test Hyperparameters")]
+        [SerializeField]
+        private int MaxTimeRunning = 180;
+
+        [SerializeField]
+        private int MaxTimeSameCheckpoint = 15;
+
+        [SerializeField]
+        private int CheckpointBonus = 200;
+
+        [SerializeField]
+        [Range(0, 1)]
+        private double MinSteeringLockWeightRange = 0.7;
+
+        [SerializeField]
+        [Range(0, 1)]
+        private double MinThrottleWeightRange = 0.7;
+
+        [SerializeField]
+        [Range(0,1)]
+        private double MinSteeringLockWeight = 0.7;
+
+        [SerializeField]
+        [Range(0,1)]
+        private double MinThrottleWeight = 0.8;
 
         /// <summary>
         /// Mutate hyperparameters
@@ -211,7 +243,7 @@ namespace NEAT
                 CompareByFitness cmpf = new CompareByFitness();
                 nn_poblation.Sort(cmpf);
                 NNToFile ntf = new NNToFile(nn_poblation[nn_poblation.Count-1]);
-                string n = "C:/Users/Julio/Desktop/cars/car" + generation + "_" + carnumber + ".txt";
+                string n = "car" + generation + "_" + carnumber + ".txt";
                 carnumber++;
                 ntf.Write(n);
             }
@@ -261,6 +293,13 @@ namespace NEAT
             {
                 cars.Add(Instantiate(car, start));
                 cars[cars.Count - 1].GetComponent<CarAI>().SetNeuralNetwork(n);
+                cars[cars.Count - 1].GetComponent<CarFitnessTest>().checkbonus = CheckpointBonus;
+                cars[cars.Count - 1].GetComponent<CarFitnessTest>().MAX_TIME_RUNNING = MaxTimeRunning;
+                cars[cars.Count - 1].GetComponent<CarFitnessTest>().max_time_same_check = MaxTimeSameCheckpoint;
+                cars[cars.Count - 1].GetComponent<CarFitnessTest>().minlock = MinSteeringLockWeight;
+                cars[cars.Count - 1].GetComponent<CarFitnessTest>().minthrottle = MinThrottleWeight;
+                cars[cars.Count - 1].GetComponent<CarFitnessTest>().minlockrange = MinSteeringLockWeightRange;
+                cars[cars.Count - 1].GetComponent<CarFitnessTest>().minthrottlerange = MinThrottleWeightRange;
             }
             
             
@@ -545,26 +584,35 @@ namespace NEAT
         {
             if(evolutionMode == EvolutionMode.EvolveDriving)
             {
-                // Inputs
-                List<string> sinputs = new List<string>();
-                sinputs.Add("speed");
-                //sinputs.Add("wheelSteering");
-                sinputs.Add("bias");
-
-
-                for (int i = 0; i < CarRaycast.GetNumberOfRays(); i++)
+                if (NewNeuralNet)
                 {
-                    sinputs.Add("distWall " + i);
+                    // Inputs
+                    List<string> sinputs = new List<string>();
+                    sinputs.Add("speed");
+                    //sinputs.Add("wheelSteering");
+                    sinputs.Add("bias");
+
+
+                    for (int i = 0; i < CarRaycast.GetNumberOfRays(); i++)
+                    {
+                        sinputs.Add("distWall " + i);
+                    }
+
+                    // Outputs
+                    List<string> soutputs = new List<string>();
+                    //soutputs.Add("throttle");
+                    soutputs.Add("brake");
+                    soutputs.Add("turn");
+                    soutputs.Add("locksteering");
+
+                    return new NeuralNetwork(sinputs, soutputs);
                 }
-
-                // Outputs
-                List<string> soutputs = new List<string>();
-                soutputs.Add("throttle");
-                soutputs.Add("brake");
-                soutputs.Add("turn");
-                soutputs.Add("locksteering");
-
-                return new NeuralNetwork(sinputs, soutputs);
+                else
+                {
+                    NNToFile ntf = new NNToFile();
+                    return ntf.Read("car70_7.txt");
+                }
+                
             }
             
             else 
