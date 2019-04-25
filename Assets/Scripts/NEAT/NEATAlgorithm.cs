@@ -253,7 +253,7 @@ namespace NEAT
             nn_poblation.Sort(cbf);
 
             Debug.Log("Generation: " + generation);
-            Debug.Log("Best: " + nn_poblation[nn_poblation.Count - 1].GetFitness() + " " + nn_poblation[nn_poblation.Count - 1].lockweight + " " + nn_poblation[nn_poblation.Count - 1].throttleweight);
+            Debug.Log("Best: " + nn_poblation[nn_poblation.Count - 1].GetFitness() + " " + Mathf.Round((float)nn_poblation[nn_poblation.Count - 1].lockweight * 100f) / 100f  + " " + Mathf.Round((float)nn_poblation[nn_poblation.Count - 1].throttleweight*100f)/100f);
             double mean = 0;
             foreach(NeuralNetwork nn in nn_poblation)
             {
@@ -269,7 +269,9 @@ namespace NEAT
 
             ObtainChampions();
 
-            Mutate();
+
+
+            //Mutate();
 
             Cross();
 
@@ -390,7 +392,9 @@ namespace NEAT
                     foreach (NeuralNetwork nn in s.Value)
                     {
                         nn_new_poblation.Add(new NeuralNetwork(nn));
-                        nn_new_poblation.Add(new NeuralNetwork(nn));
+                        NeuralNetwork nnm = new NeuralNetwork(nn);
+                        Mutation.Mutate(nnm);
+                        nn_new_poblation.Add(nnm);
                     }
 
 
@@ -610,7 +614,7 @@ namespace NEAT
                 else
                 {
                     NNToFile ntf = new NNToFile();
-                    return ntf.Read("car70_7.txt");
+                    return ntf.Read("car48_11.txt");
                 }
                 
             }

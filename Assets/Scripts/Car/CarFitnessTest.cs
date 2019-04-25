@@ -46,6 +46,8 @@ namespace VehicleSystem
         public double minthrottlerange = 0.8;
         public double max_time_same_check = 15;
 
+        
+
         public void Awake()
         {
             num_lock = 0;
@@ -181,7 +183,8 @@ namespace VehicleSystem
         {
             if (done_calculating_fitness)
             {
-                if (checkpoints_checked.Count > 0) fitness = checkbonus * (checkpoints_checked.Count - 1) + Vector3.Distance(this.GetComponentInParent<Transform>().position, checkpoints_checked[checkpoints_checked.Count - 1].GetComponentInParent<Transform>().position);
+                if (checkpoints_checked.Count > 0 && checkpoints_checked.Count < 20) fitness = checkbonus * (checkpoints_checked.Count - 1) + Vector3.Distance(this.GetComponentInParent<Transform>().position, checkpoints_checked[checkpoints_checked.Count - 1].GetComponentInParent<Transform>().position);
+                else if (checkpoints.Count == 0) fitness = checkbonus * checkpoints_checked.Count * 2;
 
                 lockweight = minlockrange + (1-minlockrange) * (num_lock / total_lock);
                 throttleweight = minthrottlerange + (1-minthrottlerange) * (mean_throttle / total_throttle);

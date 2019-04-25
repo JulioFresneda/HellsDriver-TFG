@@ -52,7 +52,7 @@ namespace Racing
             foreach (RaceDriver g in race_drivers)
             {
                 if (g.GetCar().tag != "PlayerDriver") g.GetCar().tag = "AIDriver";
-                g.GetCar().transform.Find("MinimapCar").transform.localScale = new Vector3(50f, 50f, 50f);
+                //g.GetCar().transform.Find("MinimapCar").transform.localScale = new Vector3(50f, 50f, 50f);
             }
 
             gameObject.GetComponent<Cameras>().StartCameras();

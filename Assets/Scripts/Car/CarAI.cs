@@ -50,7 +50,7 @@ namespace VehicleSystem
             if (!NEAT)
             {
                 NNToFile ntf = new NNToFile();
-                nn = ntf.Read("AIs/car70_7.txt");
+                nn = ntf.Read("car48_11.txt");
             }
             
 
