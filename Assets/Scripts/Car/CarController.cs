@@ -233,6 +233,7 @@ namespace VehicleSystem
                 
                 // Accelerate & brake
                 throttle = (float)(throttleInputAI) - (brakeInputAI);
+               
                 // Boost
                 boosting = false;// (boostInputAI  > 0.5f);
                 // Turn
@@ -240,6 +241,7 @@ namespace VehicleSystem
                 if (lockSteeringAI > 0) ls = 1;
                 //steering = (1-ls) * turnInputCurve.Evaluate((float)(turnInputAI)) * steerAngle;
                 steering = (1 - ls) * (turnInputAI) * steerAngle;
+                Debug.Log(turnInputAI);
             }
 
             #endregion

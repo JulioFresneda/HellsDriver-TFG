@@ -177,6 +177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input_number_of_rays: 8
+  HasFitnessTest: 1
 --- !u!114 &7191352976589118915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,9 +191,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MAX_TIME_RUNNING: 30
-  MAX_TIME_SAME_CHECK: 5
+  time_running: 0
+  time_same_check: 0
   lockweight: 0
   throttleweight: 0
+  minlock: 0
+  minthrottle: 0
+  checkbonus: 200
+  minlockrange: 0.7
+  minthrottlerange: 0.8
+  max_time_same_check: 15
 --- !u!1 &1102551953586039995
 GameObject:
   m_ObjectHideFlags: 0

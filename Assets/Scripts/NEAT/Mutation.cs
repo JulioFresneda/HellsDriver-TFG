@@ -187,7 +187,7 @@ namespace NEAT
         public static double MutateWeight(double w)
         {
             Random rnd = NEATAlgorithm.rnd;
-            // Change the weight in a range between -5% and +5%
+            // Change the weight in a range between a +MutateWeightRange and -MutateWeightRange (in %)
             if( w != 0 ) return w + w * (MutateWeightsRange * (rnd.NextDouble() * 2 - 1));
             else return MutateWeightsRange * (rnd.NextDouble() * 2 - 1);
         }

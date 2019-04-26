@@ -1,6 +1,8 @@
 ﻿using NeuralNet;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using UnityEditor;
 using UnityEngine;
 using VehicleSystem;
 
@@ -96,6 +98,15 @@ namespace NEAT
         public static double AddConnectionProbability = 0.2;
 
 
+        /// <summary>
+        /// For evolve speed
+        /// </summary>
+
+        [Header("Evolving speed")]
+        [SerializeField]
+        private string CarAIName;
+
+
         [Header("Reference objects")]
 #pragma warning disable 0649
         [SerializeField]
@@ -148,6 +159,11 @@ namespace NEAT
             Mutation.AddNeuronProbability = AddNeuronProbability;
             Mutation.RandomWeightsProbabilityWhenMutate = RandomWeightsProbabilityWhenMutate;
             Mutation.MutateWeightsRange = MutateWeightsRange;
+
+            /*
+            string[] files = Directory.GetFiles("./AIs/");
+            foreach (string file in files)
+                Debug.Log(file);*/
 
 
 
@@ -253,7 +269,10 @@ namespace NEAT
             nn_poblation.Sort(cbf);
 
             Debug.Log("Generation: " + generation);
-            Debug.Log("Best: " + nn_poblation[nn_poblation.Count - 1].GetFitness() + " " + Mathf.Round((float)nn_poblation[nn_poblation.Count - 1].lockweight * 100f) / 100f  + " " + Mathf.Round((float)nn_poblation[nn_poblation.Count - 1].throttleweight*100f)/100f);
+            
+            if(evolutionMode == EvolutionMode.EvolveSpeed) Debug.Log("Best: " + (-nn_poblation[nn_poblation.Count - 1].GetFitness()+ 10000000) + " " + Mathf.Round((float)nn_poblation[nn_poblation.Count - 1].lockweight * 100f) / 100f  + " " + Mathf.Round((float)nn_poblation[nn_poblation.Count - 1].throttleweight*100f)/100f);
+            else Debug.Log("Best: " + nn_poblation[nn_poblation.Count - 1].GetFitness() + " " + Mathf.Round((float)nn_poblation[nn_poblation.Count - 1].lockweight * 100f) / 100f + " " + Mathf.Round((float)nn_poblation[nn_poblation.Count - 1].throttleweight * 100f) / 100f);
+
             double mean = 0;
             foreach(NeuralNetwork nn in nn_poblation)
             {
@@ -261,7 +280,7 @@ namespace NEAT
             }
             mean = mean / nn_poblation.Count;
 
-            Debug.Log("Mean: " + mean);
+            Debug.Log("Mean: " + Mathf.Round((float)mean*100f)/100f);
 
             readyforevolve = false;
             Debug.Log("Inicio Evolve " + System.GC.GetTotalMemory(true));
@@ -614,7 +633,7 @@ namespace NEAT
                 else
                 {
                     NNToFile ntf = new NNToFile();
-                    return ntf.Read("car48_11.txt");
+                    return ntf.Read("AIs/" + CarAIName + ".txt");
                 }
                 
             }
@@ -622,7 +641,7 @@ namespace NEAT
             else 
             {
                 NNToFile ntf = new NNToFile();
-                return ntf.Read("C:/Users/Julio/Desktop/cars/carfast2.txt");
+                return ntf.Read("AIs/" + CarAIName + ".txt");
             }
             
         }
@@ -727,7 +746,6 @@ public class CompareBySpecieAndSharedFitness : IComparer<NeuralNetwork>
         }
     }
 }
-
 
 
 

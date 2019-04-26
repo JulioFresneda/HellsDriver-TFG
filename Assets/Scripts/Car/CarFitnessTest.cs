@@ -19,7 +19,7 @@ namespace VehicleSystem
         private List<GameObject> checkpoints_checked;
         private int num_checkpoints;
 
-        private float time_running;
+        public float time_running;
         private float initializationTime;
 
 
@@ -45,6 +45,9 @@ namespace VehicleSystem
         public double minlockrange = 0.7;
         public double minthrottlerange = 0.8;
         public double max_time_same_check = 15;
+
+
+        private bool started = false;
 
         
 
@@ -91,7 +94,7 @@ namespace VehicleSystem
      
 
                 // If same check surpass limit
-                if (NEATAlgorithm.evolutionMode == EvolutionMode.EvolveDriving && time_running - time_same_check > 15)
+                if (time_running - time_same_check > 15)
                 {
                     done_calculating_fitness = true;
                
@@ -104,7 +107,7 @@ namespace VehicleSystem
                     done_calculating_fitness = true;
                    
                     CalculateFitness();
-                    if (NEATAlgorithm.evolutionMode == EvolutionMode.EvolveSpeed) fitness = -20000000000;
+                    
                 }
 
             }
@@ -126,7 +129,7 @@ namespace VehicleSystem
                 done_calculating_fitness = true;
               
                 CalculateFitness();
-                if(NEATAlgorithm.evolutionMode == EvolutionMode.EvolveSpeed) fitness = -100000000000;
+                
             }
 
         }
@@ -136,9 +139,25 @@ namespace VehicleSystem
         {
             
 
-            if (NEATAlgorithm.evolutionMode == EvolutionMode.EvolveDriving && col.gameObject.tag == "CheckPoint" && !done_calculating_fitness)
+            if (col.gameObject.tag == "CheckPoint" && !done_calculating_fitness)
             {
-                
+
+                if (col.gameObject.name == "CheckStart")
+                {
+                    if (!started) started = true;
+                    else
+                    {
+                        done_calculating_fitness = true;
+                        time_running = Time.timeSinceLevelLoad - initializationTime;
+                        fitness = 10000000 - time_running;
+
+                        lockweight = minlockrange + (1 - minlockrange) * (num_lock / total_lock);
+                        throttleweight = minthrottlerange + (1 - minthrottlerange) * (mean_throttle / total_throttle);
+                    }
+                }
+               
+
+
                 if (!checkpoints_checked.Contains(col.gameObject))
                 {
                     
@@ -150,14 +169,7 @@ namespace VehicleSystem
 
             }
 
-            if(NEATAlgorithm.evolutionMode == EvolutionMode.EvolveSpeed)
-            {
-                if (col.gameObject.name == "Check (58)")//&& checkpoints_checked.Count > 50)
-                {
-                    done_calculating_fitness = true;
-                    fitness = -time_running;
-                }
-            }
+           
         
         }
 
