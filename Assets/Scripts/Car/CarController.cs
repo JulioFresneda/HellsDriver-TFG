@@ -69,7 +69,7 @@ namespace VehicleSystem
         [SerializeField] AnimationCurve motorTorque;    // The throttle is not uniform
         [SerializeField] float brakeForce = 1500.0f;    
         [Range(0f, 100.0f)]
-        [SerializeField] float steerAngle = 30.0f;      // The maximum angle for turn
+        [SerializeField] float steerAngle = 10.0f;      // The maximum angle for turn
         [Range(0.001f, 10.0f)]
         [SerializeField] float steerSpeed = 0.2f;       // The speed of the steering
 
@@ -226,6 +226,7 @@ namespace VehicleSystem
                 boosting = (GetInput(boostInput) > 0.5f);
                 // Turn
                 steering = turnInputCurve.Evaluate(GetInput(turnInput)) * steerAngle;
+                Debug.Log(steerAngle);
 
             }
             else
@@ -240,8 +241,8 @@ namespace VehicleSystem
                 int ls = 0;
                 if (lockSteeringAI > 0) ls = 1;
                 //steering = (1-ls) * turnInputCurve.Evaluate((float)(turnInputAI)) * steerAngle;
-                steering = (1 - ls) * (turnInputAI) * steerAngle;
-                Debug.Log(turnInputAI);
+                steering = (turnInputAI) * steerAngle  * (1 - ls) ;
+               
             }
 
             #endregion
