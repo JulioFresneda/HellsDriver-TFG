@@ -1,0 +1,251 @@
+NeuralNetwork
+9999907,40556335
+2,95039527448646
+0
+>Neuron 0
+0
+input
+lineal
+speed
+>Neuron 1
+1
+input
+lineal
+bias
+>Neuron 2
+2
+input
+lineal
+distWall 0
+>Neuron 3
+3
+input
+lineal
+distWall 1
+>Neuron 4
+4
+input
+lineal
+distWall 2
+>Neuron 5
+5
+input
+lineal
+distWall 3
+>Neuron 6
+6
+input
+lineal
+distWall 4
+>Neuron 7
+7
+input
+lineal
+distWall 5
+>Neuron 8
+8
+input
+lineal
+distWall 6
+>Neuron 9
+9
+input
+lineal
+distWall 7
+>Neuron 10
+10
+output
+sigmoid
+brake
+>Neuron 11
+11
+output
+tanh
+turn
+>Neuron 12
+12
+output
+tanh
+locksteering
+<<
+>Connection 0
+0
+0
+10
+-0,00811962694162187
+Enabled
+>Connection 1
+1
+0
+11
+-0,0116016011543178
+Enabled
+>Connection 2
+2
+0
+12
+-0,00575426836404093
+Enabled
+>Connection 3
+3
+1
+10
+-0,00830664099359059
+Enabled
+>Connection 4
+4
+1
+11
+0,0173116367494464
+Enabled
+>Connection 5
+5
+1
+12
+-0,396922492386571
+Enabled
+>Connection 6
+6
+2
+10
+-0,012749296559001
+Enabled
+>Connection 7
+7
+2
+11
+0,00798836554782324
+Enabled
+>Connection 8
+8
+2
+12
+-0,00878769474822705
+Enabled
+>Connection 9
+9
+3
+10
+-0,0159295491288842
+Enabled
+>Connection 10
+10
+3
+11
+0,00834497103205365
+Enabled
+>Connection 11
+11
+3
+12
+0,0197116659183818
+Enabled
+>Connection 12
+12
+4
+10
+-0,00249334826964771
+Enabled
+>Connection 13
+13
+4
+11
+0,00450156764285473
+Enabled
+>Connection 14
+14
+4
+12
+0,00425094828525766
+Enabled
+>Connection 15
+15
+5
+10
+0,00151147208203549
+Enabled
+>Connection 16
+16
+5
+11
+0,894201370838192
+Enabled
+>Connection 17
+17
+5
+12
+-0,317328899780907
+Enabled
+>Connection 18
+18
+6
+10
+-0,00376212283427864
+Enabled
+>Connection 19
+19
+6
+11
+-0,00568791315404789
+Enabled
+>Connection 20
+20
+6
+12
+-0,00583409686729196
+Enabled
+>Connection 21
+21
+7
+10
+0,00366371653073724
+Enabled
+>Connection 22
+22
+7
+11
+-0,313618869201103
+Enabled
+>Connection 23
+23
+7
+12
+0,0150809807805668
+Enabled
+>Connection 24
+24
+8
+10
+0,0166490250706685
+Enabled
+>Connection 25
+25
+8
+11
+-0,0146491884376885
+Enabled
+>Connection 26
+26
+8
+12
+0,00791886663348574
+Enabled
+>Connection 27
+27
+9
+10
+-0,0113469771593685
+Enabled
+>Connection 28
+28
+9
+11
+-0,0129642201166514
+Enabled
+>Connection 29
+29
+9
+12
+-0,00939093674486212
+Enabled
+<<

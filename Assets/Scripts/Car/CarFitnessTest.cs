@@ -145,7 +145,7 @@ namespace VehicleSystem
                 if (col.gameObject.name == "CheckStart")
                 {
                     if (!started) started = true;
-                    else
+                    else if(checkpoints_checked.Count > 15)
                     {
                         done_calculating_fitness = true;
                         time_running = Time.timeSinceLevelLoad - initializationTime;

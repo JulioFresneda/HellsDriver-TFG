@@ -226,7 +226,7 @@ namespace VehicleSystem
                 boosting = (GetInput(boostInput) > 0.5f);
                 // Turn
                 steering = turnInputCurve.Evaluate(GetInput(turnInput)) * steerAngle;
-                Debug.Log(steerAngle);
+
 
             }
             else

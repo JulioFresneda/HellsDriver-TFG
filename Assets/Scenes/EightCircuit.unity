@@ -305,12 +305,12 @@ PrefabInstance:
     - target: {fileID: 5848164920150770579, guid: 8ca937df81a2fa74b88bfabe7c518ac0,
         type: 3}
       propertyPath: NewNeuralNet
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5848164920150770579, guid: 8ca937df81a2fa74b88bfabe7c518ac0,
         type: 3}
       propertyPath: NumberOfCars
-      value: 5
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5848164920150770579, guid: 8ca937df81a2fa74b88bfabe7c518ac0,
         type: 3}
@@ -320,8 +320,14 @@ PrefabInstance:
     - target: {fileID: 5848164920150770579, guid: 8ca937df81a2fa74b88bfabe7c518ac0,
         type: 3}
       propertyPath: CarAIName
-      value: TrainingCar8
+      value: XCar16
       objectReference: {fileID: 0}
+    - target: {fileID: 5848164920150770579, guid: 8ca937df81a2fa74b88bfabe7c518ac0,
+        type: 3}
+      propertyPath: car
+      value: 
+      objectReference: {fileID: 865128088625505646, guid: 8e92e219e28bcd247b551fd26faf89d3,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ca937df81a2fa74b88bfabe7c518ac0, type: 3}
 --- !u!1 &333052614
@@ -946,8 +952,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   num_race_drivers: 2
-  carAI: {fileID: 4142122000579309535, guid: bd3fa74e7b7af2e43887e6487c9f5cc5, type: 3}
-  carPlayer: {fileID: 4142122000579309535, guid: bd3fa74e7b7af2e43887e6487c9f5cc5,
+  carAI: {fileID: 7556836743232233330, guid: c3bb5d3768f162c4c9c268b58bd2c44c, type: 3}
+  carPlayer: {fileID: 7556836743232233330, guid: c3bb5d3768f162c4c9c268b58bd2c44c,
     type: 3}
   start: {fileID: 1949812197}
 --- !u!4 &695342752
