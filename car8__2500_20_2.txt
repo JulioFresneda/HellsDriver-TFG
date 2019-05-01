@@ -1,0 +1,237 @@
+NeuralNetwork
+0
+0
+0
+>Neuron 0
+0
+input
+lineal
+speed
+>Neuron 1
+1
+input
+lineal
+bias
+>Neuron 2
+2
+input
+lineal
+distWall 0
+>Neuron 3
+3
+input
+lineal
+distWall 1
+>Neuron 4
+4
+input
+lineal
+distWall 2
+>Neuron 5
+5
+input
+lineal
+distWall 3
+>Neuron 6
+6
+input
+lineal
+distWall 4
+>Neuron 7
+7
+input
+lineal
+distWall 5
+>Neuron 8
+8
+input
+lineal
+distWall 6
+>Neuron 9
+9
+input
+lineal
+distWall 7
+>Neuron 10
+10
+input
+lineal
+distWall 8
+>Neuron 11
+11
+input
+lineal
+distWall 9
+>Neuron 12
+12
+input
+lineal
+distWall 10
+>Neuron 13
+13
+output
+sigmoid
+brake
+>Neuron 14
+14
+output
+tanh
+boost
+<<
+>Connection 0
+0
+0
+13
+0,00487998094370777
+Enabled
+>Connection 1
+1
+0
+14
+0,050436764453066
+Enabled
+>Connection 2
+2
+1
+13
+0,0282503384200838
+Enabled
+>Connection 3
+3
+1
+14
+0,170210727331583
+Enabled
+>Connection 4
+4
+2
+13
+-0,142530381931622
+Enabled
+>Connection 5
+5
+2
+14
+-0,479185057059451
+Enabled
+>Connection 6
+6
+3
+13
+-0,0429942465845531
+Enabled
+>Connection 7
+7
+3
+14
+0,354943382920264
+Enabled
+>Connection 8
+8
+4
+13
+-0,93221850644816
+Enabled
+>Connection 9
+9
+4
+14
+0,0255673359137123
+Enabled
+>Connection 10
+10
+5
+13
+0,108598353241287
+Enabled
+>Connection 11
+11
+5
+14
+-0,0098508770365406
+Enabled
+>Connection 12
+12
+6
+13
+-0,035907358085445
+Enabled
+>Connection 13
+13
+6
+14
+-0,0422147196051669
+Enabled
+>Connection 14
+14
+7
+13
+-0,320486485641676
+Enabled
+>Connection 15
+15
+7
+14
+0,0579753678115978
+Enabled
+>Connection 16
+16
+8
+13
+-0,00608863839077924
+Enabled
+>Connection 17
+17
+8
+14
+-0,872033780605705
+Enabled
+>Connection 18
+18
+9
+13
+-1,12807857265672
+Enabled
+>Connection 19
+19
+9
+14
+-0,631746981121482
+Enabled
+>Connection 20
+20
+10
+13
+0,0570706082951925
+Enabled
+>Connection 21
+21
+10
+14
+0,860478985989689
+Enabled
+>Connection 22
+22
+11
+13
+0,184791633340971
+Enabled
+>Connection 23
+23
+11
+14
+-1,01901033640304
+Enabled
+>Connection 24
+24
+12
+13
+-0,335433083787484
+Enabled
+>Connection 25
+25
+12
+14
+0,0465813914173772
+Enabled
+<<

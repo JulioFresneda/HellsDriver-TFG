@@ -14,6 +14,9 @@ namespace VehicleSystem
     {
         public int MAX_TIME_RUNNING = 30;
 
+        private static int num_done = 0;
+        private static int num_coches = 100;
+
 
         private List<GameObject> checkpoints;
         private List<GameObject> checkpoints_checked;
@@ -38,6 +41,8 @@ namespace VehicleSystem
         public double lockweight;
         public double throttleweight;
 
+        public int boosteds = 0;
+
 
         public double minlock = 0;
         public double minthrottle = 0;
@@ -49,7 +54,10 @@ namespace VehicleSystem
 
         private bool started = false;
 
-        
+        public static void ResetDoneNumber()
+        {
+            num_done = 0;
+        }
 
         public void Awake()
         {
@@ -86,6 +94,14 @@ namespace VehicleSystem
         private void Update()
         {
 
+            if (num_done >= num_coches / 3)
+            {
+
+                done_calculating_fitness = true;
+
+                CalculateFitness();
+            }
+
             if (!done_calculating_fitness)
             {
                 // Time running
@@ -97,7 +113,7 @@ namespace VehicleSystem
                 if (time_running - time_same_check > 15)
                 {
                     done_calculating_fitness = true;
-               
+                    
                     CalculateFitness();
                 }
 
@@ -105,7 +121,7 @@ namespace VehicleSystem
                 if (time_running > MAX_TIME_RUNNING)
                 {
                     done_calculating_fitness = true;
-                   
+                    
                     CalculateFitness();
                     
                 }
@@ -150,7 +166,7 @@ namespace VehicleSystem
                         done_calculating_fitness = true;
                         time_running = Time.timeSinceLevelLoad - initializationTime;
                         fitness = 10000000 - time_running;
-
+                        
                         lockweight = minlockrange + (1 - minlockrange) * (num_lock / total_lock);
                         throttleweight = minthrottlerange + (1 - minthrottlerange) * (mean_throttle / total_throttle);
 

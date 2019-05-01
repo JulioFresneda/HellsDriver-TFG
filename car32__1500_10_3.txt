@@ -1,0 +1,237 @@
+NeuralNetwork
+0
+0
+0
+>Neuron 0
+0
+input
+lineal
+speed
+>Neuron 1
+1
+input
+lineal
+bias
+>Neuron 2
+2
+input
+lineal
+distWall 0
+>Neuron 3
+3
+input
+lineal
+distWall 1
+>Neuron 4
+4
+input
+lineal
+distWall 2
+>Neuron 5
+5
+input
+lineal
+distWall 3
+>Neuron 6
+6
+input
+lineal
+distWall 4
+>Neuron 7
+7
+input
+lineal
+distWall 5
+>Neuron 8
+8
+input
+lineal
+distWall 6
+>Neuron 9
+9
+input
+lineal
+distWall 7
+>Neuron 10
+10
+input
+lineal
+distWall 8
+>Neuron 11
+11
+input
+lineal
+distWall 9
+>Neuron 12
+12
+input
+lineal
+distWall 10
+>Neuron 13
+13
+output
+sigmoid
+brake
+>Neuron 14
+14
+output
+tanh
+boost
+<<
+>Connection 0
+0
+0
+13
+-0,758173145820793
+Enabled
+>Connection 1
+1
+0
+14
+-0,675629145079714
+Enabled
+>Connection 2
+2
+1
+13
+-0,0471780714402362
+Enabled
+>Connection 3
+3
+1
+14
+-0,0484702940375955
+Enabled
+>Connection 4
+4
+2
+13
+-0,286469567454474
+Enabled
+>Connection 5
+5
+2
+14
+0,036355162989989
+Enabled
+>Connection 6
+6
+3
+13
+-0,971801847871149
+Enabled
+>Connection 7
+7
+3
+14
+0,0369845418323106
+Enabled
+>Connection 8
+8
+4
+13
+0,888598516013491
+Enabled
+>Connection 9
+9
+4
+14
+0,712695177333624
+Enabled
+>Connection 10
+10
+5
+13
+-0,84958199245119
+Enabled
+>Connection 11
+11
+5
+14
+-0,718544472809203
+Enabled
+>Connection 12
+12
+6
+13
+-0,751465471345682
+Enabled
+>Connection 13
+13
+6
+14
+0,02134303520611
+Enabled
+>Connection 14
+14
+7
+13
+-0,66197056684317
+Enabled
+>Connection 15
+15
+7
+14
+0,0133583184026018
+Enabled
+>Connection 16
+16
+8
+13
+-0,0323472481403184
+Enabled
+>Connection 17
+17
+8
+14
+0,032693258813725
+Enabled
+>Connection 18
+18
+9
+13
+0,0611867341497851
+Enabled
+>Connection 19
+19
+9
+14
+0,00641260019442126
+Enabled
+>Connection 20
+20
+10
+13
+-0,018475669229889
+Enabled
+>Connection 21
+21
+10
+14
+0,025843570899294
+Enabled
+>Connection 22
+22
+11
+13
+0,564128053153439
+Enabled
+>Connection 23
+23
+11
+14
+-0,485216640305126
+Enabled
+>Connection 24
+24
+12
+13
+-0,0450654608107417
+Enabled
+>Connection 25
+25
+12
+14
+-0,175772499840601
+Enabled
+<<

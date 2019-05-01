@@ -22,6 +22,7 @@ namespace NeuralNet
 
         public double lockweight;
         public double throttleweight;
+        public int boosteds;
 
 
         public NeuralNetwork()

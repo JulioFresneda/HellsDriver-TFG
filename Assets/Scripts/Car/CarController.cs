@@ -69,7 +69,7 @@ namespace VehicleSystem
         [SerializeField] AnimationCurve motorTorque;    // The throttle is not uniform
         [SerializeField] float brakeForce = 1500.0f;    
         [Range(0f, 100.0f)]
-        [SerializeField] float steerAngle = 10.0f;      // The maximum angle for turn
+        [SerializeField] public float steerAngle = 10.0f;      // The maximum angle for turn
         [Range(0.001f, 10.0f)]
         [SerializeField] float steerSpeed = 0.2f;       // The speed of the steering
 
@@ -204,6 +204,7 @@ namespace VehicleSystem
                     if (o.Item1 == "brake") BrakeInputAI = (float)o.Item2*2;
                     //if (o.Item1 == "turn") TurnInputAI = (float)o.Item2;
                     if (o.Item1 == "locksteering") LockSteeringAI = o.Item2;
+                    if (o.Item1 == "boost") BoostInputAI = (float)o.Item2;
                 }
 
                 TurnInputAI = (float)carAI.CalculateSteering();
@@ -245,7 +246,7 @@ namespace VehicleSystem
                 throttle = (float)(throttleInputAI) - (brakeInputAI);
                
                 // Boost
-                boosting = (boostInputAI  > 0.5f);
+                boosting = (boostInputAI  > 0);
                 // Turn
                 int ls = 0;
                 //if (lockSteeringAI > 0) ls = 1;
@@ -312,7 +313,7 @@ namespace VehicleSystem
             if (boosting && boost > 0.1f)
             {
                 _rb.AddForce(transform.forward * boostForce);
-
+ 
                 boost -= Time.fixedDeltaTime;
                 if (boost < 0f) { boost = 0f; }
             }
@@ -364,7 +365,10 @@ namespace VehicleSystem
             return turnWheel[0].steerAngle;
         }
 
-
+        public double SteerAngle()
+        {
+            return steerAngle;
+        }
 
 
         void DoRollBar(WheelCollider WheelL, WheelCollider WheelR)

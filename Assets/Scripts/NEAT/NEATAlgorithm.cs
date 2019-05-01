@@ -98,11 +98,8 @@ namespace NEAT
         public static double AddConnectionProbability = 0.2;
 
 
-        /// <summary>
-        /// For evolve speed
-        /// </summary>
-
-        [Header("Evolving speed")]
+      
+        [Header("Save the car")]
         [SerializeField]
         private string CarAIName;
 
@@ -149,6 +146,14 @@ namespace NEAT
 
 
 
+        [Header("Multiple training")]
+        [SerializeField]
+        bool MultipleTraining = false;
+
+        List<Tuple<int, int, int, int>> CarValues;
+
+
+
         // Start is called before the first frame update
         void Awake()
         {
@@ -165,7 +170,7 @@ namespace NEAT
             foreach (string file in files)
                 Debug.Log(file);*/
 
-
+            
 
             rnd = new System.Random(1);
             NewConnections = new List<Connection>();
@@ -206,6 +211,132 @@ namespace NEAT
 
             readyforruncars = true;
 
+
+
+
+            if (MultipleTraining)
+            {
+                CarValues = new List<Tuple<int, int, int, int>>();
+
+                List<int> throttleList = new List<int>();
+                throttleList.Add(8);
+                throttleList.Add(12);
+                throttleList.Add(16);
+                throttleList.Add(24);
+                throttleList.Add(32);
+
+                List<int> massList = new List<int>();
+                massList.Add(1500);
+                massList.Add(2000);
+                massList.Add(2500);
+
+                List<int> steerList = new List<int>();
+                steerList.Add(10);
+                steerList.Add(20);
+                steerList.Add(30);
+
+                List<int> sidewaysFrictionList = new List<int>();
+                sidewaysFrictionList.Add(2);
+                sidewaysFrictionList.Add(3);
+                sidewaysFrictionList.Add(4);
+
+
+                foreach(int t in throttleList)
+                {
+                    foreach(int m in massList)
+                    {
+                        foreach(int s in steerList)
+                        {
+                            foreach(int sf in sidewaysFrictionList)
+                            {
+                                CarValues.Add(new Tuple<int, int, int, int>(t, m, s, sf));
+                            }
+                        }
+                    }
+                }
+
+
+                ChangeCar();
+                ChangeCar();
+                ChangeCar();
+                ChangeCar();
+                ChangeCar();
+                ChangeCar();
+            }
+            
+
+        }
+
+        private void ChangeCar()
+        {
+            if (CarValues.Count > 0)
+            {
+                car.GetComponent<CarController>().Throttle = CarValues[0].Item1;
+                car.GetComponent<Rigidbody>().mass = CarValues[0].Item2;
+                car.GetComponent<CarController>().steerAngle = CarValues[0].Item3;
+
+                WheelFrictionCurve wfc = new WheelFrictionCurve();
+                wfc.extremumSlip = 0.4f;
+                wfc.extremumValue = 1f;
+                wfc.asymptoteSlip = 0.5f;
+                wfc.asymptoteValue = 0.75f;
+                wfc.stiffness = CarValues[0].Item4;
+
+                foreach(WheelCollider w in car.GetComponentsInChildren<WheelCollider>())
+                {
+                    w.sidewaysFriction = wfc;
+                }
+
+                Debug.Log("Car Values: " + CarValues[0].Item1 + " " + CarValues[0].Item2 + " " + CarValues[0].Item3 + " " + CarValues[0].Item4);
+
+                CarValues.RemoveAt(0);
+            }
+        }
+
+        private void ResetNEAT()
+        {
+            NewConnections = new List<Connection>();
+            NewNeurons = new List<Tuple<Connection, int, int, int>>();
+
+            nn_poblation = new List<NeuralNetwork>();
+            nn_new_poblation = new List<NeuralNetwork>();
+
+            nn_representation_previous_gen = new List<NeuralNetwork>();
+            nn_champions = new Dictionary<int, NeuralNetwork>();
+
+            cars = new List<GameObject>();
+
+            readyforruncars = false;
+            readyforevolve = false;
+
+
+
+            for (int i = 0; i < NumberOfCars; i++)
+            {
+                nn_poblation.Add(GenerateBasicNN());
+            }
+
+            INNOV_CONNECTION = 0;
+            INNOV_NEURON = 0;
+
+            foreach (var k in nn_poblation[0].Connections().Keys)
+            {
+                if (k > INNOV_CONNECTION) INNOV_CONNECTION = k;
+            }
+            foreach (var k in nn_poblation[0].Neurons().Keys)
+            {
+                if (k > INNOV_NEURON) INNOV_NEURON = k;
+            }
+            INNOV_NEURON++;
+            INNOV_CONNECTION++;
+
+
+            readyforruncars = true;
+            generation = 0;
+
+
+            cars.Clear();
+          
         }
 
         private void Update()
@@ -213,7 +344,23 @@ namespace NEAT
             
 
 
-            if (readyforruncars) RunCars();    
+            if (readyforruncars) RunCars();  
+            else if (generation == SaveBestInGeneration || SaveThisGeneration)
+            {
+                CompareByFitness cmpf = new CompareByFitness();
+                nn_poblation.Sort(cmpf);
+                NNToFile ntf = new NNToFile(nn_poblation[nn_poblation.Count - 1]);
+                string n = "car" + car.GetComponent<CarController>().Throttle + "_" + "_" + car.GetComponent<Rigidbody>().mass + "_" + car.GetComponent<CarController>().SteerAngle() + "_" + car.GetComponentInChildren<WheelCollider>().sidewaysFriction.stiffness + ".txt";
+                carnumber++;
+                ntf.Write(n);
+
+                if (MultipleTraining)
+                {
+                    ChangeCar();
+                    ResetNEAT();
+                }
+                
+            }
             else if (readyforevolve)
             {
                 var cars = GameObject.FindGameObjectsWithTag("Car");
@@ -233,7 +380,7 @@ namespace NEAT
 
             }
 
-            if (PoblationDoneCalculatingFitness())
+            if (PoblationDoneCalculatingFitness() && cars.Count > 0)
             {
                 foreach (GameObject car in cars)
                 {
@@ -251,18 +398,10 @@ namespace NEAT
 
         private void EvolveGeneration()
         {
-            
 
-            
-            if(generation == SaveBestInGeneration || SaveThisGeneration)
-            {
-                CompareByFitness cmpf = new CompareByFitness();
-                nn_poblation.Sort(cmpf);
-                NNToFile ntf = new NNToFile(nn_poblation[nn_poblation.Count-1]);
-                string n = "car" + generation + "_" + carnumber + ".txt";
-                carnumber++;
-                ntf.Write(n);
-            }
+
+
+            CarFitnessTest.ResetDoneNumber();
 
 
             CompareByFitness cbf = new CompareByFitness();
@@ -270,8 +409,8 @@ namespace NEAT
 
             Debug.Log("Generation: " + generation);
             
-            if(evolutionMode == EvolutionMode.EvolveSpeed) Debug.Log("Best: " + (-nn_poblation[nn_poblation.Count - 1].GetFitness()+ 10000000) + " " + Mathf.Round((float)nn_poblation[nn_poblation.Count - 1].lockweight * 100f) / 100f  + " " + Mathf.Round((float)nn_poblation[nn_poblation.Count - 1].throttleweight*100f)/100f);
-            else Debug.Log("Best: " + nn_poblation[nn_poblation.Count - 1].GetFitness() + " " + Mathf.Round((float)nn_poblation[nn_poblation.Count - 1].lockweight * 100f) / 100f + " " + Mathf.Round((float)nn_poblation[nn_poblation.Count - 1].throttleweight * 100f) / 100f);
+            if(evolutionMode == EvolutionMode.EvolveSpeed) Debug.Log("Best: " + (-nn_poblation[nn_poblation.Count - 1].GetFitness()+ 10000000) + " " + Mathf.Round((float)nn_poblation[nn_poblation.Count - 1].lockweight * 100f) / 100f  + " " + Mathf.Round((float)nn_poblation[nn_poblation.Count - 1].throttleweight*100f)/100f + " " + nn_poblation[nn_poblation.Count - 1].boosteds);
+            else Debug.Log("Best: " + nn_poblation[nn_poblation.Count - 1].GetFitness() + " " + Mathf.Round((float)nn_poblation[nn_poblation.Count - 1].lockweight * 100f) / 100f + " " + Mathf.Round((float)nn_poblation[nn_poblation.Count - 1].throttleweight * 100f) / 100f + " " + nn_poblation[nn_poblation.Count - 1].boosteds);
 
             double mean = 0;
             foreach(NeuralNetwork nn in nn_poblation)
@@ -528,6 +667,7 @@ namespace NEAT
 
         private bool PoblationDoneCalculatingFitness()
         {
+           
             bool ok = true;
             foreach (GameObject car in cars)
             {
@@ -612,6 +752,7 @@ namespace NEAT
                     // Inputs
                     List<string> sinputs = new List<string>();
                     sinputs.Add("speed");
+                    
                     //sinputs.Add("wheelSteering");
                     sinputs.Add("bias");
 
@@ -626,6 +767,7 @@ namespace NEAT
                     List<string> soutputs = new List<string>();
                     //soutputs.Add("throttle");
                     soutputs.Add("brake");
+                    soutputs.Add("boost");
                     //soutputs.Add("turn");
                     //soutputs.Add("locksteering");
 
@@ -682,10 +824,6 @@ namespace NEAT
     }
 
 
-
-
-
-    
 
 
 

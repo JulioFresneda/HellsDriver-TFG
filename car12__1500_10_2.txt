@@ -1,0 +1,237 @@
+NeuralNetwork
+0
+0
+0
+>Neuron 0
+0
+input
+lineal
+speed
+>Neuron 1
+1
+input
+lineal
+bias
+>Neuron 2
+2
+input
+lineal
+distWall 0
+>Neuron 3
+3
+input
+lineal
+distWall 1
+>Neuron 4
+4
+input
+lineal
+distWall 2
+>Neuron 5
+5
+input
+lineal
+distWall 3
+>Neuron 6
+6
+input
+lineal
+distWall 4
+>Neuron 7
+7
+input
+lineal
+distWall 5
+>Neuron 8
+8
+input
+lineal
+distWall 6
+>Neuron 9
+9
+input
+lineal
+distWall 7
+>Neuron 10
+10
+input
+lineal
+distWall 8
+>Neuron 11
+11
+input
+lineal
+distWall 9
+>Neuron 12
+12
+input
+lineal
+distWall 10
+>Neuron 13
+13
+output
+sigmoid
+brake
+>Neuron 14
+14
+output
+tanh
+boost
+<<
+>Connection 0
+0
+0
+13
+-0,621885449135368
+Enabled
+>Connection 1
+1
+0
+14
+0,449088831679095
+Enabled
+>Connection 2
+2
+1
+13
+0,00923958760452909
+Enabled
+>Connection 3
+3
+1
+14
+0,0464249119831206
+Enabled
+>Connection 4
+4
+2
+13
+-0,0149766252227601
+Enabled
+>Connection 5
+5
+2
+14
+0,0444790903340299
+Enabled
+>Connection 6
+6
+3
+13
+-0,0374391421242502
+Enabled
+>Connection 7
+7
+3
+14
+0,0105687396201279
+Enabled
+>Connection 8
+8
+4
+13
+-0,899079703710578
+Enabled
+>Connection 9
+9
+4
+14
+0,459802420392641
+Enabled
+>Connection 10
+10
+5
+13
+0,557782633552338
+Enabled
+>Connection 11
+11
+5
+14
+0,00462430101256983
+Enabled
+>Connection 12
+12
+6
+13
+-0,026851859834672
+Enabled
+>Connection 13
+13
+6
+14
+0,0405200242986062
+Enabled
+>Connection 14
+14
+7
+13
+0,00527143438439411
+Enabled
+>Connection 15
+15
+7
+14
+-0,555483267511441
+Enabled
+>Connection 16
+16
+8
+13
+0,894112402527332
+Enabled
+>Connection 17
+17
+8
+14
+-0,944573724701896
+Enabled
+>Connection 18
+18
+9
+13
+0,0238217834825892
+Enabled
+>Connection 19
+19
+9
+14
+0,0457614765731323
+Enabled
+>Connection 20
+20
+10
+13
+-0,0171476501981622
+Enabled
+>Connection 21
+21
+10
+14
+0,00313962118435311
+Enabled
+>Connection 22
+22
+11
+13
+-0,717292724976918
+Enabled
+>Connection 23
+23
+11
+14
+5,12048553728292E-05
+Enabled
+>Connection 24
+24
+12
+13
+0,671993066839484
+Enabled
+>Connection 25
+25
+12
+14
+-0,041740386962981
+Enabled
+<<

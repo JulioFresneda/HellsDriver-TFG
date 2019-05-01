@@ -52,14 +52,15 @@ MonoBehaviour:
   SaveThisGeneration: 0
   SelectEvolutionMode: 1
   MaxTimeRunning: 180
-  MaxTimeSameCheckpoint: 15
+  MaxTimeSameCheckpoint: 10
   CheckpointBonus: 200
   MinSteeringLockWeightRange: 0.7
-  MinThrottleWeightRange: 0.7
-  MinSteeringLockWeight: 0.7
-  MinThrottleWeight: 0.8
+  MinThrottleWeightRange: 0.8500000238418579
+  MinSteeringLockWeight: 0.8999999761581421
+  MinThrottleWeight: 0.9700000286102295
   MutateWeightsProbability: 0.1
   RandomWeightsProbabilityWhenMutate: 0.1
-  MutateWeightsRange: 0.02
+  MutateWeightsRange: 0.05000000074505806
+  CarAIName: 
   start: {fileID: 0}
   car: {fileID: 865128088625505646, guid: 8e92e219e28bcd247b551fd26faf89d3, type: 3}

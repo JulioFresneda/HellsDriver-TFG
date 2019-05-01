@@ -129,6 +129,8 @@ namespace VehicleSystem
 
                    
                     if (o.Item1 == "brake") br = (o.Item2)*2;
+
+                    if (o.Item1 == "boost" && o.Item2 > 0) this.GetComponentInParent<CarFitnessTest>().boosteds++;
                 }
 
                 this.GetComponentInParent<CarFitnessTest>().SetThrottle(1 - br);
@@ -141,6 +143,7 @@ namespace VehicleSystem
         {
             nn.lockweight = this.GetComponentInParent<CarFitnessTest>().lockweight;
             nn.throttleweight = this.GetComponentInParent<CarFitnessTest>().throttleweight;
+            nn.boosteds = this.GetComponentInParent<CarFitnessTest>().boosteds;
             return nn;
         }
 

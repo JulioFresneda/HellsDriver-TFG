@@ -1,0 +1,237 @@
+NeuralNetwork
+0
+0
+0
+>Neuron 0
+0
+input
+lineal
+speed
+>Neuron 1
+1
+input
+lineal
+bias
+>Neuron 2
+2
+input
+lineal
+distWall 0
+>Neuron 3
+3
+input
+lineal
+distWall 1
+>Neuron 4
+4
+input
+lineal
+distWall 2
+>Neuron 5
+5
+input
+lineal
+distWall 3
+>Neuron 6
+6
+input
+lineal
+distWall 4
+>Neuron 7
+7
+input
+lineal
+distWall 5
+>Neuron 8
+8
+input
+lineal
+distWall 6
+>Neuron 9
+9
+input
+lineal
+distWall 7
+>Neuron 10
+10
+input
+lineal
+distWall 8
+>Neuron 11
+11
+input
+lineal
+distWall 9
+>Neuron 12
+12
+input
+lineal
+distWall 10
+>Neuron 13
+13
+output
+sigmoid
+brake
+>Neuron 14
+14
+output
+tanh
+boost
+<<
+>Connection 0
+0
+0
+13
+-0,638696446971587
+Enabled
+>Connection 1
+1
+0
+14
+-0,00862138487914003
+Enabled
+>Connection 2
+2
+1
+13
+0,527201673343076
+Enabled
+>Connection 3
+3
+1
+14
+-0,0418140747852978
+Enabled
+>Connection 4
+4
+2
+13
+-0,0447593261876032
+Enabled
+>Connection 5
+5
+2
+14
+0,377696314769718
+Enabled
+>Connection 6
+6
+3
+13
+0,00157517655737125
+Enabled
+>Connection 7
+7
+3
+14
+0,800758729767455
+Enabled
+>Connection 8
+8
+4
+13
+-0,0425157069959517
+Enabled
+>Connection 9
+9
+4
+14
+0,0628052573012212
+Enabled
+>Connection 10
+10
+5
+13
+0,0377633108233987
+Enabled
+>Connection 11
+11
+5
+14
+1,07880881417868
+Enabled
+>Connection 12
+12
+6
+13
+0,0105681093687017
+Enabled
+>Connection 13
+13
+6
+14
+0,926506333018889
+Enabled
+>Connection 14
+14
+7
+13
+0,472312248066213
+Enabled
+>Connection 15
+15
+7
+14
+-0,0186999608756471
+Enabled
+>Connection 16
+16
+8
+13
+0,0246099242714414
+Enabled
+>Connection 17
+17
+8
+14
+0,0420480692882889
+Enabled
+>Connection 18
+18
+9
+13
+-0,0233746140988055
+Enabled
+>Connection 19
+19
+9
+14
+-0,277049211448547
+Enabled
+>Connection 20
+20
+10
+13
+0,35463994505659
+Enabled
+>Connection 21
+21
+10
+14
+-0,0853890266670529
+Enabled
+>Connection 22
+22
+11
+13
+0,00366168147380096
+Enabled
+>Connection 23
+23
+11
+14
+-0,0182375898188676
+Enabled
+>Connection 24
+24
+12
+13
+-0,377597954765706
+Enabled
+>Connection 25
+25
+12
+14
+0,20904996302026
+Enabled
+<<
