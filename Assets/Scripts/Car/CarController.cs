@@ -139,8 +139,9 @@ namespace VehicleSystem
             else
             {
                 carAI = null;
-                carRaycast = GetComponentInParent<CarRaycast>();
-                carRaycast.GenerateRays();
+                GetComponentsInChildren<CarRaycast>()[0].GenerateRays();
+                GetComponentsInChildren<CarRaycast>()[1].GenerateRays();
+
             }
     
 
@@ -182,6 +183,10 @@ namespace VehicleSystem
 
             speed = transform.InverseTransformDirection(_rb.velocity).z * 3.6f;
 
+            /*
+            GetComponentsInChildren<CarRaycast>()[0].CalculateDistances();
+            GetComponentsInChildren<CarRaycast>()[1].CalculateDistances();*/
+
             if (!isPlayer)
             {
                 
@@ -197,13 +202,17 @@ namespace VehicleSystem
                     //if (o.Item1 == "throttle") ThrottleInputAI = (float)o.Item2;
                     ThrottleInputAI = 1;
                     if (o.Item1 == "brake") BrakeInputAI = (float)o.Item2*2;
-                    if (o.Item1 == "turn") TurnInputAI = (float)o.Item2;
+                    //if (o.Item1 == "turn") TurnInputAI = (float)o.Item2;
                     if (o.Item1 == "locksteering") LockSteeringAI = o.Item2;
                 }
+
+                TurnInputAI = (float)carAI.CalculateSteering();
             }
             else
             {
                 //carRaycast.CalculateDistances();
+                GetComponentsInChildren<CarRaycast>()[0].CalculateDistances();
+                GetComponentsInChildren<CarRaycast>()[1].CalculateDistances();
             }
 
             
@@ -236,13 +245,13 @@ namespace VehicleSystem
                 throttle = (float)(throttleInputAI) - (brakeInputAI);
                
                 // Boost
-                boosting = false;// (boostInputAI  > 0.5f);
+                boosting = (boostInputAI  > 0.5f);
                 // Turn
                 int ls = 0;
-                if (lockSteeringAI > 0) ls = 1;
+                //if (lockSteeringAI > 0) ls = 1;
                 //steering = (1-ls) * turnInputCurve.Evaluate((float)(turnInputAI)) * steerAngle;
-                steering = (turnInputAI) * steerAngle  * (1 - ls) ;
-               
+                steering = (turnInputAI) * steerAngle;//  * (1 - ls) ;
+                
             }
 
             #endregion
@@ -324,7 +333,7 @@ namespace VehicleSystem
 
 
 
-
+        public double GetSteerAngle() => steerAngle;
 
 
         public void ResetPos()

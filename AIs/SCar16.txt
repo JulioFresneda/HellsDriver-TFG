@@ -1,0 +1,33 @@
+NeuralNetwork
+9999916,99023438
+199998,329643555
+0
+>Neuron 0
+0
+input
+lineal
+speed
+>Neuron 1
+1
+input
+lineal
+bias
+>Neuron 2
+2
+output
+sigmoid
+brake
+<<
+>Connection 0
+0
+0
+2
+0,00197241265746082
+Enabled
+>Connection 1
+1
+1
+2
+-1,48819185869688
+Enabled
+<<

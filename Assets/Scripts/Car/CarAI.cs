@@ -26,13 +26,15 @@ namespace VehicleSystem
         // Outputs by NN (inputs for car): Throttle, brake, turnInput, boost
         private NeuralNetwork nn;
 
-        private CarRaycast carRaycast;
-        private DrawNN drawNN;
+
+        private CarRaycast carRaycastLeft;
+        private CarRaycast carRaycastRight;
+
 
         private List<Tuple<string, double>> inputs;
         private List<Tuple<string, double>> outputs;
 
-        private List<double> wallDistances;
+        private List<double> wallDistancesLeft, wallDistancesRight;
 
         [SerializeField]
         private bool NEAT = false;
@@ -40,8 +42,21 @@ namespace VehicleSystem
         // Start is called before the first frame update
         void Awake()
         {
-            wallDistances = new List<double>();
-            carRaycast = GetComponentInParent<CarRaycast>();
+            wallDistancesLeft = new List<double>();
+            wallDistancesRight = new List<double>();
+
+            CarRaycast[] tempray = gameObject.GetComponentsInChildren<CarRaycast>();
+            if (tempray[0].IsLeft())
+            {
+                carRaycastLeft = tempray[0];
+                carRaycastRight = tempray[1];
+            }
+            else
+            {
+                carRaycastLeft = tempray[1];
+                carRaycastRight = tempray[0];
+            }
+
 
 
             inputs = new List<Tuple<string, double>>();
@@ -50,11 +65,12 @@ namespace VehicleSystem
             if (!NEAT)
             {
                 NNToFile ntf = new NNToFile();
-                nn = ntf.Read("AIs/XCar16.txt");
+                nn = ntf.Read("AIs/car5_0.txt");
             }
-            
 
-    
+            carRaycastLeft.GenerateRays();
+            carRaycastRight.GenerateRays();
+
 
 
         }
@@ -67,26 +83,37 @@ namespace VehicleSystem
             inputs.Add(new Tuple<string, double>("speed", speed));
             //inputs.Add(new Tuple<string, double>("wheelSteering", wheelSteerAngle));
             inputs.Add(new Tuple<string, double>("bias", 1));
-            wallDistances.Clear();
-            carRaycast.GenerateRays();
-            carRaycast.CalculateDistances();
-            foreach (float f in carRaycast.GetDistances())
-            {
-                wallDistances.Add((double)f);
-            }
-            for (int i = 0; i < wallDistances.Count; i++)
-            {
-                inputs.Add(new Tuple<string, double>("distWall " + i, wallDistances[i]));
-            }
-
+            wallDistancesLeft.Clear();
+            wallDistancesRight.Clear();
 
             
+            carRaycastLeft.CalculateDistances();
+            carRaycastRight.CalculateDistances();
+
+            foreach (float f in carRaycastLeft.GetDistances())
+            {
+                wallDistancesLeft.Add((double)f);
+            }
+
+            foreach (float f in carRaycastRight.GetDistances())
+            {
+                wallDistancesRight.Add((double)f);
+            }
 
 
+
+
+
+            CalculateSteering();
 
 
             nn.SetInputValues(inputs);
             outputs = nn.OutputValuesWithName();
+
+
+
+
+
         
 
             if (NEAT)
@@ -126,6 +153,75 @@ namespace VehicleSystem
         public List<Tuple<string,double>> GetOutputs()
         {
             return outputs;
+        }
+
+
+
+
+        public double CalculateSteering()
+        {
+    
+            int raynum = 0;
+
+            double objleft = 0;
+            double objright = 0;
+
+            for(int i=0; i<wallDistancesLeft.Count; i++)
+            {
+                if (objleft < wallDistancesLeft[i])
+                {
+                    objleft = wallDistancesLeft[i];
+                    raynum = i;
+                    
+                }
+                //Debug.Log("Left " + wallDistancesLeft[i] + " " + i);
+            }
+
+            int tempraynum = raynum;
+            for(int i=0; i<wallDistancesRight.Count; i++)
+            {
+                if(objright < wallDistancesRight[i])
+                {
+                    objright = wallDistancesRight[i];
+                    tempraynum = i;
+                    
+                }
+                //Debug.Log("Right " + wallDistancesRight[i] + " " + i);
+            }
+
+            if(objright < objleft)
+            {
+                raynum = tempraynum;
+                for(int i=0; i<wallDistancesRight.Count; i++)
+                {
+                    inputs.Add(new Tuple<string, double>("distWall " + i, wallDistancesRight[i]));
+                }
+            }
+            else
+            {
+                for (int i = 0; i < wallDistancesLeft.Count; i++)
+                {
+                    inputs.Add(new Tuple<string, double>("distWall " + i, wallDistancesLeft[i]));
+                }
+            }
+
+
+            double angle = 180.0f / (float)(wallDistancesRight.Count - 1)*(wallDistancesLeft.Count - raynum-1) - 90f;
+
+            double steerangle = GetComponentInParent<CarController>().GetSteerAngle();
+            if (angle < -steerangle) angle = -steerangle;
+            else if (angle > steerangle) angle = steerangle;
+
+            angle = angle / steerangle;
+
+            //Debug.Log(angle);
+            
+            return angle;
+
+
+
+
+
         }
 
 

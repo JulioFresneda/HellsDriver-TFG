@@ -315,12 +315,12 @@ PrefabInstance:
     - target: {fileID: 5848164920150770579, guid: 8ca937df81a2fa74b88bfabe7c518ac0,
         type: 3}
       propertyPath: SelectEvolutionMode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5848164920150770579, guid: 8ca937df81a2fa74b88bfabe7c518ac0,
         type: 3}
       propertyPath: CarAIName
-      value: XCar16
+      value: car15_0
       objectReference: {fileID: 0}
     - target: {fileID: 5848164920150770579, guid: 8ca937df81a2fa74b88bfabe7c518ac0,
         type: 3}
@@ -328,6 +328,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 865128088625505646, guid: 8e92e219e28bcd247b551fd26faf89d3,
         type: 3}
+    - target: {fileID: 5848164920150770579, guid: 8ca937df81a2fa74b88bfabe7c518ac0,
+        type: 3}
+      propertyPath: MinThrottleWeight
+      value: 0.9800000190734863
+      objectReference: {fileID: 0}
+    - target: {fileID: 5848164920150770579, guid: 8ca937df81a2fa74b88bfabe7c518ac0,
+        type: 3}
+      propertyPath: MutateWeightsRange
+      value: 0.05000000074505806
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ca937df81a2fa74b88bfabe7c518ac0, type: 3}
 --- !u!1 &333052614
@@ -952,8 +962,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   num_race_drivers: 2
-  carAI: {fileID: 7556836743232233330, guid: c3bb5d3768f162c4c9c268b58bd2c44c, type: 3}
-  carPlayer: {fileID: 7556836743232233330, guid: c3bb5d3768f162c4c9c268b58bd2c44c,
+  carAI: {fileID: 865128088625505646, guid: 8e92e219e28bcd247b551fd26faf89d3, type: 3}
+  carPlayer: {fileID: 865128088625505646, guid: 8e92e219e28bcd247b551fd26faf89d3,
     type: 3}
   start: {fileID: 1949812197}
 --- !u!4 &695342752
@@ -1975,6 +1985,11 @@ PrefabInstance:
       propertyPath: throttlePower
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 3710625741281239672, guid: 8e92e219e28bcd247b551fd26faf89d3,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e92e219e28bcd247b551fd26faf89d3, type: 3}
 --- !u!1 &1630610849
@@ -2698,7 +2713,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1949812196}
   m_LocalRotation: {x: 0.0264582, y: -0.9953075, z: -0.046895675, w: 0.08039713}
-  m_LocalPosition: {x: 361.1797, y: 10, z: 339.5759}
+  m_LocalPosition: {x: 353, y: 1.3, z: 480}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

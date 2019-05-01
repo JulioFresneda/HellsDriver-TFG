@@ -8,8 +8,6 @@ namespace Racing
     {
         
 
-        [SerializeField]
-        private GameObject car;
 
         private string drivername;
         private int position;
@@ -25,7 +23,7 @@ namespace Racing
         public void SetSeconds(float t) => seconds = t;
         public void SetName(string n) => drivername = n;
 
-        public GameObject GetCar() => car;
+        public GameObject GetCar() => gameObject;
 
         private void Start()
         {

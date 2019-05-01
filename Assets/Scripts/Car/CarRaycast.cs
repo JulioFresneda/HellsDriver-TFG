@@ -10,20 +10,23 @@ namespace VehicleSystem
 {
     public class CarRaycast : MonoBehaviour
     {
-        private const int MAX_DISTANCE = 300;
+        //private const int MAX_DISTANCE = 300;
         private Vector3[] raysDirection;
 
         [SerializeField]
-        private int input_number_of_rays = 8;
+        private int input_number_of_rays = 11;
 
         [SerializeField]
         private bool HasFitnessTest = true;
 
-        private static int number_of_rays = 8;
+        private static int number_of_rays = 11;
 
-        private const int ray_length = 30;
+        private const int ray_length = 60;
 
         private float[] rayDistances;
+
+        [SerializeField]
+        private bool left;
 
         public static int GetNumberOfRays() => number_of_rays;
 
@@ -37,13 +40,14 @@ namespace VehicleSystem
             for(int i=0; i<number_of_rays; i++)
             {
                 raysDirection[i] = new Vector3(Mathf.Cos((angle_per_ray * i * Mathf.PI) / 180), 0, Mathf.Sin((angle_per_ray * i * Mathf.PI) / 180)) * ray_length;
+                
             }
 
             
 
         }
 
-
+        
 
        
         public void CalculateDistances()
@@ -68,9 +72,9 @@ namespace VehicleSystem
 
                 if (Physics.Raycast(transform.position, transform.TransformDirection(raysDirection[i]), out hit, Mathf.Infinity, LayerMask.GetMask("TransparentFX")))
                 {
-                    if (hit.distance < MAX_DISTANCE) rayDistances[i] = hit.distance;
-                    else rayDistances[i] = MAX_DISTANCE;
+                    rayDistances[i] = hit.distance;
 
+                    //Debug.Log(hit.distance + " " + i);
                     
                 }
                 /*if (Physics.Raycast(transform.position, transform.TransformDirection(raysDirection[i]), out hit, Mathf.Infinity, LayerMask.GetMask("Vehicles")))
@@ -105,6 +109,8 @@ namespace VehicleSystem
         {
             return rayDistances[index];
         }
+
+        public bool IsLeft() => left;
     }
 
 }

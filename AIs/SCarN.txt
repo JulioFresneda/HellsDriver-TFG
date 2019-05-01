@@ -1,0 +1,154 @@
+NeuralNetwork
+9999918,18599701
+13,3329735419452
+0
+>Neuron 0
+0
+input
+lineal
+speed
+>Neuron 1
+1
+input
+lineal
+bias
+>Neuron 2
+2
+input
+lineal
+distWall 0
+>Neuron 3
+3
+input
+lineal
+distWall 1
+>Neuron 4
+4
+input
+lineal
+distWall 2
+>Neuron 5
+5
+input
+lineal
+distWall 3
+>Neuron 6
+6
+input
+lineal
+distWall 4
+>Neuron 7
+7
+input
+lineal
+distWall 5
+>Neuron 8
+8
+input
+lineal
+distWall 6
+>Neuron 9
+9
+input
+lineal
+distWall 7
+>Neuron 10
+10
+input
+lineal
+distWall 8
+>Neuron 11
+11
+input
+lineal
+distWall 9
+>Neuron 12
+12
+input
+lineal
+distWall 10
+>Neuron 13
+13
+output
+sigmoid
+brake
+<<
+>Connection 0
+0
+0
+13
+0,00851690877846974
+Enabled
+>Connection 1
+1
+1
+13
+-0,00384562675179155
+Enabled
+>Connection 2
+2
+2
+13
+-0,0132706631331377
+Enabled
+>Connection 3
+3
+3
+13
+0,00810367632919157
+Enabled
+>Connection 4
+4
+4
+13
+0,0150157501181024
+Enabled
+>Connection 5
+5
+5
+13
+-0,0195574152133962
+Enabled
+>Connection 6
+6
+6
+13
+0,00869010842423054
+Enabled
+>Connection 7
+7
+7
+13
+-0,0159795873410421
+Enabled
+>Connection 8
+8
+8
+13
+0,0178313442001464
+Enabled
+>Connection 9
+9
+9
+13
+0,00736208064246384
+Enabled
+>Connection 10
+10
+10
+13
+-0,0155946201789656
+Enabled
+>Connection 11
+11
+11
+13
+-0,307594407958721
+Enabled
+>Connection 12
+12
+12
+13
+-0,0114429158524255
+Enabled
+<<

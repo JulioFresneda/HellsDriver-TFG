@@ -615,18 +615,19 @@ namespace NEAT
                     //sinputs.Add("wheelSteering");
                     sinputs.Add("bias");
 
-
+                    
                     for (int i = 0; i < CarRaycast.GetNumberOfRays(); i++)
                     {
                         sinputs.Add("distWall " + i);
                     }
+                    
 
                     // Outputs
                     List<string> soutputs = new List<string>();
                     //soutputs.Add("throttle");
                     soutputs.Add("brake");
-                    soutputs.Add("turn");
-                    soutputs.Add("locksteering");
+                    //soutputs.Add("turn");
+                    //soutputs.Add("locksteering");
 
                     return new NeuralNetwork(sinputs, soutputs);
                 }

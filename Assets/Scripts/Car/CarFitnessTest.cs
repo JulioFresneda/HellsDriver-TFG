@@ -54,8 +54,8 @@ namespace VehicleSystem
         public void Awake()
         {
             num_lock = 0;
-            total_throttle = 0;
-            total_lock = 0;
+            total_throttle = 1;
+            total_lock = 1;
             mean_throttle = 0;
   
             MAX_TIME_RUNNING = 180;
@@ -153,6 +153,8 @@ namespace VehicleSystem
 
                         lockweight = minlockrange + (1 - minlockrange) * (num_lock / total_lock);
                         throttleweight = minthrottlerange + (1 - minthrottlerange) * (mean_throttle / total_throttle);
+
+                        if (throttleweight < minthrottle) fitness = 0;
                     }
                 }
                
@@ -203,10 +205,10 @@ namespace VehicleSystem
 
                 fitness = fitness * lockweight * throttleweight;
 
-                /*
-                if (lockweight < minlock) fitness = 0;
+                
+                //if (lockweight < minlock) fitness = 0;
                 if (throttleweight < minthrottle) fitness = 0;
-                */
+                
             }
             
             
