@@ -151,7 +151,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   brakeForce: 50000
-  steerAngle: 30
+  steerAngle: 10
   steerSpeed: 0.2
   throttlePower: 8
   centerOfMass: {fileID: 6268581901947640184}
@@ -181,6 +181,7 @@ MonoBehaviour:
   time_same_check: 0
   lockweight: 0
   throttleweight: 0
+  boosteds: 0
   minlock: 0
   minthrottle: 0
   checkbonus: 200
@@ -325,7 +326,7 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 2
+    m_Stiffness: 4
   m_Enabled: 1
 --- !u!114 &3311308672034770926
 MonoBehaviour:
@@ -402,7 +403,7 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 2
+    m_Stiffness: 4
   m_Enabled: 1
 --- !u!114 &6721997369307695275
 MonoBehaviour:
@@ -556,7 +557,7 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 2
+    m_Stiffness: 4
   m_Enabled: 1
 --- !u!114 &5852982070057762838
 MonoBehaviour:
@@ -633,7 +634,7 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 2
+    m_Stiffness: 4
   m_Enabled: 1
 --- !u!114 &8545111509302410988
 MonoBehaviour:

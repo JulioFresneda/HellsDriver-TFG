@@ -255,13 +255,12 @@ namespace NEAT
                     }
                 }
 
+                for(int i=0; i<12; i++)
+                {
+                    ChangeCar();
+                }
 
-                ChangeCar();
-                ChangeCar();
-                ChangeCar();
-                ChangeCar();
-                ChangeCar();
-                ChangeCar();
+               
             }
             
 

@@ -222,11 +222,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: NEAT
       objectReference: {fileID: 0}
-    - target: {fileID: 5848164920150770578, guid: 8ca937df81a2fa74b88bfabe7c518ac0,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5848164920150770576, guid: 8ca937df81a2fa74b88bfabe7c518ac0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -284,59 +279,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5848164920150770579, guid: 8ca937df81a2fa74b88bfabe7c518ac0,
         type: 3}
-      propertyPath: MinSteeringLockWeight
-      value: 0.8999999761581421
-      objectReference: {fileID: 0}
-    - target: {fileID: 5848164920150770579, guid: 8ca937df81a2fa74b88bfabe7c518ac0,
-        type: 3}
-      propertyPath: MinThrottleWeightRange
-      value: 0.8500000238418579
-      objectReference: {fileID: 0}
-    - target: {fileID: 5848164920150770579, guid: 8ca937df81a2fa74b88bfabe7c518ac0,
-        type: 3}
       propertyPath: start
       value: 
       objectReference: {fileID: 1949812197}
     - target: {fileID: 5848164920150770579, guid: 8ca937df81a2fa74b88bfabe7c518ac0,
         type: 3}
-      propertyPath: MaxTimeSameCheckpoint
+      propertyPath: SaveBestInGeneration
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5848164920150770579, guid: 8ca937df81a2fa74b88bfabe7c518ac0,
         type: 3}
-      propertyPath: NewNeuralNet
+      propertyPath: MultipleTraining
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5848164920150770579, guid: 8ca937df81a2fa74b88bfabe7c518ac0,
         type: 3}
-      propertyPath: NumberOfCars
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 5848164920150770579, guid: 8ca937df81a2fa74b88bfabe7c518ac0,
-        type: 3}
-      propertyPath: SelectEvolutionMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5848164920150770579, guid: 8ca937df81a2fa74b88bfabe7c518ac0,
-        type: 3}
-      propertyPath: CarAIName
-      value: car15_0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5848164920150770579, guid: 8ca937df81a2fa74b88bfabe7c518ac0,
-        type: 3}
-      propertyPath: car
-      value: 
-      objectReference: {fileID: 865128088625505646, guid: 8e92e219e28bcd247b551fd26faf89d3,
-        type: 3}
-    - target: {fileID: 5848164920150770579, guid: 8ca937df81a2fa74b88bfabe7c518ac0,
-        type: 3}
-      propertyPath: MinThrottleWeight
-      value: 0.9800000190734863
-      objectReference: {fileID: 0}
-    - target: {fileID: 5848164920150770579, guid: 8ca937df81a2fa74b88bfabe7c518ac0,
-        type: 3}
-      propertyPath: MutateWeightsRange
-      value: 0.05000000074505806
+      propertyPath: MaxTimeRunning
+      value: 110
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ca937df81a2fa74b88bfabe7c518ac0, type: 3}
@@ -936,7 +895,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &695342750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2713,7 +2672,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1949812196}
   m_LocalRotation: {x: 0.0264582, y: -0.9953075, z: -0.046895675, w: 0.08039713}
-  m_LocalPosition: {x: 353, y: 1.3, z: 480}
+  m_LocalPosition: {x: 353, y: 1.3, z: 446}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
