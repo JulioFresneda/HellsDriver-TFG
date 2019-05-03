@@ -65,7 +65,7 @@ namespace VehicleSystem
             if (!NEAT)
             {
                 NNToFile ntf = new NNToFile();
-                nn = ntf.Read("AIs/car5_0.txt");
+                nn = ntf.Read("AIs/Carxd.txt");
             }
 
             carRaycastLeft.GenerateRays();
