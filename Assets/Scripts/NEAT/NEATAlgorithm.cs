@@ -56,17 +56,12 @@ namespace NEAT
         [SerializeField]
         private int CheckpointBonus = 200;
 
-        [SerializeField]
-        [Range(0, 1)]
-        private double MinSteeringLockWeightRange = 0.7;
+  
 
         [SerializeField]
         [Range(0, 1)]
         private double MinThrottleWeightRange = 0.7;
 
-        [SerializeField]
-        [Range(0,1)]
-        private double MinSteeringLockWeight = 0.7;
 
         [SerializeField]
         [Range(0,1)]
@@ -99,9 +94,6 @@ namespace NEAT
 
 
       
-        [Header("Save the car")]
-        [SerializeField]
-        private string CarAIName;
 
 
         [Header("Reference objects")]
@@ -150,7 +142,7 @@ namespace NEAT
         [SerializeField]
         bool MultipleTraining = false;
 
-        List<Tuple<int, int, int, int>> CarValues;
+        List<Tuple<int, int, int>> CarValues;
 
 
 
@@ -165,11 +157,7 @@ namespace NEAT
             Mutation.RandomWeightsProbabilityWhenMutate = RandomWeightsProbabilityWhenMutate;
             Mutation.MutateWeightsRange = MutateWeightsRange;
 
-            /*
-            string[] files = Directory.GetFiles("./AIs/");
-            foreach (string file in files)
-                Debug.Log(file);*/
-
+    
             
 
             rnd = new System.Random(1);
@@ -216,7 +204,7 @@ namespace NEAT
 
             if (MultipleTraining)
             {
-                CarValues = new List<Tuple<int, int, int, int>>();
+                CarValues = new List<Tuple<int, int, int>>();
 
                 List<int> throttleList = new List<int>();
                 throttleList.Add(8);
@@ -230,10 +218,6 @@ namespace NEAT
                 massList.Add(2000);
                 massList.Add(2500);
 
-                List<int> steerList = new List<int>();
-                steerList.Add(10);
-                steerList.Add(20);
-                steerList.Add(30);
 
                 List<int> sidewaysFrictionList = new List<int>();
                 sidewaysFrictionList.Add(2);
@@ -245,17 +229,16 @@ namespace NEAT
                 {
                     foreach(int m in massList)
                     {
-                        foreach(int s in steerList)
-                        {
+                       
                             foreach(int sf in sidewaysFrictionList)
                             {
-                                CarValues.Add(new Tuple<int, int, int, int>(t, m, s, sf));
+                                CarValues.Add(new Tuple<int, int, int>(t, m, sf));
                             }
-                        }
+                        
                     }
                 }
 
-                for(int i=0; i<17; i++)
+                for(int i=0; i<46; i++)
                 {
                     ChangeCar();
                 }
@@ -272,21 +255,21 @@ namespace NEAT
             {
                 car.GetComponent<CarController>().Throttle = CarValues[0].Item1;
                 car.GetComponent<Rigidbody>().mass = CarValues[0].Item2;
-                car.GetComponent<CarController>().steerAngle = CarValues[0].Item3;
+
 
                 WheelFrictionCurve wfc = new WheelFrictionCurve();
                 wfc.extremumSlip = 0.4f;
                 wfc.extremumValue = 1f;
                 wfc.asymptoteSlip = 0.5f;
                 wfc.asymptoteValue = 0.75f;
-                wfc.stiffness = CarValues[0].Item4;
+                wfc.stiffness = CarValues[0].Item3;
 
                 foreach(WheelCollider w in car.GetComponentsInChildren<WheelCollider>())
                 {
                     w.sidewaysFriction = wfc;
                 }
 
-                Debug.Log("Car Values: " + CarValues[0].Item1 + " " + CarValues[0].Item2 + " " + CarValues[0].Item3 + " " + CarValues[0].Item4);
+                Debug.Log("Car Values: " + CarValues[0].Item1 + " " + CarValues[0].Item2 + " " + CarValues[0].Item3 );
 
                 CarValues.RemoveAt(0);
             }
@@ -349,7 +332,7 @@ namespace NEAT
                 CompareByFitness cmpf = new CompareByFitness();
                 nn_poblation.Sort(cmpf);
                 NNToFile ntf = new NNToFile(nn_poblation[nn_poblation.Count - 1]);
-                string n = "car" + car.GetComponent<CarController>().Throttle + "_" + "_" + car.GetComponent<Rigidbody>().mass + "_" + car.GetComponent<CarController>().SteerAngle() + "_" + car.GetComponentInChildren<WheelCollider>().sidewaysFriction.stiffness + ".txt";
+                string n = "car" + car.GetComponent<CarController>().Throttle + "_" + "_" + car.GetComponent<Rigidbody>().mass  + "_" + car.GetComponentInChildren<WheelCollider>().sidewaysFriction.stiffness + ".txt";
                 carnumber++;
                 ntf.Write(n);
 
@@ -409,7 +392,7 @@ namespace NEAT
             Debug.Log("Generation: " + generation);
             
             if(evolutionMode == EvolutionMode.EvolveSpeed) Debug.Log("Best: " + (-nn_poblation[nn_poblation.Count - 1].GetFitness()+ 10000000) + " " + Mathf.Round((float)nn_poblation[nn_poblation.Count - 1].lockweight * 100f) / 100f  + " " + Mathf.Round((float)nn_poblation[nn_poblation.Count - 1].throttleweight*100f)/100f + " " + nn_poblation[nn_poblation.Count - 1].boosteds);
-            else Debug.Log("Best: " + nn_poblation[nn_poblation.Count - 1].GetFitness() + " " + Mathf.Round((float)nn_poblation[nn_poblation.Count - 1].lockweight * 100f) / 100f + " " + Mathf.Round((float)nn_poblation[nn_poblation.Count - 1].throttleweight * 100f) / 100f + " " + nn_poblation[nn_poblation.Count - 1].boosteds);
+            else Debug.Log("Best: " + nn_poblation[nn_poblation.Count - 1].GetFitness() + " " + Mathf.Round((float)nn_poblation[nn_poblation.Count - 1].throttleweight * 100f) / 100f + " " + nn_poblation[nn_poblation.Count - 1].boosteds);
 
             double mean = 0;
             foreach(NeuralNetwork nn in nn_poblation)
@@ -455,9 +438,7 @@ namespace NEAT
                 cars[cars.Count - 1].GetComponent<CarFitnessTest>().checkbonus = CheckpointBonus;
                 cars[cars.Count - 1].GetComponent<CarFitnessTest>().MAX_TIME_RUNNING = MaxTimeRunning;
                 cars[cars.Count - 1].GetComponent<CarFitnessTest>().max_time_same_check = MaxTimeSameCheckpoint;
-                cars[cars.Count - 1].GetComponent<CarFitnessTest>().minlock = MinSteeringLockWeight;
                 cars[cars.Count - 1].GetComponent<CarFitnessTest>().minthrottle = MinThrottleWeight;
-                cars[cars.Count - 1].GetComponent<CarFitnessTest>().minlockrange = MinSteeringLockWeightRange;
                 cars[cars.Count - 1].GetComponent<CarFitnessTest>().minthrottlerange = MinThrottleWeightRange;
             }
             
@@ -775,7 +756,7 @@ namespace NEAT
                 else
                 {
                     NNToFile ntf = new NNToFile();
-                    return ntf.Read("AIs/" + CarAIName + ".txt");
+                    return ntf.Read("AIs/car" + generation + ".txt");
                 }
                 
             }
@@ -783,7 +764,7 @@ namespace NEAT
             else 
             {
                 NNToFile ntf = new NNToFile();
-                return ntf.Read("AIs/" + CarAIName + ".txt");
+                return ntf.Read("AIs/car" + generation + ".txt");
             }
             
         }

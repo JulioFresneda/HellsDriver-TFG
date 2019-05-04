@@ -54,9 +54,10 @@ namespace VehicleSystem
         public double LockSteeringAI { get { return lockSteeringAI; } set { lockSteeringAI = value; } }
 
 
-        // The turn action is not uniform
+  
 #pragma warning disable 0649
         [SerializeField] AnimationCurve turnInputCurve;
+        
 
         [Header("Wheels")]
         [SerializeField] WheelCollider[] driveWheel;    // Wheels for drive
@@ -68,12 +69,10 @@ namespace VehicleSystem
         // Car
         [SerializeField] AnimationCurve motorTorque;    // The throttle is not uniform
         [SerializeField] float brakeForce = 1500.0f;    
-        [Range(0f, 100.0f)]
-        [SerializeField] public float steerAngle = 10.0f;      // The maximum angle for turn
         [Range(0.001f, 10.0f)]
         [SerializeField] float steerSpeed = 0.2f;       // The speed of the steering
 
-
+        [SerializeField] AnimationCurve steerAngleCurve;
 
         [SerializeField] float throttlePower = 4f;
 
@@ -235,7 +234,7 @@ namespace VehicleSystem
                 // Boost
                 boosting = (GetInput(boostInput) > 0.5f);
                 // Turn
-                steering = turnInputCurve.Evaluate(GetInput(turnInput)) * steerAngle;
+                steering = turnInputCurve.Evaluate(GetInput(turnInput)) * steerAngleCurve.Evaluate(Speed);
 
 
             }
@@ -248,11 +247,9 @@ namespace VehicleSystem
                 // Boost
                 boosting = (boostInputAI  > 0);
                 // Turn
-                int ls = 0;
-                //if (lockSteeringAI > 0) ls = 1;
-                //steering = (1-ls) * turnInputCurve.Evaluate((float)(turnInputAI)) * steerAngle;
-                steering = (turnInputAI) * steerAngle;//  * (1 - ls) ;
-                
+             
+                steering = (turnInputAI)*steerAngleCurve.Evaluate(Speed);
+
             }
 
             #endregion
@@ -334,7 +331,7 @@ namespace VehicleSystem
 
 
 
-        public double GetSteerAngle() => steerAngle;
+        public double GetSteerAngle() => steerAngleCurve.Evaluate(Speed);
 
 
         public void ResetPos()
@@ -365,10 +362,7 @@ namespace VehicleSystem
             return turnWheel[0].steerAngle;
         }
 
-        public double SteerAngle()
-        {
-            return steerAngle;
-        }
+       
 
 
         void DoRollBar(WheelCollider WheelL, WheelCollider WheelR)

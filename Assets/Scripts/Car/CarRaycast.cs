@@ -14,12 +14,14 @@ namespace VehicleSystem
         private Vector3[] raysDirection;
 
         [SerializeField]
-        private int input_number_of_rays = 11;
+        private int number_of_rays = 11;
+
+        private static int static_number_of_rays;
 
         [SerializeField]
         private bool HasFitnessTest = true;
 
-        private static int number_of_rays = 11;
+    
 
         private const int ray_length = 60;
 
@@ -28,10 +30,14 @@ namespace VehicleSystem
         [SerializeField]
         private bool left;
 
-        public static int GetNumberOfRays() => number_of_rays;
+        public static int GetNumberOfRays()
+        {
+            return static_number_of_rays;
+        }
 
         public void GenerateRays()
         {
+            static_number_of_rays = number_of_rays;
             raysDirection = new Vector3[number_of_rays];
             rayDistances = new float[number_of_rays];
 
@@ -53,12 +59,7 @@ namespace VehicleSystem
         public void CalculateDistances()
         {
 
-            if (input_number_of_rays != number_of_rays)
-            {
-                number_of_rays = input_number_of_rays;
-                GenerateRays();
-            }
-
+  
 
 
             RaycastHit hit;
@@ -77,15 +78,20 @@ namespace VehicleSystem
                     //Debug.Log(hit.distance + " " + i);
                     
                 }
-                /*if (Physics.Raycast(transform.position, transform.TransformDirection(raysDirection[i]), out hit, Mathf.Infinity, LayerMask.GetMask("Vehicles")))
+
+                if (Physics.Raycast(transform.position, transform.TransformDirection(raysDirection[i]), out hit, Mathf.Infinity, LayerMask.GetMask("Vehicles")))
                 {
 
-                    if (hit.distance < rayDistances[i] && !hit.transform.gameObject.Equals(this.gameObject) && hit.transform.gameObject.GetComponent<Rigidbody>().velocity.sqrMagnitude < this.GetComponent<CarController>().Speed)
+                    if (!hit.transform.gameObject.Equals(this.gameObject) && hit.transform.gameObject.GetComponent<Rigidbody>() != null)
                     {
-                        rayDistances[i] = hit.distance;
-                        color = Color.yellow;
+                        if (hit.transform.gameObject.GetComponent<CarController>().Speed < this.gameObject.GetComponentInParent<CarController>().Speed)
+                        {
+                            rayDistances[i] = hit.distance;
+                            color = Color.yellow;
+                        }
+                           
                     }
-                }*/
+                }
 
 
                 if( HasFitnessTest && !GetComponentInParent<CarFitnessTest>().DoneCalculatingFitness()) Debug.DrawRay(transform.position, transform.TransformDirection(raysDirection[i]), color);

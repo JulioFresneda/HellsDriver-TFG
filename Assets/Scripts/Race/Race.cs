@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using NeuralNet;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using VehicleSystem;
@@ -14,12 +15,13 @@ namespace Racing
         [SerializeField]
         private GameObject carAI;
 
-        [SerializeField]
-        public GameObject carPlayer;
 
 
         [SerializeField]
         private Transform start;
+
+        [SerializeField]
+        private string CarAIName;
 
         private List<RaceDriver> race_drivers = new List<RaceDriver>();
 
@@ -34,16 +36,23 @@ namespace Racing
             float z = start.position.z - 10;
 
 
+            NNToFile ntf;
+            SetCarProperties();
 
             for (int i = 0; i < num_race_drivers; i++)
             {
-                start_positions.Add(new Vector3(x + 10 * (i % 3), start.position.y, z + 5 * i));
+                start_positions.Add(new Vector3(x + 10 * (i % 3), start.position.y, z + 8 * i));
 
-                if (i < num_race_drivers - 1)
-                {
-                    race_drivers.Add(Instantiate(carAI, start_positions[i], start.rotation).GetComponent<RaceDriver>());
-                }
-                else race_drivers.Add(Instantiate(carPlayer, start_positions[i], start.rotation).GetComponent<RaceDriver>());
+                race_drivers.Add(Instantiate(carAI, start_positions[i], start.rotation).GetComponent<RaceDriver>());
+                
+                
+
+                ntf = new NNToFile();
+                race_drivers[i].GetComponent<CarAI>().SetNeuralNetwork(ntf.Read(CarAIName + ".txt"));
+
+
+                
+
             }
 
             race_drivers[num_race_drivers - 1].GetCar().GetComponent<CarController>().IsPlayer = true;
@@ -67,7 +76,54 @@ namespace Racing
 
 
 
+        private void SetCarProperties()
+        {
+            string temp = CarAIName;
+            temp = temp.Substring(3);
 
+            string throttlestring = "";
+            throttlestring += temp[0];
+
+            if (temp[1] != '_')
+            {
+                throttlestring += temp[1];
+                temp = temp.Substring(4);
+            }
+            else
+            {
+                temp = temp.Substring(3);
+            }
+
+            string massstring = temp.Substring(0, 4);
+
+            temp = temp.Substring(5);
+
+            string steeringanglestring = "";
+            steeringanglestring += temp[0];
+            steeringanglestring+= temp[1];
+
+            string stiffnessstring = "";
+            stiffnessstring += temp[temp.Length - 1];
+
+
+            carAI.GetComponent<CarController>().Throttle = int.Parse(throttlestring);
+            carAI.GetComponent<Rigidbody>().mass = int.Parse(massstring);
+
+
+            WheelFrictionCurve wfc = new WheelFrictionCurve();
+            wfc.extremumSlip = 0.4f;
+            wfc.extremumValue = 1f;
+            wfc.asymptoteSlip = 0.5f;
+            wfc.asymptoteValue = 0.75f;
+            wfc.stiffness = int.Parse(stiffnessstring);
+
+            foreach(WheelCollider wc in carAI.GetComponentsInChildren<WheelCollider>())
+            {
+                wc.sidewaysFriction = wfc;
+            }
+
+
+        }
 
         public static int GetPosition()
         {

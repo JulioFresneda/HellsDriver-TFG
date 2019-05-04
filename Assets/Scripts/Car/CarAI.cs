@@ -62,11 +62,7 @@ namespace VehicleSystem
             inputs = new List<Tuple<string, double>>();
 
             
-            if (!NEAT)
-            {
-                NNToFile ntf = new NNToFile();
-                nn = ntf.Read("AIs/Carxd.txt");
-            }
+            
 
             carRaycastLeft.GenerateRays();
             carRaycastRight.GenerateRays();
