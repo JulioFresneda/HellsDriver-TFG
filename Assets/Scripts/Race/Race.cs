@@ -37,7 +37,7 @@ namespace Racing
 
 
             NNToFile ntf;
-            SetCarProperties();
+            //SetCarProperties();
 
             for (int i = 0; i < num_race_drivers; i++)
             {

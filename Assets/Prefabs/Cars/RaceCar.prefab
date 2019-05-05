@@ -151,7 +151,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  brakeForce: 50000
+  brakeForce: 100000
   steerSpeed: 0.2
   steerAngleCurve:
     serializedVersion: 2
@@ -224,7 +224,6 @@ MonoBehaviour:
   lockweight: 0
   throttleweight: 0
   boosteds: 0
-  minlock: 0
   minthrottle: 0
   checkbonus: 200
   minlockrange: 0.7
@@ -381,7 +380,7 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 4
+    m_Stiffness: 3
   m_Enabled: 1
 --- !u!114 &5875674931877202988
 MonoBehaviour:
@@ -565,7 +564,7 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 4
+    m_Stiffness: 3
   m_Enabled: 1
 --- !u!114 &4744836632163356402
 MonoBehaviour:
@@ -779,7 +778,7 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 4
+    m_Stiffness: 3
   m_Enabled: 1
 --- !u!114 &2210243909968054927
 MonoBehaviour:
@@ -1010,7 +1009,7 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 4
+    m_Stiffness: 3
   m_Enabled: 1
 --- !u!114 &6940168272278669059
 MonoBehaviour:

@@ -32,9 +32,7 @@ namespace VehicleSystem
 
         public double time_same_check;
 
-        private double num_lock;
-        private double total_lock;
-
+  
         private double mean_throttle;
         private double total_throttle;
 
@@ -44,7 +42,6 @@ namespace VehicleSystem
         public int boosteds = 0;
 
 
-        public double minlock = 0;
         public double minthrottle = 0;
         public int checkbonus = 200;
         public double minlockrange = 0.7;
@@ -61,9 +58,9 @@ namespace VehicleSystem
 
         public void Awake()
         {
-            num_lock = 0;
+            
             total_throttle = 1;
-            total_lock = 1;
+         
             mean_throttle = 0;
   
             MAX_TIME_RUNNING = 180;
@@ -93,7 +90,7 @@ namespace VehicleSystem
 
         private void Update()
         {
-
+            
             if (num_done >= num_coches / 3)
             {
 
@@ -167,10 +164,14 @@ namespace VehicleSystem
                         time_running = Time.timeSinceLevelLoad - initializationTime;
                         fitness = 10000000 - time_running;
                         
-                        lockweight = minlockrange + (1 - minlockrange) * (num_lock / total_lock);
-                        throttleweight = minthrottlerange + (1 - minthrottlerange) * (mean_throttle / total_throttle);
 
-                        if (throttleweight < minthrottle) fitness = 0;
+                        throttleweight = minthrottlerange + (1 - minthrottlerange) * (mean_throttle / total_throttle);
+                        
+                        if (throttleweight < minthrottle)
+                        {
+                           
+                            fitness = 0;
+                        }
                     }
                 }
                
@@ -194,12 +195,6 @@ namespace VehicleSystem
 
 
 
-        public void SetLock(double lck)
-        {
-            if (lck > 0) num_lock++;
-            total_lock++;
-        }
-
         public void SetThrottle(double thr)
         {
 
@@ -213,17 +208,20 @@ namespace VehicleSystem
         {
             if (done_calculating_fitness)
             {
-                if (checkpoints_checked.Count > 0 && checkpoints_checked.Count < 20) fitness = checkbonus * (checkpoints_checked.Count - 1) + Vector3.Distance(this.GetComponentInParent<Transform>().position, checkpoints_checked[checkpoints_checked.Count - 1].GetComponentInParent<Transform>().position);
+                if (checkpoints_checked.Count > 0 && checkpoints.Count > 0) fitness = checkbonus * (checkpoints_checked.Count - 1) + Vector3.Distance(this.GetComponentInParent<Transform>().position, checkpoints_checked[checkpoints_checked.Count - 1].GetComponentInParent<Transform>().position);
                 else if (checkpoints.Count == 0) fitness = checkbonus * checkpoints_checked.Count * 2;
 
-                lockweight = minlockrange + (1-minlockrange) * (num_lock / total_lock);
                 throttleweight = minthrottlerange + (1-minthrottlerange) * (mean_throttle / total_throttle);
 
-                fitness = fitness * lockweight * throttleweight;
+                fitness = fitness * throttleweight;
 
-                
+
                 //if (lockweight < minlock) fitness = 0;
-                if (throttleweight < minthrottle) fitness = 0;
+                if (throttleweight < minthrottle)
+                {
+                   
+                    fitness = 0;
+                }
                 
             }
             

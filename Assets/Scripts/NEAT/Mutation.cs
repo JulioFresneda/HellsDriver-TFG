@@ -12,7 +12,7 @@ namespace NEAT
     {
 
         public static double MutateWeightsProbability = 0.1;
-        public static double AddNeuronProbability = 0.05;
+        public static double AddNeuronProbability = 0.1;
         public static double AddConnectionProbability = 0.2;
         public static double RandomWeightsProbabilityWhenMutate = 0.1;
         public static double MutateWeightsRange = 0.02;

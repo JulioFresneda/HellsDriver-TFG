@@ -145,10 +145,15 @@ namespace NEAT
         List<Tuple<int, int, int>> CarValues;
 
 
+        private static bool training = false;
+
+        public static bool Training() => training;
 
         // Start is called before the first frame update
         void Awake()
         {
+            training = true;
+
             // Start static parameters
             evolutionMode = SelectEvolutionMode;
             Mutation.MutateWeightsProbability = MutateWeightsProbability;
@@ -341,6 +346,9 @@ namespace NEAT
                     ChangeCar();
                     ResetNEAT();
                 }
+
+                SaveThisGeneration = false;
+                if (generation == SaveBestInGeneration) SaveBestInGeneration = -1;
                 
             }
             else if (readyforevolve)

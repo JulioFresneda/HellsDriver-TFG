@@ -16,7 +16,7 @@ namespace VehicleSystem
         [SerializeField]
         private int number_of_rays = 11;
 
-        private static int static_number_of_rays;
+        private static int static_number_of_rays = 11;
 
         [SerializeField]
         private bool HasFitnessTest = true;
@@ -79,7 +79,7 @@ namespace VehicleSystem
                     
                 }
 
-                if (Physics.Raycast(transform.position, transform.TransformDirection(raysDirection[i]), out hit, Mathf.Infinity, LayerMask.GetMask("Vehicles")))
+                if (!NEAT.NEATAlgorithm.Training() && Physics.Raycast(transform.position, transform.TransformDirection(raysDirection[i]), out hit, Mathf.Infinity, LayerMask.GetMask("Vehicles")))
                 {
 
                     if (!hit.transform.gameObject.Equals(this.gameObject) && hit.transform.gameObject.GetComponent<Rigidbody>() != null)
