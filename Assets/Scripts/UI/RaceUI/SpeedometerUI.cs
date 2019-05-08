@@ -6,7 +6,6 @@ using VehicleSystem;
 
 public class SpeedometerUI : MonoBehaviour
 {
-
     private double CurrentNitro;
     private double MaxNitro;
 
@@ -15,6 +14,12 @@ public class SpeedometerUI : MonoBehaviour
 
     [SerializeField]
     private Transform NitroBar;
+
+    [SerializeField]
+    private Transform ClockHand;
+
+    [SerializeField]
+    private Transform DigitalSM;
 
 
     // Start is called before the first frame update
@@ -33,6 +38,12 @@ public class SpeedometerUI : MonoBehaviour
             MaxNitro = PlayerCar.GetComponent<CarController>().MaxBoost;
 
             NitroBar.GetComponent<Image>().fillAmount = (float)CurrentNitro / (float)MaxNitro;
+
+            double speed = Mathf.Abs(PlayerCar.GetComponent<CarController>().Speed);
+            ClockHand.transform.rotation = Quaternion.Euler(0, 0, (float)-(speed * 0.75 - 135));
+
+            DigitalSM.GetComponent<Text>().text = Mathf.RoundToInt((float)speed) + " Km/h";
+
         }
     }
 }
