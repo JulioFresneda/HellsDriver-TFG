@@ -36,7 +36,6 @@ namespace VehicleSystem
         private double mean_throttle;
         private double total_throttle;
 
-        public double lockweight;
         public double throttleweight;
 
         public int boosteds = 0;
@@ -44,7 +43,7 @@ namespace VehicleSystem
 
         public double minthrottle = 0;
         public int checkbonus = 200;
-        public double minlockrange = 0.7;
+
         public double minthrottlerange = 0.8;
         public double max_time_same_check = 15;
 
@@ -216,10 +215,8 @@ namespace VehicleSystem
                 fitness = fitness * throttleweight;
 
 
-                //if (lockweight < minlock) fitness = 0;
                 if (throttleweight < minthrottle)
                 {
-                   
                     fitness = 0;
                 }
                 

@@ -8,15 +8,17 @@ using VehicleSystem;
 
 namespace VehicleSystem
 {
+
+    public enum RayCastPosition { Left, Right}
+
     public class CarRaycast : MonoBehaviour
     {
-        //private const int MAX_DISTANCE = 300;
+ 
         private Vector3[] raysDirection;
 
         [SerializeField]
         private int number_of_rays = 11;
 
-        private static int static_number_of_rays = 11;
 
         [SerializeField]
         private bool HasFitnessTest = true;
@@ -28,16 +30,16 @@ namespace VehicleSystem
         private float[] rayDistances;
 
         [SerializeField]
-        private bool left;
+        private RayCastPosition raycastposition = RayCastPosition.Left;
 
-        public static int GetNumberOfRays()
+        public int GetNumberOfRays()
         {
-            return static_number_of_rays;
+            return number_of_rays;
         }
 
         public void GenerateRays()
         {
-            static_number_of_rays = number_of_rays;
+           
             raysDirection = new Vector3[number_of_rays];
             rayDistances = new float[number_of_rays];
 
@@ -116,7 +118,7 @@ namespace VehicleSystem
             return rayDistances[index];
         }
 
-        public bool IsLeft() => left;
+        public RayCastPosition GetRayCastPosition() => raycastposition;
     }
 
 }

@@ -13,23 +13,15 @@ namespace VehicleSystem
     {
         
         private CarAI carAI;
+      
 
         public bool IsPlayer { get { return isPlayer; } set { isPlayer = value; } }
         [SerializeField] bool isPlayer = true;
 
 
-       
-
-        CarRaycast carRaycast;
-
-
-
-
         [Header("Inputs")]
-                                               // If is player and not AI
+                                              
         // Inputs for the car (only used if the car is controlled by players, not AI)
-
-             
         [SerializeField] string throttleInput = "Vertical";                                     
         [SerializeField] string brakeInput = "Fire3";                                           
         [SerializeField] string turnInput = "Horizontal";
@@ -38,8 +30,7 @@ namespace VehicleSystem
 
 
         // Inputs for the car, outputs by the NN (Only with AI)
-        float throttleInputAI;
-        public float ThrottleInputAI { get { return throttleInputAI; } set { throttleInputAI = value; } }
+
 
         float brakeInputAI;
         public float BrakeInputAI { get { return brakeInputAI; } set { brakeInputAI = value; } }
@@ -47,11 +38,9 @@ namespace VehicleSystem
         float boostInputAI;
         public float BoostInputAI { get { return boostInputAI; } set { boostInputAI = value; } }
 
+        float throttleInputAI;
         float turnInputAI;
-        public float TurnInputAI { get { return turnInputAI; } set { turnInputAI = value; } }
 
-        double lockSteeringAI;
-        public double LockSteeringAI { get { return lockSteeringAI; } set { lockSteeringAI = value; } }
 
 
   
@@ -69,9 +58,7 @@ namespace VehicleSystem
         // Car
         [SerializeField] AnimationCurve motorTorque;    // The throttle is not uniform
         [SerializeField] float brakeForce = 1500.0f;    
-        [Range(0.001f, 10.0f)]
-        [SerializeField] float steerSpeed = 0.2f;       // The speed of the steering
-
+        
         [SerializeField] AnimationCurve steerAngleCurve;
 
         [SerializeField] float throttlePower = 4f;
@@ -114,6 +101,7 @@ namespace VehicleSystem
         [SerializeField] float boostForce = 5000;
         public float BoostForce { get { return boostForce; } }
         public bool boosting = false;
+        private bool booststopped = false;
         #endregion
 #pragma warning restore 0649 
 
@@ -129,18 +117,13 @@ namespace VehicleSystem
             {
                 carAI = GetComponentInParent<CarAI>();
 
-                throttleInputAI = 0f;
                 brakeInputAI = 0f;
                 boostInputAI = 0f;
-                turnInputAI = 0f;
-                lockSteeringAI = 0f;
+
             }
             else
             {
                 carAI = null;
-                GetComponentsInChildren<CarRaycast>()[0].GenerateRays();
-                GetComponentsInChildren<CarRaycast>()[1].GenerateRays();
-
             }
     
 
@@ -157,16 +140,7 @@ namespace VehicleSystem
 
             wheels = GetComponentsInChildren<WheelCollider>();
 
-            // Ignore border collissions (Border is for AI only)
-
-            /*if (IsPlayer)
-            {
-                foreach (Collider collider in this.GetComponentsInChildren<Collider>())
-                {
-                    Physics.IgnoreCollision(GameObject.FindGameObjectWithTag("Border").GetComponent<Collider>(), collider);
-
-                }
-            }*/
+            
         
 
         }
@@ -182,37 +156,26 @@ namespace VehicleSystem
 
             speed = transform.InverseTransformDirection(_rb.velocity).z * 3.6f;
 
-            /*
-            GetComponentsInChildren<CarRaycast>()[0].CalculateDistances();
-            GetComponentsInChildren<CarRaycast>()[1].CalculateDistances();*/
+
 
             if (!isPlayer)
             {
-                
-                carAI.Speed = speed;
-                //carAI.WheelSteerAngle = turnWheel[0].steerAngle;
-                carAI.Boost = boost;
+
 
                 carAI.AIUpdate();
 
 
                 foreach (Tuple<string, double> o in carAI.GetOutputs())
                 {
-                    //if (o.Item1 == "throttle") ThrottleInputAI = (float)o.Item2;
-                    ThrottleInputAI = 1;
+         
+                    throttleInputAI = 1;
                     if (o.Item1 == "brake") BrakeInputAI = (float)o.Item2*2;
-                    //if (o.Item1 == "turn") TurnInputAI = (float)o.Item2;
-                    if (o.Item1 == "locksteering") LockSteeringAI = o.Item2;
+      
+     
                     if (o.Item1 == "boost") BoostInputAI = (float)o.Item2;
                 }
 
-                TurnInputAI = (float)carAI.CalculateSteering();
-            }
-            else
-            {
-                //carRaycast.CalculateDistances();
-                GetComponentsInChildren<CarRaycast>()[0].CalculateDistances();
-                GetComponentsInChildren<CarRaycast>()[1].CalculateDistances();
+                turnInputAI = (float)carAI.CalculateSteering();
             }
 
             
@@ -307,13 +270,17 @@ namespace VehicleSystem
 
 
             // Boost
-            if (boosting && boost > 0.1f)
+            if (!boosting && boost < maxBoost / 2) booststopped = true;
+            if (boost >= maxBoost / 2) booststopped = false;
+            if (boosting && boost > 0.1f && !booststopped)
             {
                 _rb.AddForce(transform.forward * boostForce);
  
                 boost -= Time.fixedDeltaTime;
                 if (boost < 0f) { boost = 0f; }
+       
             }
+          
 
 
             #endregion

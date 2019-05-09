@@ -745,7 +745,7 @@ namespace NEAT
                     sinputs.Add("bias");
 
                     
-                    for (int i = 0; i < CarRaycast.GetNumberOfRays(); i++)
+                    for (int i = 0; i < car.GetComponentInChildren<CarRaycast>().GetNumberOfRays(); i++)
                     {
                         sinputs.Add("distWall " + i);
                     }
@@ -753,11 +753,10 @@ namespace NEAT
 
                     // Outputs
                     List<string> soutputs = new List<string>();
-                    //soutputs.Add("throttle");
+               
                     soutputs.Add("brake");
                     soutputs.Add("boost");
-                    //soutputs.Add("turn");
-                    //soutputs.Add("locksteering");
+                
 
                     return new NeuralNetwork(sinputs, soutputs);
                 }

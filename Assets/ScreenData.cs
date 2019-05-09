@@ -6,13 +6,13 @@ public class ScreenData : MonoBehaviour
 {
 
     [SerializeField]
-    private GameObject CarMinimapIconPrefab;
+    private GameObject CarMinimapIconPrefab = null;
 
     [SerializeField]
-    private Material AICarMinimapIconMaterial;
+    private Material AICarMinimapIconMaterial = null;
 
     [SerializeField]
-    private Material PlayerCarMinimapIconMaterial;
+    private Material PlayerCarMinimapIconMaterial = null;
 
 
     private List<GameObject> AICars;

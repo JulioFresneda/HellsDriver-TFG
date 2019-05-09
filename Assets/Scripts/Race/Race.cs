@@ -1,4 +1,6 @@
 ﻿using NeuralNet;
+using Racing;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,19 +15,21 @@ namespace Racing
         private int num_race_drivers = 10;
 
         [SerializeField]
-        private GameObject carAI;
+        private GameObject carAI = null;
 
 
 
         [SerializeField]
-        private Transform start;
+        private Transform start = null;
 
         [SerializeField]
-        private string CarAIName;
+        private string CarAIName = "";
 
         private List<RaceDriver> race_drivers = new List<RaceDriver>();
 
-        private static int position = 1;
+        private static int setPosition = 1;
+
+        private List<Tuple<RaceDriver, double>> CarsSorted = null;
 
 
         // Start is called before the first frame update
@@ -66,12 +70,31 @@ namespace Racing
 
             gameObject.GetComponent<Cameras>().StartCameras();
 
+
+            CarsSorted = new List<Tuple<RaceDriver, double>>();
+            foreach(RaceDriver r in race_drivers)
+            {
+                CarsSorted.Add(new Tuple<RaceDriver, double>(r, 0));
+            }
+
         }
 
         // Update is called once per frame
         void Update()
         {
 
+            for(int i=0; i<CarsSorted.Count; i++)
+            { 
+                CarsSorted[i] = new Tuple<RaceDriver, double>(CarsSorted[i].Item1, CarsSorted[i].Item1.GetDistanceNextCheckpoint());
+            }
+
+            CompareByPosition cbp = new CompareByPosition();
+            CarsSorted.Sort(cbp);
+
+            for(int i=0; i<CarsSorted.Count; i++)
+            {
+                CarsSorted[i].Item1.SetCurrentPosition(i + 1);
+            }
         }
 
 
@@ -127,9 +150,26 @@ namespace Racing
 
         public static int GetPosition()
         {
-            position++;
-            return position-1;
+            setPosition++;
+            return setPosition-1;
         }
     }
 
 }
+
+
+public class CompareByPosition : IComparer<Tuple<RaceDriver,double>>
+{
+    public int Compare(Tuple<RaceDriver, double> x, Tuple<RaceDriver, double> y)
+    {
+        if (x.Item1.GetNumCheckpointsChecked() < y.Item1.GetNumCheckpointsChecked()) return 1;
+        else if ((x.Item1.GetNumCheckpointsChecked() > y.Item1.GetNumCheckpointsChecked())) return -1;
+        else
+        {
+            if (x.Item2 < y.Item2) return -1;
+            else return 1;
+        }
+        
+    }
+}
+

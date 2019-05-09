@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using VehicleSystem;
 
-public class SpeedometerUI : MonoBehaviour
+public class UISpeedometer : MonoBehaviour
 {
     private double CurrentNitro;
     private double MaxNitro;
@@ -13,19 +13,20 @@ public class SpeedometerUI : MonoBehaviour
     private GameObject PlayerCar;
 
     [SerializeField]
-    private Transform NitroBar;
+    private Transform NitroBar = null;
 
     [SerializeField]
-    private Transform ClockHand;
+    private Transform ClockHand = null;
 
     [SerializeField]
-    private Transform DigitalSM;
+    private Transform DigitalSM = null;
 
 
     // Start is called before the first frame update
     void Start()
     {
         
+
     }
 
     // Update is called once per frame

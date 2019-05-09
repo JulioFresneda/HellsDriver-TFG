@@ -10,26 +10,10 @@ namespace VehicleSystem
 {
     public class CarAI : MonoBehaviour
     {
-        // INPUTS FOR NN
-
-        private double speed;
-        public double Speed { get { return speed; } set { speed = value; } }
-        private double wheelSteerAngle;
-        public double WheelSteerAngle { get { return wheelSteerAngle; } set { wheelSteerAngle = value; } }
-        private double boost;
-        public double Boost { get { return boost; } set { boost = value; } }
-
-
-
-
-        // Inputs for NN (outputs by car): Speed, wheelSteering, distWalls
-        // Outputs by NN (inputs for car): Throttle, brake, turnInput, boost
         private NeuralNetwork nn;
-
 
         private CarRaycast carRaycastLeft;
         private CarRaycast carRaycastRight;
-
 
         private List<Tuple<string, double>> inputs;
         private List<Tuple<string, double>> outputs;
@@ -46,7 +30,7 @@ namespace VehicleSystem
             wallDistancesRight = new List<double>();
 
             CarRaycast[] tempray = gameObject.GetComponentsInChildren<CarRaycast>();
-            if (tempray[0].IsLeft())
+            if (tempray[0].GetRayCastPosition() == RayCastPosition.Left)
             {
                 carRaycastLeft = tempray[0];
                 carRaycastRight = tempray[1];
@@ -76,9 +60,10 @@ namespace VehicleSystem
         {
 
             inputs.Clear();
-            inputs.Add(new Tuple<string, double>("speed", speed));
-            //inputs.Add(new Tuple<string, double>("wheelSteering", wheelSteerAngle));
             inputs.Add(new Tuple<string, double>("bias", 1));
+            inputs.Add(new Tuple<string, double>("speed", this.GetComponentInParent<CarController>().Speed));
+            
+
             wallDistancesLeft.Clear();
             wallDistancesRight.Clear();
 
@@ -95,9 +80,6 @@ namespace VehicleSystem
             {
                 wallDistancesRight.Add((double)f);
             }
-
-
-
 
 
             CalculateSteering();
@@ -133,7 +115,6 @@ namespace VehicleSystem
 
         public NeuralNetwork GetNeuralNetwork()
         {
-            nn.lockweight = this.GetComponentInParent<CarFitnessTest>().lockweight;
             nn.throttleweight = this.GetComponentInParent<CarFitnessTest>().throttleweight;
             nn.boosteds = this.GetComponentInParent<CarFitnessTest>().boosteds;
             return nn;

@@ -844,7 +844,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   number_of_rays: 11
   HasFitnessTest: 1
-  left: 0
+  raycastposition: 1
 --- !u!1 &6499652477712174419
 GameObject:
   m_ObjectHideFlags: 0
@@ -890,7 +890,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   number_of_rays: 11
   HasFitnessTest: 1
-  left: 1
+  raycastposition: 0
 --- !u!1 &6520128642569249147
 GameObject:
   m_ObjectHideFlags: 0
