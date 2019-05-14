@@ -911,6 +911,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DizzyCircuitRoad
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: cebb7dd3c12e03c44901366b9ecdca74, type: 3}
+      propertyPath: m_TagString
+      value: Road
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cebb7dd3c12e03c44901366b9ecdca74, type: 3}
       propertyPath: m_LocalPosition.x
       value: 732.66205
@@ -3410,6 +3414,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: ac74c81f96650cd468d0487817b97b76, type: 3}
       propertyPath: m_Name
       value: EightCircuitRoad
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ac74c81f96650cd468d0487817b97b76, type: 3}
+      propertyPath: m_TagString
+      value: Road
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ac74c81f96650cd468d0487817b97b76, type: 3}
       propertyPath: m_LocalPosition.x

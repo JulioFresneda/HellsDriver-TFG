@@ -12,6 +12,7 @@ TagManager:
   - AIDriver
   - Minimap
   - PositionTrigger
+  - Road
   layers:
   - Default
   - TransparentFX

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VehicleSystem;
 
 namespace Racing
 {
@@ -22,8 +23,9 @@ namespace Racing
 
         private int currentLap = 1;
 
-        [SerializeField]
-        private int lastCheckpoint = 0;
+  
+        private int lastCheckpointNumber = 0;
+        private GameObject lastCheckpoint;
 
         [SerializeField]
         double distance;
@@ -41,6 +43,14 @@ namespace Racing
 
         public int GetCurrentLap() => currentLap;
 
+
+
+
+
+
+
+       
+
         private void Start()
         {
             finalPosition = -1;
@@ -51,6 +61,78 @@ namespace Racing
             all_checkpoints = new List<GameObject>(GameObject.FindGameObjectsWithTag("CheckPoint"));
             checkpoints_checked = new List<GameObject>();
         }
+
+
+
+
+        private void Update()
+        {
+            CheckCrash();
+        }
+
+
+
+
+
+
+
+
+        private bool startCrashing = false;
+        private bool crashed = false;
+        private float crashTime;
+
+        private void CheckCrash()
+        {
+            if(Mathf.Abs(gameObject.GetComponentInParent<CarController>().Speed) < 1f && lastCheckpoint != null )
+            {
+                if (!startCrashing)
+                {
+                    startCrashing = true;
+                    crashTime = Time.timeSinceLevelLoad;
+                }
+                else
+                {
+                    if(Time.timeSinceLevelLoad-crashTime > 3f)
+                    {
+                        crashed = true;
+                    }
+                }
+            }
+            else
+            {
+                if (startCrashing) startCrashing = false;
+            }
+
+
+
+            if (crashed)
+            {
+                GoToLastCheckPoint();
+                crashed = false;
+            }
+        }
+
+
+
+        private void GoToLastCheckPoint()
+        {
+            gameObject.transform.position = new Vector3(lastCheckpoint.transform.position.x, GameObject.FindWithTag("Road").transform.position.y + 1, lastCheckpoint.transform.position.z);
+            gameObject.transform.rotation = lastCheckpoint.transform.rotation;
+        
+            gameObject.transform.Rotate(0, 0, -90);
+            gameObject.transform.Rotate(0, 90,0);
+
+            gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        }
+
+
+
+
+
+
+
+
+
 
 
         private bool started = false;
@@ -72,10 +154,11 @@ namespace Racing
                     checkpoints_not_checked.AddRange(all_checkpoints);
                     checkpoints_checked.Add(col.gameObject);
                     checkpoints_not_checked.Remove(col.gameObject);
-                    lastCheckpoint = 0;
+                    lastCheckpointNumber = 0;
+                    lastCheckpoint = col.gameObject;
 
                 }
-                else
+                else if (checkpoints_not_checked.Contains(col.gameObject))
                 {
                     Debug.Log("Started");
                     started = true;
@@ -83,7 +166,13 @@ namespace Racing
                     {
                         checkpoints_checked.Add(col.gameObject);
                     }
-                    if (checkpoints_not_checked.Contains(col.gameObject)) checkpoints_not_checked.Remove(col.gameObject);
+                     checkpoints_not_checked.Remove(col.gameObject);
+                    lastCheckpoint = col.gameObject;
+                    
+                }
+                else if (checkpoints_checked.Contains(col.gameObject))
+                {
+                    GoToLastCheckPoint();
                 }
                 
             }
@@ -92,15 +181,22 @@ namespace Racing
                 if (!checkpoints_checked.Contains(col.gameObject))
                 {
                     checkpoints_checked.Add(col.gameObject);
-                    if (col.gameObject.name[8] == ')') lastCheckpoint = int.Parse((col.gameObject.name[7] + ""));
+                    if (col.gameObject.name[8] == ')') lastCheckpointNumber = int.Parse((col.gameObject.name[7] + ""));
                     else
                     {
                         string n = "";
                         n += col.gameObject.name[7];
                         n += col.gameObject.name[8];
-                        lastCheckpoint = int.Parse(n);
+                        lastCheckpointNumber = int.Parse(n);
                     }
+                    lastCheckpoint = col.gameObject;
                 }
+                else 
+                {
+                    GoToLastCheckPoint();
+                }
+
+
                 if (checkpoints_not_checked.Contains(col.gameObject)) checkpoints_not_checked.Remove(col.gameObject);
             }
 
@@ -113,7 +209,7 @@ namespace Racing
             double dist = -1;
             foreach(GameObject g in all_checkpoints)
             {
-                if (g.gameObject.name != "CheckStart" && g.gameObject.name[8] == ')' && int.Parse(g.gameObject.name[7] + "") == lastCheckpoint + 1)
+                if (g.gameObject.name != "CheckStart" && g.gameObject.name[8] == ')' && int.Parse(g.gameObject.name[7] + "") == lastCheckpointNumber + 1)
                 {
                     dist = Vector3.Distance(this.GetComponentInParent<Transform>().position, g.GetComponentInParent<Transform>().position);
 
@@ -126,7 +222,7 @@ namespace Racing
                     n += g.gameObject.name[8];
               
                     
-                    if( int.Parse(n) == lastCheckpoint + 1) dist = Vector3.Distance(this.GetComponentInParent<Transform>().position, g.GetComponentInParent<Transform>().position);
+                    if( int.Parse(n) == lastCheckpointNumber + 1) dist = Vector3.Distance(this.GetComponentInParent<Transform>().position, g.GetComponentInParent<Transform>().position);
                 }
                 else if(g.gameObject.name == "CheckStart" && checkpoints_not_checked.Count == 0) dist = Vector3.Distance(this.GetComponentInParent<Transform>().position, g.GetComponentInParent<Transform>().position);
 
