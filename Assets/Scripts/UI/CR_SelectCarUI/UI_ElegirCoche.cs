@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -12,7 +13,7 @@ public class UI_ElegirCoche : MonoBehaviour
 {
 
     [SerializeField]
-    private GameObject camera = null;
+    private GameObject camera_selection = null;
 
     [SerializeField]
     private Button Bclass = null;
@@ -32,7 +33,7 @@ public class UI_ElegirCoche : MonoBehaviour
 
     private List<VehicleSystem.CarModel> TierX, TierA, TierB;
     private int selection_position = 0;
-    private int selectio_tier = 0;
+    private int selection_tier = 0;
 
 
     private bool moving_right = false;
@@ -41,10 +42,14 @@ public class UI_ElegirCoche : MonoBehaviour
     private float displacement_speed;
 
 
+    private Vector3 initial_position;
+
+
     // Start is called before the first frame update
     void Start()
     {
         displacement_speed = 100f;
+        initial_position = camera_selection.transform.position;
 
         TierX = new List<VehicleSystem.CarModel>();
         TierA = new List<VehicleSystem.CarModel>();
@@ -58,9 +63,9 @@ public class UI_ElegirCoche : MonoBehaviour
     {
         if (moving_right)
         {
-            if(last_x_position + 600 > camera.transform.position.x)
+            if(last_x_position + 600 > camera_selection.transform.position.x)
             {
-                camera.transform.position += new Vector3(displacement_speed, 0, 0);
+                camera_selection.transform.position += new Vector3(displacement_speed, 0, 0);
             }
             else
             {
@@ -69,9 +74,9 @@ public class UI_ElegirCoche : MonoBehaviour
         }
         else if (moving_left)
         {
-            if (last_x_position - 600 < camera.transform.position.x)
+            if (last_x_position - 600 < camera_selection.transform.position.x)
             {
-                camera.transform.position -= new Vector3(displacement_speed, 0, 0);
+                camera_selection.transform.position -= new Vector3(displacement_speed, 0, 0);
             }
             else
             {
@@ -87,7 +92,7 @@ public class UI_ElegirCoche : MonoBehaviour
         if (!moving_right)
         {
             selection_position++;
-            last_x_position = camera.transform.position.x;
+            last_x_position = camera_selection.transform.position.x;
             moving_right = true;
         }
         
@@ -98,9 +103,46 @@ public class UI_ElegirCoche : MonoBehaviour
         if (!moving_left && selection_position > 0)
         {
             selection_position--;
-            last_x_position = camera.transform.position.x;
+            last_x_position = camera_selection.transform.position.x;
             moving_left = true;
         }
 
+    }
+
+
+    public void TierB_Button()
+    {
+        if (selection_tier != 0)
+        {
+            selection_tier = 0;
+            camera_selection.transform.position = initial_position;
+            selection_position = 0;
+        }
+    }
+
+    public void TierA_Button()
+    {
+        if (selection_tier != 1)
+        {
+            selection_tier = 1;
+            camera_selection.transform.position = initial_position + new Vector3(0,0,600);
+            selection_position = 0;
+        }
+    }
+
+    public void TierX_Button()
+    {
+        if (selection_tier != 2)
+        {
+            selection_tier = 2;
+            camera_selection.transform.position = initial_position + new Vector3(0, 0, 1200);
+            selection_position = 0;
+        }
+    }
+
+
+    public void SelectMapButton()
+    {
+        SceneManager.LoadScene("SelectMap");
     }
 }

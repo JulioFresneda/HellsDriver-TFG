@@ -194,6 +194,145 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 27.73, y: 0, z: 0}
+--- !u!1001 &52091431
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 192176862}
+    m_Modifications:
+    - target: {fileID: 35919863120667331, guid: ff81be297164f7d43955ce374edf1c88,
+        type: 3}
+      propertyPath: m_Name
+      value: RaceCarC
+      objectReference: {fileID: 0}
+    - target: {fileID: 5141210807760143029, guid: ff81be297164f7d43955ce374edf1c88,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -513.59283
+      objectReference: {fileID: 0}
+    - target: {fileID: 5141210807760143029, guid: ff81be297164f7d43955ce374edf1c88,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 751.6421
+      objectReference: {fileID: 0}
+    - target: {fileID: 5141210807760143029, guid: ff81be297164f7d43955ce374edf1c88,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1978.982
+      objectReference: {fileID: 0}
+    - target: {fileID: 5141210807760143029, guid: ff81be297164f7d43955ce374edf1c88,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5141210807760143029, guid: ff81be297164f7d43955ce374edf1c88,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.95002663
+      objectReference: {fileID: 0}
+    - target: {fileID: 5141210807760143029, guid: ff81be297164f7d43955ce374edf1c88,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5141210807760143029, guid: ff81be297164f7d43955ce374edf1c88,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.31216902
+      objectReference: {fileID: 0}
+    - target: {fileID: 5141210807760143029, guid: ff81be297164f7d43955ce374edf1c88,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5141210807760143029, guid: ff81be297164f7d43955ce374edf1c88,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5141210807760143029, guid: ff81be297164f7d43955ce374edf1c88,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 216.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 5141210807760143029, guid: ff81be297164f7d43955ce374edf1c88,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5141210807760143029, guid: ff81be297164f7d43955ce374edf1c88,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 50.000023
+      objectReference: {fileID: 0}
+    - target: {fileID: 5141210807760143029, guid: ff81be297164f7d43955ce374edf1c88,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5141210807760143029, guid: ff81be297164f7d43955ce374edf1c88,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 50.000023
+      objectReference: {fileID: 0}
+    - target: {fileID: 1824110257574499947, guid: ff81be297164f7d43955ce374edf1c88,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1824110257576429741, guid: ff81be297164f7d43955ce374edf1c88,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1e4a9ccb24a6a9f4da87116aec31db83, type: 2}
+    - target: {fileID: 1824110257576429743, guid: ff81be297164f7d43955ce374edf1c88,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 153057d217703b94ba4499ca66a72ce9, type: 2}
+    - target: {fileID: 217123928474887453, guid: ff81be297164f7d43955ce374edf1c88,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 003f24d5378d8f54f81db701b8f663a6, type: 2}
+    - target: {fileID: 4594189748402912785, guid: ff81be297164f7d43955ce374edf1c88,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 93bf50aaff7024847aaa2816ac0b3de3, type: 2}
+    - target: {fileID: 65107294900573236, guid: ff81be297164f7d43955ce374edf1c88,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 93bf50aaff7024847aaa2816ac0b3de3, type: 2}
+    - target: {fileID: 1259257934302943, guid: ff81be297164f7d43955ce374edf1c88, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 003f24d5378d8f54f81db701b8f663a6, type: 2}
+    m_RemovedComponents:
+    - {fileID: 8869054808396117440, guid: ff81be297164f7d43955ce374edf1c88, type: 3}
+    - {fileID: 3297708699663653744, guid: ff81be297164f7d43955ce374edf1c88, type: 3}
+    - {fileID: 8277500393863538926, guid: ff81be297164f7d43955ce374edf1c88, type: 3}
+    - {fileID: 5278759266117079404, guid: ff81be297164f7d43955ce374edf1c88, type: 3}
+    - {fileID: 6147087986775371010, guid: ff81be297164f7d43955ce374edf1c88, type: 3}
+    - {fileID: 5269626076286662039, guid: ff81be297164f7d43955ce374edf1c88, type: 3}
+    - {fileID: 2210243909968054927, guid: ff81be297164f7d43955ce374edf1c88, type: 3}
+    - {fileID: 6940168272278669059, guid: ff81be297164f7d43955ce374edf1c88, type: 3}
+    - {fileID: 4744836632163356402, guid: ff81be297164f7d43955ce374edf1c88, type: 3}
+    - {fileID: 5875674931877202988, guid: ff81be297164f7d43955ce374edf1c88, type: 3}
+    - {fileID: 7428443490337401309, guid: ff81be297164f7d43955ce374edf1c88, type: 3}
+    - {fileID: 1960082679870747560, guid: ff81be297164f7d43955ce374edf1c88, type: 3}
+    - {fileID: 5091237025228221327, guid: ff81be297164f7d43955ce374edf1c88, type: 3}
+    - {fileID: 2106579320976542932, guid: ff81be297164f7d43955ce374edf1c88, type: 3}
+    - {fileID: 2503439786872677946, guid: ff81be297164f7d43955ce374edf1c88, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: ff81be297164f7d43955ce374edf1c88, type: 3}
+--- !u!4 &52091432 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5141210807760143029, guid: ff81be297164f7d43955ce374edf1c88,
+    type: 3}
+  m_PrefabInstance: {fileID: 52091431}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &192176861
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,6 +362,7 @@ Transform:
   m_Children:
   - {fileID: 228318503}
   - {fileID: 1432844889}
+  - {fileID: 52091432}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -563,7 +703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11dcd324e8aca244a97a06e723d61c7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 17304958}
+  camera_selection: {fileID: 17304958}
   Bclass: {fileID: 1876114451}
   Aclass: {fileID: 1680138275}
   Xclass: {fileID: 627193903}
@@ -582,7 +722,7 @@ GameObject:
   - component: {fileID: 627193904}
   - component: {fileID: 627193903}
   m_Layer: 5
-  m_Name: CategoriaX
+  m_Name: TierX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -647,7 +787,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 627193904}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 312123133}
+        m_MethodName: TierX_Button
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &627193904
@@ -886,7 +1037,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Categoria A
+  m_Text: Tier A
 --- !u!222 &796883803
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -965,7 +1116,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Categoria X
+  m_Text: Tier X
 --- !u!222 &1100678710
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1390,7 +1541,7 @@ GameObject:
   - component: {fileID: 1680138276}
   - component: {fileID: 1680138275}
   m_Layer: 5
-  m_Name: CategoriaA
+  m_Name: TierA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1455,7 +1606,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1680138276}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 312123133}
+        m_MethodName: TierA_Button
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1680138276
@@ -1565,7 +1727,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Categoria B
+  m_Text: Tier B
 --- !u!222 &1686394976
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1644,7 +1806,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Iniciar carrera
+  m_Text: 'Elegir mapa
+
+'
 --- !u!222 &1696295765
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1666,7 +1830,7 @@ GameObject:
   - component: {fileID: 1876114452}
   - component: {fileID: 1876114451}
   m_Layer: 5
-  m_Name: CategoriaB
+  m_Name: TierB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1731,7 +1895,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1876114452}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 312123133}
+        m_MethodName: TierB_Button
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1876114452
@@ -1938,7 +2113,7 @@ GameObject:
   - component: {fileID: 2111014576}
   - component: {fileID: 2111014575}
   m_Layer: 5
-  m_Name: Start
+  m_Name: SelectMap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2003,7 +2178,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2111014576}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 312123133}
+        m_MethodName: SelectMapButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &2111014576
