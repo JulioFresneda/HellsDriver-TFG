@@ -4,11 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIPosition : MonoBehaviour
+public class UIPositionAndLap : MonoBehaviour
 {
 
     [SerializeField]
     private Text PositionText = null;
+
+    [SerializeField]
+    private Text LapText = null;
 
     private GameObject PlayerCar;
 
@@ -25,6 +28,7 @@ public class UIPosition : MonoBehaviour
         else
         {
             PositionText.text = PlayerCar.GetComponent<RaceDriver>().GetCurrentPosition().ToString();
+            LapText.text = PlayerCar.GetComponent<RaceDriver>().GetCurrentLap().ToString() + "/" + Race.GetTotalLaps();
         }
     }
 }

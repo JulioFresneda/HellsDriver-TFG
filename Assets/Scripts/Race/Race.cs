@@ -32,6 +32,12 @@ namespace Racing
         private List<Tuple<RaceDriver, double>> CarsSorted = null;
 
 
+        [SerializeField]
+        private static int totalLaps = 3;
+
+        public static int GetTotalLaps() => totalLaps;
+
+
         // Start is called before the first frame update
         void Start()
         {
@@ -162,14 +168,20 @@ public class CompareByPosition : IComparer<Tuple<RaceDriver,double>>
 {
     public int Compare(Tuple<RaceDriver, double> x, Tuple<RaceDriver, double> y)
     {
-        if (x.Item1.GetNumCheckpointsChecked() < y.Item1.GetNumCheckpointsChecked()) return 1;
-        else if ((x.Item1.GetNumCheckpointsChecked() > y.Item1.GetNumCheckpointsChecked())) return -1;
+        if (x.Item1.GetCurrentLap() < y.Item1.GetCurrentLap()) return 1;
+        else if (x.Item1.GetCurrentLap() > y.Item1.GetCurrentLap()) return -1;
         else
         {
-            if (x.Item2 < y.Item2) return -1;
-            else return 1;
+            if (x.Item1.GetNumCheckpointsChecked() < y.Item1.GetNumCheckpointsChecked()) return 1;
+            else if ((x.Item1.GetNumCheckpointsChecked() > y.Item1.GetNumCheckpointsChecked())) return -1;
+            else
+            {
+                if (x.Item2 < y.Item2) return -1;
+                else return 1;
+            }
+
         }
-        
+
     }
 }
 

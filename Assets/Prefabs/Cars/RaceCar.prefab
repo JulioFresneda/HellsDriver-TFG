@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8869054808396117440}
   - component: {fileID: 3297708699663653744}
   - component: {fileID: 8277500393863538926}
-  - component: {fileID: 4544227259708861268}
   - component: {fileID: 5278759266117079404}
   m_Layer: 10
   m_Name: RaceCar
@@ -206,27 +205,6 @@ MonoBehaviour:
   boostRegen: 0.1
   boostForce: 10000
   boosting: 0
---- !u!114 &4544227259708861268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 35919863120667331}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ea8f3954a6436b45b3055454399b05e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MAX_TIME_RUNNING: 30
-  time_running: 0
-  time_same_check: 0
-  throttleweight: 0
-  boosteds: 0
-  minthrottle: 0
-  checkbonus: 200
-  minthrottlerange: 0.8
-  max_time_same_check: 10
 --- !u!114 &5278759266117079404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,7 +218,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentPosition: 0
-  dist: 0
+  lastCheckpoint: 0
+  distance: 0
 --- !u!1 &526180168169428240
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,7 +296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   number_of_rays: 11
-  HasFitnessTest: 1
+  HasFitnessTest: 0
   raycastposition: 0
 --- !u!1 &3597269391945270316
 GameObject:
@@ -380,7 +359,7 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 3
+    m_Stiffness: 4
   m_Enabled: 1
 --- !u!114 &5875674931877202988
 MonoBehaviour:
@@ -564,7 +543,7 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 3
+    m_Stiffness: 4
   m_Enabled: 1
 --- !u!114 &4744836632163356402
 MonoBehaviour:
@@ -677,7 +656,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   number_of_rays: 11
-  HasFitnessTest: 1
+  HasFitnessTest: 0
   raycastposition: 1
 --- !u!1 &6292586098507421848
 GameObject:
@@ -740,7 +719,7 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 3
+    m_Stiffness: 4
   m_Enabled: 1
 --- !u!114 &2210243909968054927
 MonoBehaviour:
@@ -971,7 +950,7 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 3
+    m_Stiffness: 4
   m_Enabled: 1
 --- !u!114 &6940168272278669059
 MonoBehaviour:

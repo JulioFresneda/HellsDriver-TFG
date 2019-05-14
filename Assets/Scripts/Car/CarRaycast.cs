@@ -97,7 +97,7 @@ namespace VehicleSystem
 
 
                 if( HasFitnessTest && !GetComponentInParent<CarFitnessTest>().DoneCalculatingFitness()) Debug.DrawRay(transform.position, transform.TransformDirection(raysDirection[i]), color);
-           
+                else if(!HasFitnessTest) Debug.DrawRay(transform.position, transform.TransformDirection(raysDirection[i]), color);
             }
 
            

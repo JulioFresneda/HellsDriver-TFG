@@ -20,6 +20,8 @@ namespace Racing
         private List<GameObject> checkpoints_not_checked;
         private List<GameObject> checkpoints_checked;
 
+        private int currentLap = 1;
+
         [SerializeField]
         private int lastCheckpoint = 0;
 
@@ -36,6 +38,8 @@ namespace Racing
         public int GetFinalPosition() => finalPosition;
 
         public int GetNumCheckpointsChecked() => checkpoints_checked.Count;
+
+        public int GetCurrentLap() => currentLap;
 
         private void Start()
         {
@@ -54,11 +58,22 @@ namespace Racing
         {
             if (col.gameObject.name == "CheckStart")
             {
-                if (started && checkpoints_not_checked.Count == 0)
+                if (started && checkpoints_not_checked.Count == 0 && currentLap == Race.GetTotalLaps())
                 {
                     finalPosition = Race.GetPosition();
                     seconds = Time.timeSinceLevelLoad - startRaceTime;
                     Debug.Log("Finish " + finalPosition + " " + seconds);
+                }
+                else if (started && checkpoints_not_checked.Count == 0 && currentLap < Race.GetTotalLaps())
+                {
+                    currentLap++;
+                    Debug.Log("Lap " + currentLap);
+                    checkpoints_checked.Clear();
+                    checkpoints_not_checked.AddRange(all_checkpoints);
+                    checkpoints_checked.Add(col.gameObject);
+                    checkpoints_not_checked.Remove(col.gameObject);
+                    lastCheckpoint = 0;
+
                 }
                 else
                 {
@@ -77,8 +92,14 @@ namespace Racing
                 if (!checkpoints_checked.Contains(col.gameObject))
                 {
                     checkpoints_checked.Add(col.gameObject);
-                    if(col.gameObject.name[8] == ')') lastCheckpoint = int.Parse((col.gameObject.name[7]+""));
-                    else lastCheckpoint = int.Parse((col.gameObject.name[7] + col.gameObject.name[8] +""));
+                    if (col.gameObject.name[8] == ')') lastCheckpoint = int.Parse((col.gameObject.name[7] + ""));
+                    else
+                    {
+                        string n = "";
+                        n += col.gameObject.name[7];
+                        n += col.gameObject.name[8];
+                        lastCheckpoint = int.Parse(n);
+                    }
                 }
                 if (checkpoints_not_checked.Contains(col.gameObject)) checkpoints_not_checked.Remove(col.gameObject);
             }
@@ -95,21 +116,24 @@ namespace Racing
                 if (g.gameObject.name != "CheckStart" && g.gameObject.name[8] == ')' && int.Parse(g.gameObject.name[7] + "") == lastCheckpoint + 1)
                 {
                     dist = Vector3.Distance(this.GetComponentInParent<Transform>().position, g.GetComponentInParent<Transform>().position);
-                    
+
                 }
-                else if (g.gameObject.name != "CheckStart" && g.gameObject.name[8] != ')' && int.Parse(g.gameObject.name[7] + g.gameObject.name[8] + "") == lastCheckpoint + 1) dist = Vector3.Distance(this.GetComponentInParent<Transform>().position, g.GetComponentInParent<Transform>().position);
+                else if (g.gameObject.name != "CheckStart" && g.gameObject.name[8] != ')')
+                {
+                    
+                    string n = "";
+                    n += g.gameObject.name[7];
+                    n += g.gameObject.name[8];
+              
+                    
+                    if( int.Parse(n) == lastCheckpoint + 1) dist = Vector3.Distance(this.GetComponentInParent<Transform>().position, g.GetComponentInParent<Transform>().position);
+                }
+                else if(g.gameObject.name == "CheckStart" && checkpoints_not_checked.Count == 0) dist = Vector3.Distance(this.GetComponentInParent<Transform>().position, g.GetComponentInParent<Transform>().position);
+
             }
 
-            if (checkpoints_checked.Count == 1)
-            {
-                distance = dist;
-                return dist;
-            }
-            else
-            {
-                distance = (-200 * checkpoints_checked.Count) + dist; 
-                return (-200 * checkpoints_checked.Count) + dist;
-            }
+            distance = dist;
+            return distance;
         }
 
 
