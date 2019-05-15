@@ -218,7 +218,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentPosition: 0
-  lastCheckpoint: 0
   distance: 0
 --- !u!1 &526180168169428240
 GameObject:
@@ -277,7 +276,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2300294888105180283}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: 0, z: 2.84}
+  m_LocalPosition: {x: -1.77, y: 0, z: 2.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8999449960981999505}
@@ -297,6 +296,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   number_of_rays: 11
   HasFitnessTest: 0
+  rayDistances: []
   raycastposition: 0
 --- !u!1 &3597269391945270316
 GameObject:
@@ -569,10 +569,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6153387226683057575}
   - component: {fileID: 7205800504163850935}
-  - component: {fileID: 2503439786872677946}
+  - component: {fileID: 6927641277209880870}
   m_Layer: 10
   m_Name: Chasis
-  m_TagString: Untagged
+  m_TagString: Chasis
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -599,7 +599,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5147628877802913320}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &2503439786872677946
+--- !u!65 &6927641277209880870
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -610,7 +610,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.82, y: 1, z: 1.4}
+  m_Size: {x: 1.8, y: 1, z: 1.4}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6032452081762988027
 GameObject:
@@ -637,7 +637,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6032452081762988027}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: 0, z: 2.83}
+  m_LocalPosition: {x: 1.77, y: 0, z: 2.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8999449960981999505}
@@ -657,6 +657,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   number_of_rays: 11
   HasFitnessTest: 0
+  rayDistances: []
   raycastposition: 1
 --- !u!1 &6292586098507421848
 GameObject:

@@ -51,7 +51,7 @@ namespace Racing
 
             for (int i = 0; i < num_race_drivers; i++)
             {
-                start_positions.Add(new Vector3(x + 10 * (i % 3), start.position.y, z + 8 * i));
+                start_positions.Add(new Vector3(x + 10 * (i % 3), start.position.y, z + 4 * i));
 
                 race_drivers.Add(Instantiate(carAI, start_positions[i], start.rotation).GetComponent<RaceDriver>());
                 
@@ -59,9 +59,9 @@ namespace Racing
 
                 ntf = new NNToFile();
                 race_drivers[i].GetComponent<CarAI>().SetNeuralNetwork(ntf.Read(CarAIName + ".txt"));
-
-
                 
+
+
 
             }
 
@@ -82,6 +82,7 @@ namespace Racing
             {
                 CarsSorted.Add(new Tuple<RaceDriver, double>(r, 0));
             }
+
 
         }
 

@@ -13,6 +13,7 @@ TagManager:
   - Minimap
   - PositionTrigger
   - Road
+  - ColliderAgainstCars
   layers:
   - Default
   - TransparentFX

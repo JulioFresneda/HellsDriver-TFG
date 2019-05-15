@@ -209,7 +209,6 @@ namespace VehicleSystem
 
                 angle = angle / steerangle;
 
-                //Debug.Log(angle);
 
                 return angle;
             }

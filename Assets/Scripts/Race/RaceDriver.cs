@@ -83,6 +83,7 @@ namespace Racing
 
         private void CheckCrash()
         {
+
             if(Mathf.Abs(gameObject.GetComponentInParent<CarController>().Speed) < 1f && lastCheckpoint != null )
             {
                 if (!startCrashing)
@@ -92,7 +93,7 @@ namespace Racing
                 }
                 else
                 {
-                    if(Time.timeSinceLevelLoad-crashTime > 3f)
+                    if (Time.timeSinceLevelLoad-crashTime > 3f)
                     {
                         crashed = true;
                     }
@@ -100,15 +101,20 @@ namespace Racing
             }
             else
             {
-                if (startCrashing) startCrashing = false;
+                if (startCrashing)
+                {
+                    startCrashing = false;
+                }
             }
 
 
 
             if (crashed)
             {
+                
                 GoToLastCheckPoint();
                 crashed = false;
+                startCrashing = false;
             }
         }
 
@@ -121,6 +127,15 @@ namespace Racing
         
             gameObject.transform.Rotate(0, 0, -90);
             gameObject.transform.Rotate(0, 90,0);
+
+
+            gameObject.transform.Translate(Vector3.forward * 10);
+
+
+            OrderCheckPoints ocp = new OrderCheckPoints();
+            all_checkpoints.Sort(ocp);
+            
+            
 
             gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
@@ -238,4 +253,37 @@ namespace Racing
 
     
 
+}
+
+
+public class OrderCheckPoints : IComparer<GameObject>
+{
+    public int Compare(GameObject x, GameObject y)
+    {
+        if (x.gameObject.name == "CheckStart") return -1;
+        else if (y.gameObject.name == "CheckStart") return 1;
+        else
+        {
+            if (x.gameObject.name[8] == ')' && y.gameObject.name[8] == ')')
+            {
+                if (int.Parse(x.gameObject.name[7] + "") < int.Parse(y.gameObject.name[7] + "")) return -1;
+                else return 1;
+            }
+            else if (x.gameObject.name[8] != ')' && y.gameObject.name[8] != ')')
+            {
+                string nx = "";
+                nx += x.gameObject.name[7];
+                nx += x.gameObject.name[8];
+
+                string ny = "";
+                ny += y.gameObject.name[7];
+                ny += y.gameObject.name[8];
+
+                if (int.Parse(nx) < int.Parse(ny)) return -1;
+                else return 1;
+            }
+            else if (x.gameObject.name[8] == ')') return -1;
+            else return 1;
+        }
+    }
 }

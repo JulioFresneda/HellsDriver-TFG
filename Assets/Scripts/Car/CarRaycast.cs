@@ -27,6 +27,7 @@ namespace VehicleSystem
 
         private const int ray_length = 60;
 
+        [SerializeField]
         private float[] rayDistances;
 
         [SerializeField]
