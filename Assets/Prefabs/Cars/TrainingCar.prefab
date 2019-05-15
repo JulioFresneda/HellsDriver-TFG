@@ -151,7 +151,6 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   brakeForce: 100000
-  steerSpeed: 0.2
   steerAngleCurve:
     serializedVersion: 2
     m_Curve:
@@ -220,12 +219,10 @@ MonoBehaviour:
   MAX_TIME_RUNNING: 30
   time_running: 0
   time_same_check: 0
-  lockweight: 0
   throttleweight: 0
   boosteds: 0
   minthrottle: 0
   checkbonus: 200
-  minlockrange: 0.7
   minthrottlerange: 0.8
   max_time_same_check: 10
 --- !u!1 &1102551953586039995
@@ -366,7 +363,7 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 3
+    m_Stiffness: 4
   m_Enabled: 1
 --- !u!114 &3311308672034770926
 MonoBehaviour:
@@ -443,7 +440,7 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 3
+    m_Stiffness: 4
   m_Enabled: 1
 --- !u!114 &6721997369307695275
 MonoBehaviour:
@@ -597,7 +594,7 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 3
+    m_Stiffness: 4
   m_Enabled: 1
 --- !u!114 &5852982070057762838
 MonoBehaviour:
@@ -674,7 +671,7 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 3
+    m_Stiffness: 4
   m_Enabled: 1
 --- !u!114 &8545111509302410988
 MonoBehaviour:
@@ -844,6 +841,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   number_of_rays: 11
   HasFitnessTest: 1
+  rayDistances: []
   raycastposition: 1
 --- !u!1 &6499652477712174419
 GameObject:
@@ -890,6 +888,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   number_of_rays: 11
   HasFitnessTest: 1
+  rayDistances: []
   raycastposition: 0
 --- !u!1 &6520128642569249147
 GameObject:
