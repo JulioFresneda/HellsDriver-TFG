@@ -212,11 +212,7 @@ namespace NEAT
                 CarValues = new List<Tuple<int, int, int>>();
 
                 List<int> throttleList = new List<int>();
-                throttleList.Add(8);
-                throttleList.Add(12);
-                throttleList.Add(16);
-                throttleList.Add(24);
-                throttleList.Add(32);
+                for (int i = 6; i < 16; i++) throttleList.Add(i);
 
                 List<int> massList = new List<int>();
                 massList.Add(1500);
@@ -225,7 +221,6 @@ namespace NEAT
 
 
                 List<int> sidewaysFrictionList = new List<int>();
-                sidewaysFrictionList.Add(2);
                 sidewaysFrictionList.Add(3);
                 sidewaysFrictionList.Add(4);
 
@@ -243,10 +238,7 @@ namespace NEAT
                     }
                 }
 
-                for(int i=0; i<46; i++)
-                {
-                    ChangeCar();
-                }
+               
 
                
             }
@@ -337,7 +329,8 @@ namespace NEAT
                 CompareByFitness cmpf = new CompareByFitness();
                 nn_poblation.Sort(cmpf);
                 NNToFile ntf = new NNToFile(nn_poblation[nn_poblation.Count - 1]);
-                string n = "car" + car.GetComponent<CarController>().Throttle + "_" + "_" + car.GetComponent<Rigidbody>().mass  + "_" + car.GetComponentInChildren<WheelCollider>().sidewaysFriction.stiffness + ".txt";
+                string n = "car" + car.GetComponent<CarController>().Throttle +  "_" + car.GetComponent<Rigidbody>().mass  + "_" + car.GetComponentInChildren<WheelCollider>().sidewaysFriction.stiffness + ".txt";
+                Debug.Log("Saving " + n);
                 carnumber++;
                 ntf.Write(n);
 

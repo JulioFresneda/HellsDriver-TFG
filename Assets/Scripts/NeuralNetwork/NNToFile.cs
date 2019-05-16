@@ -127,7 +127,8 @@ namespace NeuralNet
             StreamWriter sw = new StreamWriter(path);
             sw.WriteLine("NeuralNetwork");
 
-            sw.WriteLine(fitness);
+            if (fitness < 10000) sw.WriteLine(fitness);
+            else sw.WriteLine(10000000 - fitness);
             sw.WriteLine(shared_fitness);
             sw.WriteLine(specie_id);
 
