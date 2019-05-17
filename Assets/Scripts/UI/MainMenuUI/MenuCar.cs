@@ -8,7 +8,7 @@ public class MenuCar : MonoBehaviour
 {
 
     [SerializeField]
-    GameObject car = null;
+    GameObject[] cars = null;
 
     [SerializeField]
     string CarAIName = "car0__2000_3";
@@ -18,7 +18,11 @@ public class MenuCar : MonoBehaviour
     void Start()
     {
         NNToFile ntf = new NNToFile();
-        car.GetComponent<CarAI>().SetNeuralNetwork(ntf.Read(CarAIName + ".txt"));
+        foreach(GameObject c in cars)
+        {
+            c.GetComponent<CarAI>().SetNeuralNetwork(ntf.Read(CarAIName + ".txt"));
+        }
+        
     }
 
 }
