@@ -1,0 +1,4 @@
+cenobyte: http://en.fontreactor.com/foundries/sinister-visions/cenobyte
+charlie brown: http://en.fontreactor.com/foundries/justme54s/charlie-brown-m54
+hel grotesk gothiq: http://en.fontreactor.com/foundries/lokidesign/hel-grotesk-gothiq
+gargoyles: http://en.fontreactor.com/foundries/neale-davidson/gargoyles
