@@ -7,18 +7,18 @@ using UnityEngine.UI;
 public class CR_SelectMapUI : MonoBehaviour
 {
 
-    private string mapSelected = "";
+    private string mapSelected = "Eight";
     private int lapNumberSelected = 1;
     private string difficultSelected = "2";
 
 
 
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        string mapname = PlayerPrefs.GetString("mapname");
-        if (mapname != null) Debug.Log(mapname);
+        PlayerPrefs.SetString("mapname", "Eight");
+        PlayerPrefs.SetInt("lapNumber", 1);
+        PlayerPrefs.SetString("difficultSelected", "2");
     }
 
 
