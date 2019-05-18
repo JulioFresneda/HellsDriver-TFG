@@ -22,33 +22,38 @@ public class CR_SelectMapUI : MonoBehaviour
     }
 
 
-    public void MapButtonClick(Button b)
+    public void MapButtonClick(string map)
     {
-        mapSelected = b.GetComponentInChildren<Text>().text;
+        mapSelected = map;
         PlayerPrefs.SetString("mapname", mapSelected);
+        Debug.Log(mapSelected);
      
     }
 
-    public void LapNumberButtonClick(Button b)
+    public void LapNumberButtonClick(int number)
     {
-        lapNumberSelected = int.Parse(b.GetComponentInChildren<Text>().text);
+        lapNumberSelected = number;
         PlayerPrefs.SetInt("lapNumber", lapNumberSelected);
-    
+        Debug.Log(lapNumberSelected);
     }
 
-    public void DifficultButtonClick(Button b)
+    public void DifficultButtonClick(string dif)
     {
-        if (b.GetComponentInChildren<Text>().text[0] == 'D') difficultSelected = "D";
-        else
-        {
-            difficultSelected = b.GetComponentInChildren<Text>().text;
-        }
+        
+        difficultSelected = dif;
+        
 
         PlayerPrefs.SetString("difficultSelected", difficultSelected);
-
+        Debug.Log(difficultSelected);
     }
 
     public void SelectCarButtonClick(string scene)
+    {
+        SceneManager.LoadScene(scene);
+    }
+
+
+    public void GoBackButtonClick(string scene)
     {
         SceneManager.LoadScene(scene);
     }
