@@ -1,0 +1,237 @@
+NeuralNetwork
+132,7109375
+99998,672890625
+0
+>Neuron 0
+0
+input
+lineal
+speed
+>Neuron 1
+1
+input
+lineal
+bias
+>Neuron 2
+2
+input
+lineal
+distWall 0
+>Neuron 3
+3
+input
+lineal
+distWall 1
+>Neuron 4
+4
+input
+lineal
+distWall 2
+>Neuron 5
+5
+input
+lineal
+distWall 3
+>Neuron 6
+6
+input
+lineal
+distWall 4
+>Neuron 7
+7
+input
+lineal
+distWall 5
+>Neuron 8
+8
+input
+lineal
+distWall 6
+>Neuron 9
+9
+input
+lineal
+distWall 7
+>Neuron 10
+10
+input
+lineal
+distWall 8
+>Neuron 11
+11
+input
+lineal
+distWall 9
+>Neuron 12
+12
+input
+lineal
+distWall 10
+>Neuron 13
+13
+output
+sigmoid
+brake
+>Neuron 14
+14
+output
+tanh
+boost
+<<
+>Connection 0
+0
+0
+13
+0,0171752433884655
+Enabled
+>Connection 1
+1
+0
+14
+0,688158320649528
+Enabled
+>Connection 2
+2
+1
+13
+0,0306721743706869
+Enabled
+>Connection 3
+3
+1
+14
+0,352833453485652
+Enabled
+>Connection 4
+4
+2
+13
+0,011682063363019
+Enabled
+>Connection 5
+5
+2
+14
+-0,00733514600912612
+Enabled
+>Connection 6
+6
+3
+13
+-0,0278633482432265
+Enabled
+>Connection 7
+7
+3
+14
+-0,0223722046395862
+Enabled
+>Connection 8
+8
+4
+13
+0,000427520995675686
+Enabled
+>Connection 9
+9
+4
+14
+0,00666047323658356
+Enabled
+>Connection 10
+10
+5
+13
+-0,0504998051843844
+Enabled
+>Connection 11
+11
+5
+14
+0,113911267888691
+Enabled
+>Connection 12
+12
+6
+13
+0,0152569914954388
+Enabled
+>Connection 13
+13
+6
+14
+0,0483987728113955
+Enabled
+>Connection 14
+14
+7
+13
+0,00293161156327886
+Enabled
+>Connection 15
+15
+7
+14
+0,0330607015132601
+Enabled
+>Connection 16
+16
+8
+13
+-0,00596399184626696
+Enabled
+>Connection 17
+17
+8
+14
+-0,00470503132841902
+Enabled
+>Connection 18
+18
+9
+13
+0,869871830507122
+Enabled
+>Connection 19
+19
+9
+14
+0,0108375871979961
+Enabled
+>Connection 20
+20
+10
+13
+-0,00298874743225799
+Enabled
+>Connection 21
+21
+10
+14
+-0,0260705982792849
+Enabled
+>Connection 22
+22
+11
+13
+-0,885673411013142
+Enabled
+>Connection 23
+23
+11
+14
+0,023360060856375
+Enabled
+>Connection 24
+24
+12
+13
+0,254793261858336
+Enabled
+>Connection 25
+25
+12
+14
+-8,5459912854174E-06
+Enabled
+<<
