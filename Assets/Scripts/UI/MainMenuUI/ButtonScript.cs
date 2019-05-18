@@ -6,6 +6,22 @@ using UnityEngine.UI;
 
 public class ButtonScript : MonoBehaviour, ISelectHandler, IPointerEnterHandler, IPointerExitHandler
 {
+
+    public bool PermanentSelect = false;
+    private bool selected = false;
+
+
+    
+    public void Desselect()
+    {
+        if (selected)
+        {
+            selected = false;
+            gameObject.GetComponent<RawImage>().texture = TextureNotHighlighted;
+        }
+        
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,16 +41,21 @@ public class ButtonScript : MonoBehaviour, ISelectHandler, IPointerEnterHandler,
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        gameObject.GetComponent<RawImage>().texture = TextureHighligted;
+        if(!(selected && PermanentSelect)) gameObject.GetComponent<RawImage>().texture = TextureHighligted;
     }
 
     public void OnSelect(BaseEventData eventData)
     {
         gameObject.GetComponent<RawImage>().texture = TextureSelected;
+        selected = true;
+        foreach(GameObject g in GameObject.FindGameObjectsWithTag("MapButton"))
+        {
+            if (g.name != this.name) g.GetComponent<ButtonScript>().Desselect();
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        gameObject.GetComponent<RawImage>().texture = TextureNotHighlighted;
+        if (!(selected && PermanentSelect)) gameObject.GetComponent<RawImage>().texture = TextureNotHighlighted;
     }
 }

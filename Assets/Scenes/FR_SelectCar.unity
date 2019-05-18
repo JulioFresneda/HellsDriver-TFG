@@ -1850,9 +1850,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Elegir mapa
-
-'
+  m_Text: Start Race
 --- !u!222 &1696295765
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2157,7 +2155,7 @@ GameObject:
   - component: {fileID: 2111014576}
   - component: {fileID: 2111014575}
   m_Layer: 5
-  m_Name: SelectMap
+  m_Name: StartRace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2224,7 +2222,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 312123133}
-        m_MethodName: SelectMapButton
+        m_MethodName: StartRaceButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

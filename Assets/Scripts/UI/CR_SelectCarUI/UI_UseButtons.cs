@@ -141,8 +141,8 @@ public class UI_UseButtons : MonoBehaviour
     }
 
 
-    public void SelectMapButton()
+    public void StartRaceButton()
     {
-        SceneManager.LoadScene("SelectMap");
+        SceneManager.LoadScene(PlayerPrefs.GetString("mapname")+"Circuit");
     }
 }
