@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 
 
-public class UI_ElegirCoche : MonoBehaviour
+public class UI_UseButtons : MonoBehaviour
 {
 
     [SerializeField]
@@ -31,7 +31,7 @@ public class UI_ElegirCoche : MonoBehaviour
     private Button right = null;
 
 
-    private List<VehicleSystem.CarModel> TierX, TierA, TierB;
+    private List<VehicleSystem.CarModelAI> TierX, TierA, TierB;
     private int selection_position = 0;
     private int selection_tier = 0;
 
@@ -51,9 +51,9 @@ public class UI_ElegirCoche : MonoBehaviour
         displacement_speed = 100f;
         initial_position = camera_selection.transform.position;
 
-        TierX = new List<VehicleSystem.CarModel>();
-        TierA = new List<VehicleSystem.CarModel>();
-        TierB = new List<VehicleSystem.CarModel>();
+        TierX = new List<VehicleSystem.CarModelAI>();
+        TierA = new List<VehicleSystem.CarModelAI>();
+        TierB = new List<VehicleSystem.CarModelAI>();
 
         //AQUÍ SE LEEN LOS COCHES
     }

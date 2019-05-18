@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: ea65e318dc386ce4b9e452d84543d151
+  - enabled: 1
+    path: Assets/Scenes/FR_SelectCar.unity
+    guid: 4adfd98e27d42a54cb4863634de3b186
   m_configObjects: {}

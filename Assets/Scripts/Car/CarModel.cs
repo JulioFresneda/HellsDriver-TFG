@@ -5,16 +5,15 @@ using UnityEngine;
 
 namespace VehicleSystem
 {
+
     public class CarModel
     {
-        private string brand;
-        private string model;
+        protected string brand;
+        protected string model;
 
-        private int mass;
-        private int stiffness;
-        private int throttle;
-
-
+        protected int mass;
+        protected int stiffness;
+        protected int throttle;
 
         public CarModel(string brand, string model, int mass, int stiffness, int throttle)
         {
@@ -23,8 +22,58 @@ namespace VehicleSystem
             this.mass = mass;
             this.stiffness = stiffness;
             this.throttle = throttle;
+   
+        }
 
        
+
+        public string GetBrand() => brand;
+        public string GetModel() => model;
+        public int GetMass() => mass;
+        public int GetStiffness() => stiffness;
+        public int GetThrottle() => throttle;
+    }
+
+
+    public class CarModelAI : CarModel
+    {
+        
+
+        private string map;
+        private double time;
+
+        private NeuralNet.NeuralNetwork nn;
+
+      
+
+        public CarModelAI(string brand, string model, int mass, int stiffness, int throttle, string map, double time, NeuralNet.NeuralNetwork nn) : base(brand,model,mass,stiffness,throttle)
+        {
+            this.brand = brand;
+            this.model = model;
+            this.mass = mass;
+            this.stiffness = stiffness;
+            this.throttle = throttle;
+            this.map = map;
+            this.time = time;
+            this.nn = nn;
+        }
+
+
+        public double GetTime() => time;
+        
+        public string GetMap() => map;
+
+    }
+
+
+
+
+    public class OrderCarModels : IComparer<CarModelAI>
+    {
+        public int Compare(CarModelAI x, CarModelAI y)
+        {
+            if (x.GetTime() < y.GetTime()) return -1;
+            else return 1;
         }
     }
 

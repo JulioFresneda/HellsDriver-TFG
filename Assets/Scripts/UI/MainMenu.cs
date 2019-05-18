@@ -8,31 +8,32 @@ public class MainMenu : MonoBehaviour
 {
 
 
-
+    public string FastRaceScene, ChampionshipScene, GarageScene, CreditsScene;
     
 
 
 
+    
 
-
-    public void CarreraRapida()
+    public void FastRace()
     {
-        SceneManager.LoadScene("CarreraRapidaScene");
+        SceneManager.LoadScene(FastRaceScene);
+  
     }
 
-    public void Campeonato()
+    public void Championship()
     {
-        SceneManager.LoadScene("CampeonatoScene");
+        SceneManager.LoadScene(ChampionshipScene);
     }
 
-    public void ModoHistoria()
+    public void Garage()
     {
-        SceneManager.LoadScene("ModoHistoriaScene");
+        SceneManager.LoadScene(GarageScene);
     }
 
-    public void Opciones()
+    public void Credits()
     {
-        SceneManager.LoadScene("OpcionesScene");
+        SceneManager.LoadScene(CreditsScene);
     }
 
     public void Salir()
