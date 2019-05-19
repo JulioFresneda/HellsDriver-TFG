@@ -1373,8 +1373,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -418.3, y: 0}
-  m_SizeDelta: {x: 345.1, y: 240.41}
+  m_AnchoredPosition: {x: -350, y: 0}
+  m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &613040169
 MonoBehaviour:
@@ -1396,7 +1396,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Texture: {fileID: 0}
+  m_Texture: {fileID: 2800000, guid: d6642fe77d4623b49ad29f68b422e487, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -10957,6 +10957,7 @@ GameObject:
   m_Component:
   - component: {fileID: 899516549}
   - component: {fileID: 899516550}
+  - component: {fileID: 899516551}
   m_Layer: 5
   m_Name: SelectBrand
   m_TagString: Untagged
@@ -11017,6 +11018,35 @@ MonoBehaviour:
   Raijin: {fileID: 2800000, guid: 05b00d172f12f24428c25226b64e931d, type: 3}
   Poseidon: {fileID: 2800000, guid: d8225f069be95c449b2ceaf9b5a3030c, type: 3}
   Leviathan: {fileID: 2800000, guid: bc8b0f8f01e6fb3499bfffb7453f93e7, type: 3}
+--- !u!114 &899516551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899516548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d9eff55db91b8c4ab26d2b39daa948c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flames:
+  - {fileID: 1835452705}
+  - {fileID: 1715348504}
+  - {fileID: 1510935075}
+  - {fileID: 1862314783}
+  - {fileID: 1614202218}
+  - {fileID: 1442306328}
+  - {fileID: 740867250}
+  - {fileID: 2079885836}
+  - {fileID: 2048147478}
+  - {fileID: 1287340554}
+  - {fileID: 1447903018}
+  - {fileID: 1395597602}
+  - {fileID: 725262116}
+  - {fileID: 1784381140}
+  - {fileID: 1979552034}
+  - {fileID: 2002271179}
 --- !u!1 &1149790153
 GameObject:
   m_ObjectHideFlags: 0
@@ -35326,8 +35356,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 418.2999, y: 0}
-  m_SizeDelta: {x: 345.1, y: 240.41}
+  m_AnchoredPosition: {x: 350, y: 0}
+  m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1518918274
 MonoBehaviour:
@@ -35349,12 +35379,12 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Texture: {fileID: 0}
+  m_Texture: {fileID: 2800000, guid: d6642fe77d4623b49ad29f68b422e487, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1
+    width: -1
     height: 1
 --- !u!222 &1518918275
 CanvasRenderer:

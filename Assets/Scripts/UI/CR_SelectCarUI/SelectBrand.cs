@@ -133,6 +133,7 @@ public class SelectBrand : MonoBehaviour
 
                 goright = false;
                 position++;
+                UpdatePosition();
              
             }
         }
@@ -175,6 +176,7 @@ public class SelectBrand : MonoBehaviour
 
                 goleft = false;
                 position--;
+                UpdatePosition();
                 
             }
         }
@@ -240,6 +242,15 @@ public class SelectBrand : MonoBehaviour
 
         
 
+    }
+
+
+
+
+    private void UpdatePosition()
+    {
+
+        gameObject.GetComponentInParent<BrandSelected>().ChangeSelection(position);
     }
 
 
