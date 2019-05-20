@@ -12,8 +12,12 @@ public class SelectModelUI : MonoBehaviour
     private List<CarModel> selectedModels;
 
     private int brandSelected;
+    private int modelSelected;
 
     private List<string> brands;
+
+
+    public ModelFeatures modelFeatures;
 
 
     private void Start()
@@ -31,16 +35,24 @@ public class SelectModelUI : MonoBehaviour
 
 
         brandSelected = 0;
+        modelSelected = 0;
         gameObject.GetComponentInChildren<LoadModels>().LoadCarModels();
         carModels = gameObject.GetComponentInChildren<LoadModels>().GetCarModels();
         ChangeModels();
+        modelFeatures.UpdateFeatures(selectedModels[0]);
     }
 
 
-    public void ChangeSelection(int selected)
+    public void ChangeBrandSelection(int selected)
     {
         brandSelected = selected;
         ChangeModels();
+        modelFeatures.UpdateFeatures(selectedModels[0]);
+        foreach(GameObject b in modelButtons)
+        {
+            b.GetComponent<ButtonScript>().Desselect();
+        }
+        modelButtons[0].GetComponent<ButtonScript>().Select();
     }
 
 
@@ -59,6 +71,42 @@ public class SelectModelUI : MonoBehaviour
         }
     }
 
+    public List<CarModel> GetSelectedModels() => selectedModels; 
 
 
+
+    public void ModelHighlighted(string modelName, bool highlighted)
+    {
+        
+        if (highlighted)
+        {
+            for (int i = 0; i < selectedModels.Count; i++)
+            {
+                if (selectedModels[i].GetModel() == modelName) modelFeatures.UpdateFeatures(selectedModels[i]);
+            }
+            
+        }
+
+        else modelFeatures.UpdateFeatures(selectedModels[modelSelected]);
+        
+    }
+
+
+    public void ModelSelected(string modelName)
+    {
+        for (int i = 0; i < selectedModels.Count; i++)
+        {
+            if (selectedModels[i].GetModel() == modelName)
+            {
+                modelFeatures.UpdateFeatures(selectedModels[i]);
+                modelSelected = i;
+            }
+        }
+    }
+
+    
 }
+
+
+
+

@@ -232,7 +232,7 @@ public class SelectBrand : MonoBehaviour
     {
 
         gameObject.GetComponentInParent<BrandSelected>().ChangeSelection(position);
-        carModels.GetComponent<SelectModelUI>().ChangeSelection(position);
+        carModels.GetComponent<SelectModelUI>().ChangeBrandSelection(position);
     }
 
 
