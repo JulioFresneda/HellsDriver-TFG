@@ -9,7 +9,7 @@ public class ButtonAction : MonoBehaviour, ISelectHandler, IPointerEnterHandler,
 
 
     private ButtonScript buttonScript;
-    public SelectModelUI selectModelUI;
+    public SelectModelManagement selectModelUI;
 
 
     private void Start()
