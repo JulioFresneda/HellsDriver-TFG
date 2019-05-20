@@ -9,7 +9,7 @@ public class LoadModels : MonoBehaviour
 {
 
 
-    public string mapname;
+    private string mapname;
     private string rute;
 
     private List<CarModel> carModels;
