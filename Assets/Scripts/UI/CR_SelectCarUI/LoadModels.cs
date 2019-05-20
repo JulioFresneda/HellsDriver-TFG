@@ -9,7 +9,7 @@ public class LoadModels : MonoBehaviour
 {
 
 
-    public string mapname = "Whirl";
+    public string mapname;
     private string rute;
 
     private List<CarModel> carModels;
@@ -17,7 +17,7 @@ public class LoadModels : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    public void LoadCarModels()
     {
         /*
         carModels = new List<CarModelAI>();
@@ -33,6 +33,7 @@ public class LoadModels : MonoBehaviour
         carModels.Sort(ocm);
         */
 
+        mapname = PlayerPrefs.GetString("mapname");
 
         LoadCarValues();
 
@@ -48,7 +49,7 @@ public class LoadModels : MonoBehaviour
             else if (value.Item1 > 8)
             {
                 if (value.Item2 == 1500) carModels.Add(new CarModel("Valkyria", "V" + value.Item1 + value.Item3, value.Item2, value.Item3, value.Item1));
-                else if (value.Item2 == 2000) carModels.Add(new CarModel("XLynx", "X" + value.Item1 + value.Item3, value.Item2, value.Item3, value.Item1));
+                else if (value.Item2 == 2000) carModels.Add(new CarModel("Xlynx", "X" + value.Item1 + value.Item3, value.Item2, value.Item3, value.Item1));
                 else if (value.Item2 == 2500) carModels.Add(new CarModel("DJED", "D" + value.Item1 + value.Item3, value.Item2, value.Item3, value.Item1));
             }
             else if(value.Item1 > 5)
@@ -103,6 +104,10 @@ public class LoadModels : MonoBehaviour
             }
         }
     }
+
+
+
+    public List<CarModel> GetCarModels() => carModels;
 
 
     private CarModelAI GetCarProperties(string CarAIName)

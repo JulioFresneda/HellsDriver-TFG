@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BrandSelected : MonoBehaviour
 {
@@ -9,10 +10,16 @@ public class BrandSelected : MonoBehaviour
 
     public List<GameObject> flames;
 
+    public List<Texture> bannerTextures;
+    public GameObject banner;
+
+    private List<string> brands;
+
 
     public void ChangeSelection(int selected)
     {
         brandSelected = selected;
+        ChangeBanner();
         ChangeFlameColors();
     }
 
@@ -20,7 +27,20 @@ public class BrandSelected : MonoBehaviour
 
     private void Start()
     {
-        ChangeFlameColors();
+        brands = new List<string>();
+        brands.Add("Duck");
+        brands.Add("Audidas");
+        brands.Add("Hoa");
+        brands.Add("Valkyria");
+        brands.Add("Xlynx");
+        brands.Add("DJED");
+        brands.Add("Raijin");
+        brands.Add("Poseidon");
+        brands.Add("Leviathan");
+
+
+
+        ChangeSelection(0);
     }
 
 
@@ -49,5 +69,12 @@ public class BrandSelected : MonoBehaviour
             ma.startColor = color;
         }
        
+    }
+
+
+    private void ChangeBanner()
+    {
+        banner.GetComponent<RawImage>().texture = bannerTextures[brandSelected];
+        banner.GetComponentInChildren<Text>().text = brands[brandSelected];
     }
 }

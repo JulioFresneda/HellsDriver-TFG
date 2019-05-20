@@ -8,8 +8,8 @@ public class SelectBrand : MonoBehaviour
 
     public GameObject Left, Center, Right, Hidden, HiddenLeft, Aux;
 
+    public GameObject carModels;
 
-    private List<string> brands;
 
     private int position;
 
@@ -21,9 +21,9 @@ public class SelectBrand : MonoBehaviour
     
 
 
-    public Texture Duck, Audidas, Hoa, Valkyria, XLynx, DJED, Raijin, Poseidon, Leviathan;
 
-    private List<Texture> brandTextures;
+
+    public List<Texture> brandTextures;
 
 
     private bool goright = false;
@@ -36,27 +36,8 @@ public class SelectBrand : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        brands = new List<string>();
-        brands.Add("Duck");
-        brands.Add("Audidas");
-        brands.Add("Hoa");
-        brands.Add("Valkyria");
-        brands.Add("XLynx");
-        brands.Add("DJED");
-        brands.Add("Raijin");
-        brands.Add("Poseidon");
-        brands.Add("Leviathan");
+        
 
-        brandTextures = new List<Texture>();
-        brandTextures.Add(Duck);
-        brandTextures.Add(Audidas);
-        brandTextures.Add(Hoa);
-        brandTextures.Add(Valkyria);
-        brandTextures.Add(XLynx);
-        brandTextures.Add(DJED);
-        brandTextures.Add(Raijin);
-        brandTextures.Add(Poseidon);
-        brandTextures.Add(Leviathan);
 
         positionCenter = new Vector3( Center.transform.position.x,Center.transform.position.y,Center.transform.position.z);
         positionLeft = new Vector3(Left.transform.position.x, Left.transform.position.y, Left.transform.position.z);
@@ -251,6 +232,7 @@ public class SelectBrand : MonoBehaviour
     {
 
         gameObject.GetComponentInParent<BrandSelected>().ChangeSelection(position);
+        carModels.GetComponent<SelectModelUI>().ChangeSelection(position);
     }
 
 
