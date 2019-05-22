@@ -223,6 +223,14 @@ namespace Racing
                     finalPosition = Race.GetPosition();
                     seconds = Time.timeSinceLevelLoad - startRaceTime;
                     Debug.Log("Finish " + finalPosition + " " + seconds);
+                    currentLap++;
+                    
+                    checkpoints_checked.Clear();
+                    checkpoints_not_checked.AddRange(all_checkpoints);
+                    checkpoints_checked.Add(col.gameObject);
+                    checkpoints_not_checked.Remove(col.gameObject);
+                    lastCheckpointNumber = 0;
+                    lastCheckpoint = col.gameObject;
                 }
                 else if (started && checkpoints_not_checked.Count == 0 && currentLap < Race.GetTotalLaps())
                 {
@@ -250,6 +258,7 @@ namespace Racing
                 }
                 else if (checkpoints_checked.Contains(col.gameObject))
                 {
+              
                     GoToLastCheckPoint();
                 }
                 
@@ -271,6 +280,7 @@ namespace Racing
                 }
                 else 
                 {
+                    Debug.Log("JOOOO");
                     GoToLastCheckPoint();
                 }
 

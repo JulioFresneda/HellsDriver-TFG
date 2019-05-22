@@ -280,6 +280,11 @@ namespace VehicleSystem
                 if (boost < 0f) { boost = 0f; }
        
             }
+            if (boost < 0.1f)
+            {
+                boosting = false;
+                booststopped = true;
+            }
           
 
 

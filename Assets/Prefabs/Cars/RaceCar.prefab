@@ -276,7 +276,7 @@ GameObject:
   - component: {fileID: 5739106402950636992}
   - component: {fileID: 2106579320976542932}
   - component: {fileID: 5875674931877202988}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: FRWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -438,6 +438,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -461,7 +462,7 @@ GameObject:
   - component: {fileID: 2679102180004499401}
   - component: {fileID: 5091237025228221327}
   - component: {fileID: 4744836632163356402}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: RLWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -638,7 +639,7 @@ GameObject:
   - component: {fileID: 4827291874219787249}
   - component: {fileID: 7428443490337401309}
   - component: {fileID: 2210243909968054927}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: FLWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -770,6 +771,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -847,6 +849,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -870,7 +873,7 @@ GameObject:
   - component: {fileID: 3077732276324026404}
   - component: {fileID: 1960082679870747560}
   - component: {fileID: 6940168272278669059}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: RRWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1001,6 +1004,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -1020,10 +1024,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5141210807760143029}
     m_Modifications:
-    - target: {fileID: 100004, guid: a037089d90786ce4c959ce961b75353f, type: 3}
-      propertyPath: m_Name
-      value: F1
-      objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: a037089d90786ce4c959ce961b75353f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.5
@@ -1079,6 +1079,10 @@ PrefabInstance:
     - target: {fileID: 400004, guid: a037089d90786ce4c959ce961b75353f, type: 3}
       propertyPath: m_LocalScale.z
       value: 4.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: a037089d90786ce4c959ce961b75353f, type: 3}
+      propertyPath: m_Name
+      value: F1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a037089d90786ce4c959ce961b75353f, type: 3}
