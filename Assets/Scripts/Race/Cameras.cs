@@ -6,6 +6,7 @@ public class Cameras : MonoBehaviour
 {
 
     private GameObject playercamera, minimap;
+    private GameObject mapBorder; 
 
 
     private GameObject player;
@@ -13,6 +14,7 @@ public class Cameras : MonoBehaviour
     {
         playercamera = GameObject.FindGameObjectWithTag("MainCamera");
         minimap = GameObject.Find("MinimapCamera");
+        mapBorder = GameObject.Find("MapBorder");
 
         player = GameObject.FindGameObjectWithTag("PlayerDriver");
         playercamera.transform.SetParent(player.transform);
@@ -28,5 +30,6 @@ public class Cameras : MonoBehaviour
     {
         minimap.transform.position = new Vector3(player.transform.position.x, 300, player.transform.position.z);
         minimap.transform.rotation = Quaternion.Euler(90f, player.transform.eulerAngles.y, 0);
+        mapBorder.transform.rotation = Quaternion.Euler(0,0, -180.0f +player.transform.eulerAngles.y);
     }
 }
