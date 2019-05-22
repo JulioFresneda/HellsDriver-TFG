@@ -131,6 +131,7 @@ namespace Racing
         private void Update()
         {
             CheckCrash();
+            CheckColliderDisabled();
         }
 
 
@@ -143,6 +144,9 @@ namespace Racing
         private bool startCrashing = false;
         private bool crashed = false;
         private float crashTime;
+
+
+        
 
         private void CheckCrash()
         {
@@ -201,13 +205,34 @@ namespace Racing
             
 
             gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+
+            DisableColliderTemporally();
         }
 
 
 
 
+        private bool tempDisabled = false;
+        private float startedDisabled;
+        public float timeColliderDisabledOnCrash = 5f;
+        private void DisableColliderTemporally()
+        {
+            tempDisabled = true;
+            startedDisabled = Time.timeSinceLevelLoad;
+            gameObject.GetComponentInChildren<BoxCollider>().enabled = false;
+        }
 
-
+        private void CheckColliderDisabled()
+        {
+            if (tempDisabled)
+            {
+                if (Time.timeSinceLevelLoad - startedDisabled > timeColliderDisabledOnCrash)
+                {
+                    gameObject.GetComponentInChildren<BoxCollider>().enabled = true;
+                    tempDisabled = false;
+                }
+            }
+        }
 
 
 
