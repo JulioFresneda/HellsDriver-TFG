@@ -1069,9 +1069,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   num_race_drivers: 6
-  carAI: {fileID: 35919863120667331, guid: ff81be297164f7d43955ce374edf1c88, type: 3}
+  carPrefab: {fileID: 35919863120667331, guid: ff81be297164f7d43955ce374edf1c88, type: 3}
   start: {fileID: 1949812197}
-  CarAIName: car0__2000_3
 --- !u!4 &695342752
 Transform:
   m_ObjectHideFlags: 0

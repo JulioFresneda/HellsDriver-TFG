@@ -5,77 +5,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using VehicleSystem;
 
-public class LoadModels : MonoBehaviour
+public class LoadModels 
 {
 
 
-    private string mapname;
-    private string rute;
-
-    private List<CarModel> carModels;
-    private List<Tuple<int, int, int>> carValues;
-
-
-    // Start is called before the first frame update
-    public void LoadCarModels()
+    public static List<CarModelAI> GetAllCarModelAIs(string mapname)
     {
-        /*
-        carModels = new List<CarModelAI>();
-        LoadCarValues();
-        rute = "AIs/" + mapname + "AI/";
-
-        foreach(var value in carValues)
+        List<CarModelAI> listcmai = new List<CarModelAI>();
+        foreach(CarModel model in GetAllCarModels())
         {
-            carModels.Add(GetCarProperties("car" + value.Item1 + "_" + value.Item2 + "_" + value.Item3 + ".txt"));
+            listcmai.Add(GetModelAI(model, mapname));
         }
-
-        OrderCarModels ocm = new OrderCarModels();
-        carModels.Sort(ocm);
-        */
-
-        mapname = PlayerPrefs.GetString("mapname");
-
-        LoadCarValues();
-
-        carModels = new List<CarModel>();
-        foreach(var value in carValues)
-        {
-            if(value.Item1 > 11)
-            {
-                if (value.Item2 == 1500) carModels.Add(new CarModel("Raijin", "R" + value.Item1 + value.Item3,value.Item2,value.Item3,value.Item1));
-                else if(value.Item2 == 2000) carModels.Add(new CarModel("Poseidon", "P" + value.Item1 + value.Item3, value.Item2, value.Item3, value.Item1));
-                else if (value.Item2 == 2500) carModels.Add(new CarModel("Leviathan", "L" + value.Item1 + value.Item3, value.Item2, value.Item3, value.Item1));
-            }
-            else if (value.Item1 > 8)
-            {
-                if (value.Item2 == 1500) carModels.Add(new CarModel("Valkyria", "V" + value.Item1 + value.Item3, value.Item2, value.Item3, value.Item1));
-                else if (value.Item2 == 2000) carModels.Add(new CarModel("Xlynx", "X" + value.Item1 + value.Item3, value.Item2, value.Item3, value.Item1));
-                else if (value.Item2 == 2500) carModels.Add(new CarModel("DJED", "D" + value.Item1 + value.Item3, value.Item2, value.Item3, value.Item1));
-            }
-            else if(value.Item1 > 5)
-            {
-                if (value.Item2 == 1500) carModels.Add(new CarModel("Duck", "Du" + value.Item1 + value.Item3, value.Item2, value.Item3, value.Item1));
-                else if (value.Item2 == 2000) carModels.Add(new CarModel("Audidas", "A" + value.Item1 + value.Item3, value.Item2, value.Item3, value.Item1));
-                else if (value.Item2 == 2500) carModels.Add(new CarModel("Hoa", "H" + value.Item1 + value.Item3, value.Item2, value.Item3, value.Item1));
-            }
-        }
-
-
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        return listcmai;
     }
 
 
 
-
-    private void LoadCarValues()
+    private static List<Tuple<int, int, int>> GetAllPossibleCarValues()
     {
-        carValues = new List<Tuple<int, int, int>>();
+        List<Tuple<int, int, int>>  carValues = new List<Tuple<int, int, int>>();
 
         List<int> throttleList = new List<int>();
         for (int i = 6; i < 15; i++) throttleList.Add(i);
@@ -103,15 +51,52 @@ public class LoadModels : MonoBehaviour
 
             }
         }
+
+        return carValues;
     }
 
 
 
-    public List<CarModel> GetCarModels() => carModels;
 
 
-    private CarModelAI GetCarProperties(string CarAIName)
+
+    public static List<CarModel> GetAllCarModels()
     {
+        
+
+        List<CarModel> carModels;
+        carModels = new List<CarModel>();
+        foreach (var value in GetAllPossibleCarValues())
+        {
+            if (value.Item1 > 11)
+            {
+                if (value.Item2 == 1500) carModels.Add(new CarModel("Raijin", "R" + value.Item1 + value.Item3, value.Item2, value.Item3, value.Item1));
+                else if (value.Item2 == 2000) carModels.Add(new CarModel("Poseidon", "P" + value.Item1 + value.Item3, value.Item2, value.Item3, value.Item1));
+                else if (value.Item2 == 2500) carModels.Add(new CarModel("Leviathan", "L" + value.Item1 + value.Item3, value.Item2, value.Item3, value.Item1));
+            }
+            else if (value.Item1 > 8)
+            {
+                if (value.Item2 == 1500) carModels.Add(new CarModel("Valkyria", "V" + value.Item1 + value.Item3, value.Item2, value.Item3, value.Item1));
+                else if (value.Item2 == 2000) carModels.Add(new CarModel("Xlynx", "X" + value.Item1 + value.Item3, value.Item2, value.Item3, value.Item1));
+                else if (value.Item2 == 2500) carModels.Add(new CarModel("DJED", "D" + value.Item1 + value.Item3, value.Item2, value.Item3, value.Item1));
+            }
+            else if (value.Item1 > 5)
+            {
+                if (value.Item2 == 1500) carModels.Add(new CarModel("Duck", "Du" + value.Item1 + value.Item3, value.Item2, value.Item3, value.Item1));
+                else if (value.Item2 == 2000) carModels.Add(new CarModel("Audidas", "A" + value.Item1 + value.Item3, value.Item2, value.Item3, value.Item1));
+                else if (value.Item2 == 2500) carModels.Add(new CarModel("Hoa", "H" + value.Item1 + value.Item3, value.Item2, value.Item3, value.Item1));
+            }
+        }
+
+        return carModels;
+    }
+
+
+    public static CarModelAI GetModelAI(string CarAIName, string mapname)
+    {
+
+        string rute = "AIs/" + mapname + "AI/";
+
         string temp = CarAIName;
         temp = temp.Substring(3);
 
@@ -139,6 +124,49 @@ public class LoadModels : MonoBehaviour
         NNToFile ntf = new NNToFile();
         NeuralNetwork nn = ntf.Read(rute + CarAIName);
         return new CarModelAI("", "", int.Parse(massstring), int.Parse(stiffnessstring), int.Parse(throttlestring), mapname, nn.GetFitness(), nn);
+
+
+    }
+
+
+    public static CarModelAI GetModelAI(CarModel carModel, string mapname)
+    {
+
+        string rute = "AIs/" + mapname + "AI/";
+
+        string CarAIName = "car" + carModel.GetThrottle() + "_" + carModel.GetMass() + "_" + carModel.GetStiffness() + ".txt";
+
+
+
+
+
+        string temp = CarAIName;
+        temp = temp.Substring(3);
+
+        string throttlestring = "";
+        throttlestring += temp[0];
+
+        if (temp[1] != '_')
+        {
+            throttlestring += temp[1];
+            temp = temp.Substring(3);
+        }
+        else
+        {
+            temp = temp.Substring(2);
+        }
+
+        string massstring = temp.Substring(0, 4);
+
+        temp = temp.Substring(5);
+
+
+        string stiffnessstring = "";
+        stiffnessstring += temp[0];
+
+        NNToFile ntf = new NNToFile();
+        NeuralNetwork nn = ntf.Read(rute + CarAIName);
+        return new CarModelAI(carModel.GetBrand(), carModel.GetModel(), int.Parse(massstring), int.Parse(stiffnessstring), int.Parse(throttlestring), mapname, nn.GetFitness(), nn);
 
 
     }

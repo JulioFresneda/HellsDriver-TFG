@@ -250,7 +250,7 @@ namespace NEAT
         {
             if (CarValues.Count > 0)
             {
-                car.GetComponent<CarController>().Throttle = CarValues[0].Item1;
+                car.GetComponent<CarController>().throttlePower = CarValues[0].Item1;
                 car.GetComponent<Rigidbody>().mass = CarValues[0].Item2;
 
 
@@ -329,7 +329,7 @@ namespace NEAT
                 CompareByFitness cmpf = new CompareByFitness();
                 nn_poblation.Sort(cmpf);
                 NNToFile ntf = new NNToFile(nn_poblation[nn_poblation.Count - 1]);
-                string n = "car" + car.GetComponent<CarController>().Throttle +  "_" + car.GetComponent<Rigidbody>().mass  + "_" + car.GetComponentInChildren<WheelCollider>().sidewaysFriction.stiffness + ".txt";
+                string n = "car" + car.GetComponent<CarController>().throttlePower +  "_" + car.GetComponent<Rigidbody>().mass  + "_" + car.GetComponentInChildren<WheelCollider>().sidewaysFriction.stiffness + ".txt";
                 Debug.Log("Saving " + n);
                 carnumber++;
                 ntf.Write(n);

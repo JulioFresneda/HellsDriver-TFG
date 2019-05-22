@@ -32,6 +32,8 @@ namespace VehicleSystem
         public int GetMass() => mass;
         public int GetStiffness() => stiffness;
         public int GetThrottle() => throttle;
+
+
     }
 
 
@@ -62,6 +64,8 @@ namespace VehicleSystem
         public double GetTime() => time;
         
         public string GetMap() => map;
+
+        public NeuralNet.NeuralNetwork GetNN() => nn;
 
     }
 

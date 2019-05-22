@@ -30,6 +30,14 @@ namespace Racing
         [SerializeField]
         double distance;
 
+
+
+        private CarModel carModel;
+
+
+
+
+
         public void SetFinalPosition(int p) => finalPosition = p;
         public void SetCurrentPosition(int p) => currentPosition = p;
         public void SetSeconds(float t) => seconds = t;
@@ -44,7 +52,62 @@ namespace Racing
         public int GetCurrentLap() => currentLap;
 
 
+        public CarModel GetCarModel() => carModel;
+        public void SetCarModel(CarModel carModel)
+        {
+            this.carModel = carModel;
+            gameObject.GetComponent<Rigidbody>().mass = carModel.GetMass();
+            gameObject.GetComponent<CarController>().throttlePower = carModel.GetThrottle();
 
+
+            WheelFrictionCurve wfc = new WheelFrictionCurve();
+            wfc.extremumSlip = 0.4f;
+            wfc.extremumValue = 1f;
+            wfc.asymptoteSlip = 0.5f;
+            wfc.asymptoteValue = 0.75f;
+            wfc.stiffness = carModel.GetStiffness();
+
+            foreach (WheelCollider wheel in gameObject.GetComponentsInChildren<WheelCollider>())
+            {
+ 
+                wheel.sidewaysFriction = wfc;
+
+            }
+
+
+            
+            
+        }
+
+        public void SetCarModelAI(CarModelAI carModel)
+        {
+
+            this.carModel = carModel;
+            gameObject.GetComponent<Rigidbody>().mass = carModel.GetMass();
+            gameObject.GetComponent<CarController>().throttlePower = carModel.GetThrottle();
+
+
+            WheelFrictionCurve wfc = new WheelFrictionCurve();
+            wfc.extremumSlip = 0.4f;
+            wfc.extremumValue = 1f;
+            wfc.asymptoteSlip = 0.5f;
+            wfc.asymptoteValue = 0.75f;
+            wfc.stiffness = carModel.GetStiffness();
+
+            foreach (WheelCollider wheel in gameObject.GetComponentsInChildren<WheelCollider>())
+            {
+
+                wheel.sidewaysFriction = wfc;
+
+            }
+
+            gameObject.GetComponent<CarAI>().SetNeuralNetwork(carModel.GetNN());
+           
+
+
+
+            
+        }
 
 
 

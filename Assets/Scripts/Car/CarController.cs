@@ -61,7 +61,7 @@ namespace VehicleSystem
         
         [SerializeField] AnimationCurve steerAngleCurve;
 
-        [SerializeField] float throttlePower = 4f;
+        [SerializeField] public float throttlePower = 4f;
 
         //Reset
         Vector3 spawnPosition;

@@ -36,11 +36,12 @@ public class SelectModelManagement : MonoBehaviour
 
         brandSelected = 0;
         modelSelected = 0;
-        gameObject.GetComponentInChildren<LoadModels>().LoadCarModels();
-        carModels = gameObject.GetComponentInChildren<LoadModels>().GetCarModels();
+
+        carModels = LoadModels.GetAllCarModels();
         UpdateModelsList();
         modelFeatures.UpdateFeatures(selectedModels[0]);
         ModelSelected(selectedModels[0].GetModel());
+        PlayerPrefs.SetString("modelSelected", selectedModels[0].GetModel());
     }
 
 

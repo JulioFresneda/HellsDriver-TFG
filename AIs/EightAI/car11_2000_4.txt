@@ -1,0 +1,237 @@
+NeuralNetwork
+73,31640625
+99999,2668359375
+0
+>Neuron 0
+0
+input
+lineal
+speed
+>Neuron 1
+1
+input
+lineal
+bias
+>Neuron 2
+2
+input
+lineal
+distWall 0
+>Neuron 3
+3
+input
+lineal
+distWall 1
+>Neuron 4
+4
+input
+lineal
+distWall 2
+>Neuron 5
+5
+input
+lineal
+distWall 3
+>Neuron 6
+6
+input
+lineal
+distWall 4
+>Neuron 7
+7
+input
+lineal
+distWall 5
+>Neuron 8
+8
+input
+lineal
+distWall 6
+>Neuron 9
+9
+input
+lineal
+distWall 7
+>Neuron 10
+10
+input
+lineal
+distWall 8
+>Neuron 11
+11
+input
+lineal
+distWall 9
+>Neuron 12
+12
+input
+lineal
+distWall 10
+>Neuron 13
+13
+output
+sigmoid
+brake
+>Neuron 14
+14
+output
+tanh
+boost
+<<
+>Connection 0
+0
+0
+13
+0,0280424111606124
+Enabled
+>Connection 1
+1
+0
+14
+-0,0346548946245615
+Enabled
+>Connection 2
+2
+1
+13
+-0,000803362097716928
+Enabled
+>Connection 3
+3
+1
+14
+-0,0437065656586711
+Enabled
+>Connection 4
+4
+2
+13
+0,00928340378442879
+Enabled
+>Connection 5
+5
+2
+14
+0,44740603122186
+Enabled
+>Connection 6
+6
+3
+13
+-0,0305271692838568
+Enabled
+>Connection 7
+7
+3
+14
+0,674009023314956
+Enabled
+>Connection 8
+8
+4
+13
+-0,0342473885970352
+Enabled
+>Connection 9
+9
+4
+14
+0,0140009115516673
+Enabled
+>Connection 10
+10
+5
+13
+0,573085908299714
+Enabled
+>Connection 11
+11
+5
+14
+0,395108544917362
+Enabled
+>Connection 12
+12
+6
+13
+-0,897532082448731
+Enabled
+>Connection 13
+13
+6
+14
+0,472694270353188
+Enabled
+>Connection 14
+14
+7
+13
+-0,0457442219055034
+Enabled
+>Connection 15
+15
+7
+14
+0,0384309609569105
+Enabled
+>Connection 16
+16
+8
+13
+-0,58190431798897
+Enabled
+>Connection 17
+17
+8
+14
+-0,42868983998368
+Enabled
+>Connection 18
+18
+9
+13
+-0,0425117830963591
+Enabled
+>Connection 19
+19
+9
+14
+-0,00241444524117412
+Enabled
+>Connection 20
+20
+10
+13
+0,00223667331013925
+Enabled
+>Connection 21
+21
+10
+14
+-0,0373888821749308
+Enabled
+>Connection 22
+22
+11
+13
+-0,00649425607071192
+Enabled
+>Connection 23
+23
+11
+14
+-0,0015934055690257
+Enabled
+>Connection 24
+24
+12
+13
+-0,912667185321534
+Enabled
+>Connection 25
+25
+12
+14
+0,033328423690477
+Enabled
+<<

@@ -18,7 +18,7 @@ public class ButtonScript : MonoBehaviour, ISelectHandler, IPointerEnterHandler,
 
 
     [SerializeField]
-    private PermanentButtonsAdmin PermanentButtonsAdmin;
+    private PermanentButtonsAdmin PermanentButtonsAdmin = null;
 
    
 
