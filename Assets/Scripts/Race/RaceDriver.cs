@@ -280,7 +280,7 @@ namespace Racing
                 }
                 else 
                 {
-                    Debug.Log("JOOOO");
+                    
                     GoToLastCheckPoint();
                 }
 

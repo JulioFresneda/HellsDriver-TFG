@@ -88,7 +88,7 @@ namespace VehicleSystem
             nn.SetInputValues(inputs);
             outputs = nn.OutputValuesWithName();
 
-            //CheckSprint();
+            CheckSprint();
 
 
 
