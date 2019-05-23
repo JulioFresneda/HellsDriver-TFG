@@ -218,6 +218,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentPosition: 0
   distance: 0
+  timeColliderDisabledOnCrash: 5
 --- !u!1 &2300294888105180283
 GameObject:
   m_ObjectHideFlags: 0
@@ -1083,6 +1084,10 @@ PrefabInstance:
     - target: {fileID: 100004, guid: a037089d90786ce4c959ce961b75353f, type: 3}
       propertyPath: m_Name
       value: F1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: a037089d90786ce4c959ce961b75353f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a037089d90786ce4c959ce961b75353f, type: 3}

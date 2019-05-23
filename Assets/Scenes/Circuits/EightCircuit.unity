@@ -1085,7 +1085,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   num_race_drivers: 6
-  carPrefab: {fileID: 35919863120667331, guid: ff81be297164f7d43955ce374edf1c88, type: 3}
+  carPrefab: {fileID: 9007345960732073609, guid: 54a106f54f0374947b9fb634b5fd0080,
+    type: 3}
   start: {fileID: 1949812197}
 --- !u!4 &695342752
 Transform:
