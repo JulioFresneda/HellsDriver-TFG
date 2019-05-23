@@ -14,10 +14,13 @@ namespace Racing
         [SerializeField]
         private int num_race_drivers = 10;
 
+
+        public GameObject circuitsManagement;
+
         public GameObject carPrefab;
 
 
-        [SerializeField]
+   
         private Transform start = null;
 
     
@@ -32,8 +35,8 @@ namespace Racing
 
         private static int totalLaps = 3;
 
-        
 
+        public CountDown countDown;
 
 
 
@@ -43,8 +46,12 @@ namespace Racing
 
 
         // Start is called before the first frame update
-        void Start()
+        void Awake()
         {
+            circuitsManagement.GetComponent<CircuitsManagement>().InitializeCircuit();
+            start = circuitsManagement.GetComponent<CircuitsManagement>().GetStartPosition();
+
+
             totalLaps = PlayerPrefs.GetInt("lapNumber");
             allCarModels = LoadModels.GetAllCarModelAIs(PlayerPrefs.GetString("mapname"));
 
@@ -128,6 +135,12 @@ namespace Racing
             {
                 CarsSorted.Add(new Tuple<RaceDriver, double>(r, 0));
             }
+
+
+
+
+            countDown.StartCountDown();
+
         }
 
 

@@ -28,9 +28,8 @@ public class NavigateButtonsManagement : MonoBehaviour
         SceneManager.LoadScene(scene);
     }
 
-    public void StartClickButton()
+    public void StartClickButton(string scene)
     {
-        string scene = PlayerPrefs.GetString("mapname") + "Circuit";
         SceneManager.LoadScene(scene);
     }
 }

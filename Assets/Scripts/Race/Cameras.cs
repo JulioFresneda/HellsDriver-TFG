@@ -6,8 +6,13 @@ public class Cameras : MonoBehaviour
 {
 
     private GameObject playercamera, minimap;
-    private GameObject mapBorder; 
+    private GameObject mapBorder;
 
+    [SerializeField]
+    private Vector3 cameraPosition = new Vector3(0,4,-12);
+
+    [SerializeField]
+    private float cameraRotation = 0f;
 
     private GameObject player;
     public void StartCameras()
@@ -18,7 +23,7 @@ public class Cameras : MonoBehaviour
 
         player = GameObject.FindGameObjectWithTag("PlayerDriver");
         playercamera.transform.SetParent(player.transform);
-        playercamera.transform.localPosition = new Vector3(0, 3, -8);
+        playercamera.transform.localPosition = cameraPosition;
         playercamera.transform.localRotation = new Quaternion(0, 0, 0, 0);
 
         minimap.transform.position = new Vector3(player.transform.position.x, 300, player.transform.position.z);

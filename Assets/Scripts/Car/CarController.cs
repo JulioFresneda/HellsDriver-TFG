@@ -109,6 +109,11 @@ namespace VehicleSystem
 
         WheelCollider[] wheels;
 
+
+
+
+        
+
         void Awake()
         {
             
@@ -301,7 +306,10 @@ namespace VehicleSystem
         }
 
 
-
+        public bool IsBoosting()
+        {
+            return boosting && !booststopped;
+        }
 
         public double GetSteerAngle() => steerAngleCurve.Evaluate(Speed);
 

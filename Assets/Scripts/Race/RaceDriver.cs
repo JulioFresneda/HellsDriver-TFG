@@ -151,7 +151,7 @@ namespace Racing
         private void CheckCrash()
         {
 
-            if(Mathf.Abs(gameObject.GetComponentInParent<CarController>().Speed) < 1f && lastCheckpoint != null )
+            if(Mathf.Abs(gameObject.GetComponentInParent<CarController>().Speed) < 5f && lastCheckpoint != null )
             {
                 if (!startCrashing)
                 {
