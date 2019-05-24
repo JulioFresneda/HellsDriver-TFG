@@ -42,7 +42,8 @@ namespace Racing
 
 
         private List<CarModelAI> allCarModels;
- 
+
+
 
 
         // Start is called before the first frame update
@@ -233,10 +234,6 @@ namespace Racing
 
 
         public static int GetTotalLaps() => totalLaps;
-
-
-
-
 
 
 

@@ -34,10 +34,9 @@ namespace Racing
 
         private CarModel carModel;
 
+        private bool finished = false;
 
-
-
-
+        
         public void SetFinalPosition(int p) => finalPosition = p;
         public void SetCurrentPosition(int p) => currentPosition = p;
         public void SetSeconds(float t) => seconds = t;
@@ -189,24 +188,28 @@ namespace Racing
 
         private void GoToLastCheckPoint()
         {
-            gameObject.transform.position = new Vector3(lastCheckpoint.transform.position.x, GameObject.FindWithTag("Road").transform.position.y + 1, lastCheckpoint.transform.position.z);
-            gameObject.transform.rotation = lastCheckpoint.transform.rotation;
-        
-            gameObject.transform.Rotate(0, 0, -90);
-            gameObject.transform.Rotate(0, 90,0);
+            if (!finished)
+            {
+                gameObject.transform.position = new Vector3(lastCheckpoint.transform.position.x, GameObject.FindWithTag("Road").transform.position.y + 1, lastCheckpoint.transform.position.z);
+                gameObject.transform.rotation = lastCheckpoint.transform.rotation;
+
+                gameObject.transform.Rotate(0, 0, -90);
+                gameObject.transform.Rotate(0, 90, 0);
 
 
-            gameObject.transform.Translate(Vector3.forward * 10);
+                gameObject.transform.Translate(Vector3.forward * 10);
 
 
-            OrderCheckPoints ocp = new OrderCheckPoints();
-            all_checkpoints.Sort(ocp);
+                OrderCheckPoints ocp = new OrderCheckPoints();
+                all_checkpoints.Sort(ocp);
+
+
+
+                gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+
+                DisableColliderTemporally();
+            }
             
-            
-
-            gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-
-            DisableColliderTemporally();
         }
 
 
@@ -256,6 +259,14 @@ namespace Racing
                     checkpoints_not_checked.Remove(col.gameObject);
                     lastCheckpointNumber = 0;
                     lastCheckpoint = col.gameObject;
+                    finished = true;
+
+                    if (gameObject.tag == "PlayerDriver")
+                    {
+                        GameObject.Find("RaceFinished").transform.localScale = new Vector3(1, 1, 1);
+                        GameObject.Find("RaceFinished").GetComponent<FinishedWindow>().SetDriver("Julio", finalPosition, seconds, carModel);
+                    }
+                    else GameObject.Find("RaceFinished").GetComponent<FinishedWindow>().SetDriver("xd", finalPosition, seconds, carModel);
                 }
                 else if (started && checkpoints_not_checked.Count == 0 && currentLap < Race.GetTotalLaps())
                 {
