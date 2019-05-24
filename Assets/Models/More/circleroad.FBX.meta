@@ -1,36 +1,8 @@
 fileFormatVersion: 2
-guid: ffef63aec63bfe244b58595adae2565b
+guid: 5079bac321481c841856b3836d0f704c
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: landscape
-    100002: offroad
-    100004: road
-    100006: track
-    100008: //RootNode
-    100010: border
-    400000: landscape
-    400002: offroad
-    400004: road
-    400006: track
-    400008: //RootNode
-    400010: border
-    2100000: No Name
-    2300000: landscape
-    2300002: offroad
-    2300004: road
-    2300006: border
-    3300000: landscape
-    3300002: offroad
-    3300004: road
-    3300006: border
-    4300000: landscape
-    4300002: road
-    4300004: offroad
-    4300006: border
-    7400000: Take 001
-    9500000: //RootNode
-    2186277476908879412: ImportLogs
+  serializedVersion: 26
+  internalIDToNameTable: []
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -59,13 +31,14 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -73,18 +46,19 @@ ModelImporter:
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -93,10 +67,11 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -106,12 +81,13 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

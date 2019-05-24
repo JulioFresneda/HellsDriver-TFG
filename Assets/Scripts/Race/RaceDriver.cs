@@ -263,7 +263,13 @@ namespace Racing
 
                     if (gameObject.tag == "PlayerDriver")
                     {
-                        GameObject.Find("RaceFinished").transform.localScale = new Vector3(1, 1, 1);
+                        if (finalPosition <= 3)
+                        {
+                            GameObject.Find("MedalAnimation").GetComponent<Medal>().LoadMedalAnimation(finalPosition);
+                        }
+
+
+                        else GameObject.Find("RaceFinished").transform.localScale = new Vector3(1, 1, 1);
                         GameObject.Find("RaceFinished").GetComponent<FinishedWindow>().SetDriver("Julio", finalPosition, seconds, carModel);
                     }
                     else GameObject.Find("RaceFinished").GetComponent<FinishedWindow>().SetDriver("xd", finalPosition, seconds, carModel);

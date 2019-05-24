@@ -74,7 +74,7 @@ namespace VehicleSystem
                 color = Color.green;
                 rayDistances[i] = 1000.0f;
 
-                if (Physics.Raycast(transform.position, transform.TransformDirection(raysDirection[i]), out hit, Mathf.Infinity, LayerMask.GetMask("TransparentFX")))
+                if (Physics.Raycast(transform.position, transform.TransformDirection(raysDirection[i]), out hit, Mathf.Infinity, LayerMask.GetMask("Border")))
                 {
                     rayDistances[i] = hit.distance;
 
