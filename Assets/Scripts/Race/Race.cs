@@ -49,6 +49,8 @@ namespace Racing
         // Start is called before the first frame update
         void Awake()
         {
+
+
             circuitsManagement.GetComponent<CircuitsManagement>().InitializeCircuit();
             start = circuitsManagement.GetComponent<CircuitsManagement>().GetStartPosition();
 

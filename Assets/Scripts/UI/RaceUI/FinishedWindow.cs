@@ -11,10 +11,13 @@ public class FinishedWindow : MonoBehaviour
 
     public GameObject driverNames, carModels, driverTimes;
 
+    public GameObject GoMenuButtonCanvas;
+
 
     void Awake()
     {
         GameObject.Find("RaceFinished").transform.localScale = new Vector3(0, 0, 0);
+        
     }
 
     public void SetDriver(string drivername, int finalPosition, float seconds, CarModel carModel)

@@ -77,7 +77,7 @@ public class Medal : MonoBehaviour
             else
             {
                 medal.transform.localEulerAngles = new Vector3(0, 0, 0);
-                if (position != 3) FinishAnimation();
+                FinishAnimation();
             }
 
             directionalLight.transform.rotation = medal.transform.rotation;
