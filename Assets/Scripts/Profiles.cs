@@ -13,6 +13,7 @@ public class Profiles
 
     public static void LoadProfiles()
     {
+        //PlayerPrefs.DeleteAll();
         profiles = new List<Profile>();
         for(int i=0; i<6; i++)
         {
@@ -21,6 +22,11 @@ public class Profiles
                 profiles.Add(new Profile(PlayerPrefs.GetString("profile" + i.ToString(), "Nuevo perfil"), false));
             }
         }
+
+        foreach(Profile p in profiles)
+        {
+            if (PlayerPrefs.GetString("profileSelected") == p.GetNick()) profileSelected = p;
+        }
     }
 
 
@@ -28,7 +34,11 @@ public class Profiles
     {
         foreach(Profile p in profiles)
         {
-            if (p.GetNick() == name) profileSelected = p;
+            if (profileSelected == null || ( p.GetNick() == name && profileSelected.GetNick() != name))
+            {
+                profileSelected = p;
+                PlayerPrefs.SetString("profileSelected", name);
+            }
         }
     }
 

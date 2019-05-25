@@ -16,12 +16,17 @@ public class ProfileDataUpdater : MonoBehaviour
         selectProfilePanel.transform.localScale = new Vector3(0, 0, 0);
         GameObject.Find("InputNick").transform.localScale = new Vector3(0, 0, 0);
         Profiles.LoadProfiles();
-        if (Profiles.GetNumberOfProfiles() != 0) selectProfilePanel.transform.localScale = new Vector3(0, 0, 0); 
-        //else selectProfilePanel.transform.localScale = new Vector3(1, 1, 1);
+        if (Profiles.GetNumberOfProfiles() != 0)
+        {
+            selectProfilePanel.transform.localScale = new Vector3(0, 0, 0);
+            GameObject.Find("Profile").GetComponent<ProfileDataUpdater>().UpdateData();
+        }
+        else selectProfilePanel.transform.localScale = new Vector3(1, 1, 1);
+        
 
     }
 
-    private void UpdateData()
+    public void UpdateData()
     {
         pointsText.text = Profiles.GetPoints().ToString();
         coinstText.text = Profiles.GetCoins().ToString();
@@ -38,7 +43,7 @@ public class ProfileDataUpdater : MonoBehaviour
         {
             if (bs.IsSelected())
             {
-                Profiles.AddNewProfile(name.text, bs.transform.gameObject.name[7]);
+                Profiles.AddNewProfile(name.text, int.Parse(bs.transform.gameObject.name[7]+"")-1);
                 Profiles.SetProfileSelected(name.text);
             }
         }
@@ -55,8 +60,8 @@ public class ProfileDataUpdater : MonoBehaviour
 
 
         selectProfilePanel.transform.localScale = new Vector3(0, 0, 0);
+        GameObject.Find("Profile").GetComponent<ProfileDataUpdater>().UpdateData();
 
-        
     }
 
 

@@ -137,8 +137,8 @@ public class Profile
 
     private int CalculatePercentageUnlocked()
     {
-        PlayerPrefs.SetInt(nick + "_percentage", percentage);
-        return (int)(58 / (mapsUnlocked.Count + modelsUnlocked.Count));
+        PlayerPrefs.SetInt(nick + "_percentage", (int)(100*(mapsUnlocked.Count + modelsUnlocked.Count)/58));
+        return (int)(100 * (mapsUnlocked.Count + modelsUnlocked.Count) / 58);
     }
 
 
