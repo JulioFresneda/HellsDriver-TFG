@@ -50,7 +50,7 @@ namespace Racing
         void Awake()
         {
 
-
+            setPosition = 1;
             circuitsManagement.GetComponent<CircuitsManagement>().InitializeCircuit();
             start = circuitsManagement.GetComponent<CircuitsManagement>().GetStartPosition();
 
@@ -100,6 +100,7 @@ namespace Racing
             return setPosition-1;
         }
 
+        
 
 
 
@@ -109,9 +110,6 @@ namespace Racing
             float x = start.position.x - 10;
             float z = start.position.z - 10;
 
-
-
-            List<CarModelAI> driverCarModels = GenerateDriverCarModels(num_race_drivers - 1, PlayerPrefs.GetString("difficultSelected"));
 
             for (int i = 0; i < num_race_drivers; i++)
             {

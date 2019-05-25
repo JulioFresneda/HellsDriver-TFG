@@ -1,0 +1,237 @@
+NeuralNetwork
+113
+99998,87
+0
+>Neuron 0
+0
+input
+lineal
+speed
+>Neuron 1
+1
+input
+lineal
+bias
+>Neuron 2
+2
+input
+lineal
+distWall 0
+>Neuron 3
+3
+input
+lineal
+distWall 1
+>Neuron 4
+4
+input
+lineal
+distWall 2
+>Neuron 5
+5
+input
+lineal
+distWall 3
+>Neuron 6
+6
+input
+lineal
+distWall 4
+>Neuron 7
+7
+input
+lineal
+distWall 5
+>Neuron 8
+8
+input
+lineal
+distWall 6
+>Neuron 9
+9
+input
+lineal
+distWall 7
+>Neuron 10
+10
+input
+lineal
+distWall 8
+>Neuron 11
+11
+input
+lineal
+distWall 9
+>Neuron 12
+12
+input
+lineal
+distWall 10
+>Neuron 13
+13
+output
+sigmoid
+brake
+>Neuron 14
+14
+output
+tanh
+boost
+<<
+>Connection 0
+0
+0
+13
+-0,665573236539811
+Enabled
+>Connection 1
+1
+0
+14
+-0,473587744134891
+Enabled
+>Connection 2
+2
+1
+13
+-0,187228122460379
+Enabled
+>Connection 3
+3
+1
+14
+0,0161606636445956
+Enabled
+>Connection 4
+4
+2
+13
+-0,0313372876706561
+Enabled
+>Connection 5
+5
+2
+14
+0,0419395879051932
+Enabled
+>Connection 6
+6
+3
+13
+-0,706422096209322
+Enabled
+>Connection 7
+7
+3
+14
+0,0454099646692426
+Enabled
+>Connection 8
+8
+4
+13
+0,00906374619122891
+Enabled
+>Connection 9
+9
+4
+14
+0,030619069309959
+Enabled
+>Connection 10
+10
+5
+13
+0,316709518114435
+Enabled
+>Connection 11
+11
+5
+14
+0,0518994193105699
+Enabled
+>Connection 12
+12
+6
+13
+0,347507672413629
+Enabled
+>Connection 13
+13
+6
+14
+0,0832634326920274
+Enabled
+>Connection 14
+14
+7
+13
+-0,211815337500266
+Enabled
+>Connection 15
+15
+7
+14
+0,20583822786216
+Enabled
+>Connection 16
+16
+8
+13
+-0,952317127935736
+Enabled
+>Connection 17
+17
+8
+14
+0,31859429614553
+Enabled
+>Connection 18
+18
+9
+13
+0,0309927422973716
+Enabled
+>Connection 19
+19
+9
+14
+0,0483399913279369
+Enabled
+>Connection 20
+20
+10
+13
+-0,942765559549669
+Enabled
+>Connection 21
+21
+10
+14
+0,0287417307257514
+Enabled
+>Connection 22
+22
+11
+13
+0,0221025514277178
+Enabled
+>Connection 23
+23
+11
+14
+0,0148128579138541
+Enabled
+>Connection 24
+24
+12
+13
+-0,0399157576071856
+Enabled
+>Connection 25
+25
+12
+14
+0,0411953595385185
+Enabled
+<<

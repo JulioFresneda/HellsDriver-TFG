@@ -11,7 +11,6 @@ public class FinishedWindow : MonoBehaviour
 
     public GameObject driverNames, carModels, driverTimes;
 
-    public GameObject GoMenuButtonCanvas;
 
 
     void Awake()

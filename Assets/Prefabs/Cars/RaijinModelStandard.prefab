@@ -105739,7 +105739,7 @@ MonoBehaviour:
   maxBoost: 5
   boost: 5
   boostRegen: 0.1
-  boostForce: 10000
+  boostForce: 1000
   boosting: 0
 --- !u!114 &3764712510007668006
 MonoBehaviour:

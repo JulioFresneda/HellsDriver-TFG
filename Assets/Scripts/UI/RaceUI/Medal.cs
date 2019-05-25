@@ -70,7 +70,7 @@ public class Medal : MonoBehaviour
             if(medal.transform.localScale.x < 0.1f || Mathf.Abs(medal.transform.localEulerAngles.y) > 2)
             {
                 
-                Debug.Log(medal.transform.localEulerAngles.y);
+
                 medal.transform.Rotate(new Vector3(0, 1, 0));
                 
             }

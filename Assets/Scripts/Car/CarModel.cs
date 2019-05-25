@@ -76,7 +76,7 @@ namespace VehicleSystem
     {
         public int Compare(CarModelAI x, CarModelAI y)
         {
-            if (x.GetTime() < y.GetTime()) return -1;
+            if (x.GetTime() > y.GetTime()) return -1;
             else return 1;
         }
     }

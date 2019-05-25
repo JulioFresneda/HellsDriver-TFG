@@ -150,7 +150,7 @@ namespace Racing
         private void CheckCrash()
         {
 
-            if(Mathf.Abs(gameObject.GetComponentInParent<CarController>().Speed) < 5f && lastCheckpoint != null )
+            if(gameObject.GetComponentInParent<CarController>().Speed < 5f && lastCheckpoint != null )
             {
                 if (!startCrashing)
                 {
@@ -246,7 +246,7 @@ namespace Racing
         {
             if (col.gameObject.name == "CheckStart")
             {
-                if (started && checkpoints_not_checked.Count == 0 && currentLap == Race.GetTotalLaps())
+                if (started && checkpoints_not_checked.Count == 0 && currentLap == Race.GetTotalLaps() && finalPosition < 6)
                 {
                     finalPosition = Race.GetPosition();
                     seconds = Time.timeSinceLevelLoad - startRaceTime;

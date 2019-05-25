@@ -1,0 +1,161 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using VehicleSystem;
+
+public class Profile 
+{
+    private string nick;
+    private int coins, points, percentage;
+
+
+    private List<string> modelsUnlocked;
+    private List<string> mapsUnlocked;
+
+    public Profile(string nick, bool newprofile)
+    {
+        if (newprofile)
+        {
+            modelsUnlocked = new List<string>();
+            mapsUnlocked = new List<string>();
+
+            UnlockBasic();
+
+            this.nick = nick;
+            
+            coins = 0;
+            points = 0;
+            percentage = CalculatePercentageUnlocked();
+
+
+            PlayerPrefs.SetInt(nick + "_coins", coins);
+            PlayerPrefs.SetInt(nick + "_points", points);
+        }
+        else
+        {
+            modelsUnlocked = new List<string>();
+            mapsUnlocked = new List<string>();
+
+            LoadUnlockItems();
+
+            percentage = CalculatePercentageUnlocked();
+
+
+        }
+        
+    }
+
+
+    private void LoadUnlockItems()
+    {
+        List<CarModel> carModels = LoadModels.GetAllCarModels();
+        foreach (CarModel c in carModels)
+        {
+            if(PlayerPrefs.GetString(nick+"_"+c.GetModel(),"Locked") == "Unlocked")
+            {
+                modelsUnlocked.Add(c.GetModel());
+            }
+        }
+
+        if (PlayerPrefs.GetString(nick + "_Eight", "Locked") == "Unlocked") mapsUnlocked.Add("Eight");
+        if (PlayerPrefs.GetString(nick + "_Dizzy", "Locked") == "Unlocked") mapsUnlocked.Add("Dizzy");
+        if (PlayerPrefs.GetString(nick + "_Whirl", "Locked") == "Unlocked") mapsUnlocked.Add("Whirl");
+        if (PlayerPrefs.GetString(nick + "_Subway", "Locked") == "Unlocked") mapsUnlocked.Add("Subway");
+    }
+
+    public void AddPoints(int points)
+    {
+        this.points += points;
+        PlayerPrefs.SetInt(nick + "_points", points);
+    }
+
+    public int GetPoints() => points;
+
+    public void AddCoins(int coins)
+    {
+        this.coins += coins;
+        PlayerPrefs.SetInt(nick + "_coins", coins);
+    }
+
+    public int GetCoins() => coins;
+
+    public bool SpendCoins(int coins)
+    {
+        if (this.coins < coins) return false;
+        else
+        {
+            this.coins -= coins;
+            PlayerPrefs.SetInt(nick + "_coins", coins);
+            return true;
+        }
+    }
+
+
+
+
+    public bool IsUnlocked(string name)
+    {
+        return (modelsUnlocked.Contains(name) || mapsUnlocked.Contains(name));
+    }
+
+    public void UnlockModel(string name)
+    {
+        PlayerPrefs.SetString(nick + "_" + name, "Unlocked");
+        modelsUnlocked.Add(name);
+        percentage = CalculatePercentageUnlocked();
+    }
+
+    public void UnlockMap(string name)
+    {
+        PlayerPrefs.SetString(nick + "_" + name, "Unlocked");
+        mapsUnlocked.Add(name);
+        percentage = CalculatePercentageUnlocked();
+    }
+
+
+
+    private void UnlockBasic()
+    {
+        List<CarModel> carModels = LoadModels.GetAllCarModels();
+        foreach(CarModel c in carModels)
+        {
+            if(c.GetBrand() == "Duck" || c.GetBrand() == "Hoa" || c.GetBrand() == "Audidas")
+            {
+                modelsUnlocked.Add(c.GetModel());
+                PlayerPrefs.SetString(nick + "_" + c.GetModel(),"Unlocked");
+            }
+        }
+
+        mapsUnlocked.Add("Eight");
+        mapsUnlocked.Add("Dizzy");
+
+        PlayerPrefs.SetString(nick + "_" + "Eight", "Unlocked");
+        PlayerPrefs.SetString(nick + "_" + "Dizzy", "Unlocked");
+
+    }
+
+    private int CalculatePercentageUnlocked()
+    {
+        PlayerPrefs.SetInt(nick + "_percentage", percentage);
+        return (int)(58 / (mapsUnlocked.Count + modelsUnlocked.Count));
+    }
+
+
+    public int GetPercentageUnlocked() => percentage;
+
+
+
+
+    public List<string> GetModelsUnlocked() => modelsUnlocked;
+    public List<string> GetMapsUnlocked() => mapsUnlocked;
+
+
+
+
+    public string GetNick() => nick;
+
+
+
+    
+}
