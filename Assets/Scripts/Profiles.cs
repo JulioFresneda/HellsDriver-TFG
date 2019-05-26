@@ -13,7 +13,7 @@ public class Profiles
 
     public static void LoadProfiles()
     {
-        PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();
         profiles = new List<Profile>();
         for(int i=0; i<6; i++)
         {

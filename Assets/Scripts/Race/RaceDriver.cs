@@ -122,6 +122,8 @@ namespace Racing
             checkpoints_not_checked = new List<GameObject>(GameObject.FindGameObjectsWithTag("CheckPoint"));
             all_checkpoints = new List<GameObject>(GameObject.FindGameObjectsWithTag("CheckPoint"));
             checkpoints_checked = new List<GameObject>();
+
+            Profiles.LoadProfiles();
         }
 
 
@@ -270,7 +272,7 @@ namespace Racing
 
 
                         else GameObject.Find("RaceFinished").transform.localScale = new Vector3(1, 1, 1);
-                        GameObject.Find("RaceFinished").GetComponent<FinishedWindow>().SetDriver("Julio", finalPosition, seconds, carModel);
+                        GameObject.Find("RaceFinished").GetComponent<FinishedWindow>().SetDriver(Profiles.GetName(), finalPosition, seconds, carModel) ;
                     }
                     else GameObject.Find("RaceFinished").GetComponent<FinishedWindow>().SetDriver("xd", finalPosition, seconds, carModel);
                 }

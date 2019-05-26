@@ -35,7 +35,7 @@ public class CR_SelectMapUI : MonoBehaviour
     {
         lapNumberSelected = number;
         PlayerPrefs.SetInt("lapNumber", lapNumberSelected);
-        Debug.Log(lapNumberSelected);
+  
 
 
         int i = number - 1;
@@ -64,7 +64,7 @@ public class CR_SelectMapUI : MonoBehaviour
 
         PlayerPrefs.SetString("difficultSelected", difficultSelected);
         PlayerPrefs.SetFloat("difficultMult", difficultMultipliers[i]);
-        Debug.Log(difficultMultipliers[i]);
+
     }
 
     public void SelectCarButtonClick(string scene)

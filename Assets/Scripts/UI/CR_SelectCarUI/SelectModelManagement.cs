@@ -19,6 +19,9 @@ public class SelectModelManagement : MonoBehaviour
 
     public ModelFeatures modelFeatures;
 
+    public GameObject carMultiplier;
+    
+
 
     private void Start()
     {
@@ -38,11 +41,17 @@ public class SelectModelManagement : MonoBehaviour
         modelSelected = 0;
 
         carModels = LoadModels.GetAllCarModels();
+
+
         UpdateModelsList();
         modelFeatures.UpdateFeatures(selectedModels[0]);
         ModelSelected(selectedModels[0].GetModel());
         PlayerPrefs.SetString("modelSelected", selectedModels[0].GetModel());
+
+        UpdateCarMultiplier();
     }
+
+  
 
 
     public void ChangeBrandSelection(int selected)
@@ -71,6 +80,8 @@ public class SelectModelManagement : MonoBehaviour
         {
             modelButtons[i].GetComponentInChildren<Text>().text = selectedModels[i].GetModel();
         }
+
+        UpdateCarMultiplier();
     }
 
     public List<CarModel> GetSelectedModels() => selectedModels; 
@@ -107,6 +118,26 @@ public class SelectModelManagement : MonoBehaviour
 
         Debug.Log(modelName);
         PlayerPrefs.SetString("modelSelected", modelName);
+
+        UpdateCarMultiplier();
+    }
+
+
+    private void UpdateCarMultiplier()
+    {
+
+        CarModel cm = selectedModels[modelSelected];
+        float throttleMult = 15 - cm.GetThrottle();
+        float stiffnessMult = 5 - cm.GetStiffness();
+        float massMult = 0.5f;
+        if (cm.GetMass() == 2000) massMult = 1f;
+        if (cm.GetMass() == 2500) massMult = 2f;
+
+
+        float multiplier = throttleMult * stiffnessMult * massMult;
+    
+        carMultiplier.GetComponentInChildren<Text>().text = "x"+multiplier.ToString().Replace(',','.');
+        PlayerPrefs.SetFloat("modelMult", multiplier);
     }
 
     
