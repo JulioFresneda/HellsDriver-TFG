@@ -38,6 +38,7 @@ public class ProfileDataUpdater : MonoBehaviour
 
     public void NewProfileInputField(Text name)
     {
+        GameObject.Find("InputNick").transform.localScale = new Vector3(0, 0, 0);
         Debug.Log(name.text);
         foreach(ButtonScript bs in selectProfilePanel.GetComponentsInChildren<ButtonScript>())
         {

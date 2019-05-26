@@ -44,7 +44,9 @@ namespace Racing
         private List<CarModelAI> allCarModels;
 
 
-
+        private bool dynamicDifficult = false;
+        private int currentDifficult;
+        private float lastChange = 0;
 
         // Start is called before the first frame update
         void Awake()
@@ -74,6 +76,51 @@ namespace Racing
         {
 
             UpdatePositions();
+
+            if (dynamicDifficult)
+            {
+                UpdateDynamicDifficult();
+            }
+
+
+        }
+
+        private void UpdateDynamicDifficult()
+        {
+            
+            bool updateUp = true;
+            bool updateDown = false;
+
+            foreach(RaceDriver rd in race_drivers_AI)
+            {
+                if (rd.GetNumCheckpointsChecked() > race_driver_player.GetNumCheckpointsChecked() + 1 || (rd.GetCurrentLap() > race_driver_player.GetCurrentLap() && rd.GetNumCheckpointsChecked() > 1)) updateDown = true;
+            }
+            foreach (RaceDriver rd in race_drivers_AI)
+            {
+                if (rd.GetNumCheckpointsChecked() > race_driver_player.GetNumCheckpointsChecked() -2 || (rd.GetCurrentLap() < race_driver_player.GetCurrentLap() && race_driver_player.GetNumCheckpointsChecked() < 2)) updateUp = false;
+            }
+
+
+            if (updateUp)
+            {
+             
+                if (currentDifficult < 5 && Time.timeSinceLevelLoad - lastChange > 5)
+                {
+                    lastChange = Time.timeSinceLevelLoad;
+                    currentDifficult++;
+                    SetAIDrivers(currentDifficult.ToString());
+                }
+            }
+            else if (updateDown)
+            {
+             
+                if (currentDifficult > 1 && Time.timeSinceLevelLoad - lastChange > 5)
+                {
+                    lastChange = Time.timeSinceLevelLoad;
+                    currentDifficult--;
+                    SetAIDrivers(currentDifficult.ToString());
+                }
+            }
         }
 
 
@@ -123,7 +170,7 @@ namespace Racing
 
             }
 
-            SetAIDrivers();
+            SetAIDrivers(PlayerPrefs.GetString("difficultSelected"));
             SetPlayerDriver();
 
           
@@ -145,9 +192,16 @@ namespace Racing
         }
 
 
-        private void SetAIDrivers()
+        private void SetAIDrivers(string difficult)
         {
-            List<CarModelAI> AIModels = GenerateDriverCarModels(num_race_drivers - 1, PlayerPrefs.GetString("difficultSelected"));
+            Debug.Log(difficult + " changed");
+
+            if(difficult == "D")
+            {
+                dynamicDifficult = true;
+            }
+
+            List<CarModelAI> AIModels = GenerateDriverCarModels(num_race_drivers - 1, difficult);
 
             race_drivers_AI = new List<RaceDriver>();
             for(int i=0; i<AIModels.Count; i++)
@@ -190,24 +244,30 @@ namespace Racing
 
             if(difficult == "1")
             {
+                currentDifficult = 1;
                 temp = allCarModels.GetRange(0, 14);
             }
             if (difficult == "2")
             {
+                currentDifficult = 2;
                 temp = allCarModels.GetRange(14, 10);
             }
             if (difficult == "3")
             {
+                currentDifficult = 3;
                 temp = allCarModels.GetRange(24, 10);
             }
             if (difficult == "4")
             {
+                currentDifficult = 4;
                 temp = allCarModels.GetRange(34, 10);
             }
-            if (difficult == "5")
+            if (difficult == "5" || difficult == "D")
             {
+                currentDifficult = 5;
                 temp = allCarModels.GetRange(44, 10);
             }
+           
 
 
             for (int i = 0; i < numDriverCarModels; i++)

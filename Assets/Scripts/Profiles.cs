@@ -13,7 +13,7 @@ public class Profiles
 
     public static void LoadProfiles()
     {
-        //PlayerPrefs.DeleteAll();
+        PlayerPrefs.DeleteAll();
         profiles = new List<Profile>();
         for(int i=0; i<6; i++)
         {
@@ -23,10 +23,12 @@ public class Profiles
             }
         }
 
-        foreach(Profile p in profiles)
+        if(profiles.Count == 0) PlayerPrefs.SetString("profileSelected", "Null");
+        else
         {
-            if (PlayerPrefs.GetString("profileSelected") == p.GetNick()) profileSelected = p;
+            SetProfileSelected(PlayerPrefs.GetString("profileSelected"));
         }
+     
     }
 
 
@@ -49,22 +51,26 @@ public class Profiles
 
     public static string GetName()
     {
-        return profileSelected.GetNick();
+        if (profileSelected != null) return profileSelected.GetNick();
+        else return "";
     }
 
     public static int GetPercentage()
     {
-        return profileSelected.GetPercentageUnlocked();
+        if (profileSelected != null) return profileSelected.GetPercentageUnlocked();
+        else return 0;
     }
 
     public static int GetCoins()
     {
-        return profileSelected.GetCoins();
+        if (profileSelected != null) return profileSelected.GetCoins();
+        else return 0;
     }
 
     public static int GetPoints()
     {
-        return profileSelected.GetPoints();
+        if (profileSelected != null) return profileSelected.GetPoints();
+        else return 0;
     }
 
 
@@ -74,6 +80,7 @@ public class Profiles
         {
             PlayerPrefs.SetString("profile" + position.ToString(), name);
             profiles.Add(new Profile(name, true));
+            SetProfileSelected(name);
         }
     }
 
