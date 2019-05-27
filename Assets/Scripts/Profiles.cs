@@ -13,7 +13,7 @@ public class Profiles
 
     public static void LoadProfiles()
     {
-        //PlayerPrefs.DeleteAll();
+       //PlayerPrefs.DeleteAll();
         profiles = new List<Profile>();
         for(int i=0; i<6; i++)
         {
@@ -67,10 +67,20 @@ public class Profiles
         else return 0;
     }
 
+    public static void AddCoins(int coins)
+    {
+        if (profileSelected != null) profileSelected.AddCoins(coins);
+    }
+
     public static int GetPoints()
     {
         if (profileSelected != null) return profileSelected.GetPoints();
         else return 0;
+    }
+
+    public static void AddPoints(int points)
+    {
+        if (profileSelected != null) profileSelected.AddPoints(points);
     }
 
 

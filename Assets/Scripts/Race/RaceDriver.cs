@@ -36,6 +36,13 @@ namespace Racing
 
         private bool finished = false;
 
+        private float TimeLastCrash = 0;
+
+        private int sprintDistance, lowerSprintDistance;
+
+        [SerializeField]
+        private double minVelocity = 15f;
+
         
         public void SetFinalPosition(int p) => finalPosition = p;
         public void SetCurrentPosition(int p) => currentPosition = p;
@@ -115,6 +122,9 @@ namespace Racing
 
         private void Start()
         {
+            sprintDistance = GetComponent<CarAI>().GetSprintDistance();
+            lowerSprintDistance = 10;
+
             finalPosition = -1;
             seconds = 0;
             startRaceTime = Time.timeSinceLevelLoad;
@@ -123,7 +133,7 @@ namespace Racing
             all_checkpoints = new List<GameObject>(GameObject.FindGameObjectsWithTag("CheckPoint"));
             checkpoints_checked = new List<GameObject>();
 
-            Profiles.LoadProfiles();
+            
         }
 
 
@@ -133,11 +143,15 @@ namespace Racing
         {
             CheckCrash();
             CheckColliderDisabled();
+            CheckRestartSprintDistance();
         }
 
 
 
-
+        private void CheckRestartSprintDistance()
+        {
+            if (Time.timeSinceLevelLoad - TimeLastCrash > 3f && GetComponent<CarAI>().GetSprintDistance() == lowerSprintDistance) SetSprintDistance(sprintDistance);
+        }
 
 
 
@@ -152,7 +166,7 @@ namespace Racing
         private void CheckCrash()
         {
 
-            if(gameObject.GetComponentInParent<CarController>().Speed < 5f && lastCheckpoint != null )
+            if(gameObject.GetComponentInParent<CarController>().Speed < minVelocity && (lastCheckpoint != null || checkpoints_checked.Count == 1) )
             {
                 if (!startCrashing)
                 {
@@ -183,7 +197,14 @@ namespace Racing
                 GoToLastCheckPoint();
                 crashed = false;
                 startCrashing = false;
+                SetSprintDistance(lowerSprintDistance);
+                TimeLastCrash = Time.timeSinceLevelLoad;
             }
+        }
+
+        private void SetSprintDistance(int distance)
+        {
+            GetComponent<CarAI>().SetSprintDistance(distance);
         }
 
 
@@ -363,6 +384,8 @@ namespace Racing
             distance = dist;
             return distance;
         }
+
+        public float GetSeconds() => seconds;
 
 
         

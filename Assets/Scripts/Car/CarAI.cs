@@ -23,9 +23,13 @@ namespace VehicleSystem
         [SerializeField]
         private bool NEAT = false;
 
+        private int sprintDistance;
+
         // Start is called before the first frame update
         void Awake()
         {
+            sprintDistance = 100;
+
             wallDistancesLeft = new List<double>();
             wallDistancesRight = new List<double>();
 
@@ -54,6 +58,9 @@ namespace VehicleSystem
 
 
         }
+
+        public void SetSprintDistance(int distance) => sprintDistance = distance;
+        public int GetSprintDistance() => sprintDistance;
 
         // Update is called once per frame
         public void AIUpdate()
@@ -88,7 +95,7 @@ namespace VehicleSystem
             nn.SetInputValues(inputs);
             outputs = nn.OutputValuesWithName();
 
-            CheckSprint();
+            CheckSprint(sprintDistance);
 
 
 
@@ -133,9 +140,9 @@ namespace VehicleSystem
 
 
 
-        private void CheckSprint()
+        private void CheckSprint(int distance)
         {
-            if(wallDistancesLeft[wallDistancesLeft.Count/2] > 100 && wallDistancesRight[wallDistancesRight.Count / 2] > 100)
+            if(wallDistancesLeft[wallDistancesLeft.Count/2] > distance && wallDistancesRight[wallDistancesRight.Count / 2] > distance)
             {
                 for(int i=0; i<outputs.Count; i++)
                 {

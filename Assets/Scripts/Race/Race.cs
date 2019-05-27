@@ -51,7 +51,7 @@ namespace Racing
         // Start is called before the first frame update
         void Awake()
         {
-
+            Profiles.LoadProfiles();
             setPosition = 1;
             circuitsManagement.GetComponent<CircuitsManagement>().InitializeCircuit();
             start = circuitsManagement.GetComponent<CircuitsManagement>().GetStartPosition();
@@ -296,7 +296,9 @@ namespace Racing
         public static int GetTotalLaps() => totalLaps;
 
 
-
+        public List<RaceDriver> GetRaceDrivers() => race_drivers;
+        public List<RaceDriver> GetRaceDriversAI() => race_drivers_AI;
+        public RaceDriver GetRaceDriverPlayer() => race_driver_player;
 
 
 
