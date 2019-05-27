@@ -22,6 +22,14 @@ public class ProfileDataUpdater : MonoBehaviour
             GameObject.Find("Profile").GetComponent<ProfileDataUpdater>().UpdateData();
         }
         else selectProfilePanel.transform.localScale = new Vector3(1, 1, 1);
+
+
+        for(int i=0; i<6; i++)
+        {
+            string prof = "Profile" + (i+1).ToString();
+            GameObject T = selectProfilePanel.transform.Find("Profiles").Find(prof).gameObject;
+            T.GetComponentInChildren<Text>().text = PlayerPrefs.GetString("profile" + i.ToString(), "Nuevo perfil");
+        }
         
 
     }

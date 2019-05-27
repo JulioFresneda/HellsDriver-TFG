@@ -144,6 +144,12 @@ namespace Racing
             CheckCrash();
             CheckColliderDisabled();
             CheckRestartSprintDistance();
+            CheckUnfreeze();
+        }
+
+        private void CheckUnfreeze()
+        {
+            if (unfreezed && Time.timeSinceLevelLoad - lastunfreezed > 5f) FreezeYAxis();
         }
 
 
@@ -193,7 +199,8 @@ namespace Racing
 
             if (crashed)
             {
-                
+                UnfreezeYAxisTemporally();
+                Debug.Log("CRASH");
                 GoToLastCheckPoint();
                 crashed = false;
                 startCrashing = false;
@@ -245,7 +252,12 @@ namespace Racing
         {
             tempDisabled = true;
             startedDisabled = Time.timeSinceLevelLoad;
-            gameObject.GetComponentInChildren<BoxCollider>().enabled = false;
+
+            foreach(GameObject g in GameObject.FindGameObjectsWithTag("AIDriver"))
+            {
+                Physics.IgnoreCollision(g.GetComponentInChildren<BoxCollider>(), this.GetComponentInChildren<BoxCollider>(), true);
+            }
+            Physics.IgnoreCollision(GameObject.FindGameObjectWithTag("PlayerDriver").GetComponentInChildren<BoxCollider>(), gameObject.GetComponentInChildren<BoxCollider>(),true);
         }
 
         private void CheckColliderDisabled()
@@ -254,7 +266,11 @@ namespace Racing
             {
                 if (Time.timeSinceLevelLoad - startedDisabled > timeColliderDisabledOnCrash)
                 {
-                    gameObject.GetComponentInChildren<BoxCollider>().enabled = true;
+                    foreach (GameObject g in GameObject.FindGameObjectsWithTag("AIDriver"))
+                    {
+                        Physics.IgnoreCollision(g.GetComponentInChildren<BoxCollider>(), this.GetComponentInChildren<BoxCollider>(), false);
+                    }
+                    Physics.IgnoreCollision(GameObject.FindGameObjectWithTag("PlayerDriver").GetComponentInChildren<BoxCollider>(), gameObject.GetComponentInChildren<BoxCollider>(), false);
                     tempDisabled = false;
                 }
             }
@@ -388,7 +404,27 @@ namespace Racing
         public float GetSeconds() => seconds;
 
 
-        
+        private bool unfreezed = false;
+        private float lastunfreezed;
+        private void UnfreezeYAxisTemporally()
+        {
+            unfreezed = true;
+            lastunfreezed = Time.timeSinceLevelLoad;
+            this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+        }
+
+
+        public void FreezeYAxis()
+        {
+            
+           this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY;
+            
+        }
+
+
+
+
+
     }
 
     

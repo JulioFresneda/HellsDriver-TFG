@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Racing;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -65,10 +66,22 @@ public class CountDown : MonoBehaviour
 
 
         MakeKinematic(false);
+        yield return new WaitForSecondsRealtime(2f);
 
+        List<GameObject> cars = new List<GameObject>();
+        foreach (GameObject aicar in GameObject.FindGameObjectsWithTag("AIDriver")) cars.Add(aicar);
+        cars.Add(GameObject.FindGameObjectWithTag("PlayerDriver"));
+
+        foreach (GameObject car in cars)
+        {
+            car.GetComponent<RaceDriver>().FreezeYAxis();
+        }
         gameObject.SetActive(false);
 
     }
+
+
+    
 
 
 

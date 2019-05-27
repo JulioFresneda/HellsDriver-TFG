@@ -41,6 +41,10 @@ public class Profile
 
             percentage = CalculatePercentageUnlocked();
 
+            this.nick = nick;
+            coins = PlayerPrefs.GetInt(nick + "_coins");
+            points = PlayerPrefs.GetInt(nick + "_points");
+
 
         }
         

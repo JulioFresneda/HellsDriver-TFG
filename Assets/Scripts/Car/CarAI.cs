@@ -144,6 +144,7 @@ namespace VehicleSystem
         {
             if(wallDistancesLeft[wallDistancesLeft.Count/2] > distance && wallDistancesRight[wallDistancesRight.Count / 2] > distance)
             {
+             
                 for(int i=0; i<outputs.Count; i++)
                 {
                     if (outputs[i].Item1 == "brake") outputs[i] = new Tuple<string, double>("brake", 0);
