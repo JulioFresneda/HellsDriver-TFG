@@ -605,7 +605,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 031db2d6fdb43b4498f026ccea9fa9c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FastRaceScene: FR_SelectMap
+  FastRaceScene: SelectMap
   ChampionshipScene: 
   GarageScene: 
   CreditsScene: 
