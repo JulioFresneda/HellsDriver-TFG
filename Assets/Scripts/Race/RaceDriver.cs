@@ -145,6 +145,8 @@ namespace Racing
             CheckColliderDisabled();
             CheckRestartSprintDistance();
             CheckUnfreeze();
+            seconds = Time.timeSinceLevelLoad - startRaceTime;
+
         }
 
         private void CheckUnfreeze()

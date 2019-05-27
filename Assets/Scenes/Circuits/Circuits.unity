@@ -7033,7 +7033,7 @@ MonoBehaviour:
   driverNames: {fileID: 319502437}
   carModels: {fileID: 868232583}
   driverTimes: {fileID: 856120816}
-  pointsManagement: {fileID: 0}
+  pointsManagement: {fileID: 2136105648}
 --- !u!1 &815123793
 GameObject:
   m_ObjectHideFlags: 0
@@ -15843,7 +15843,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1949812196}
   m_LocalRotation: {x: 0.05079609, y: -0.8018768, z: -0.017860351, w: -0.5950584}
-  m_LocalPosition: {x: -399, y: 482.14832, z: 411}
+  m_LocalPosition: {x: -332, y: 482.14832, z: 411}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 977471562}
@@ -17638,8 +17638,8 @@ MonoBehaviour:
   totalCoinsGO: {fileID: 2011529322}
   secondsOfAdvGO: {fileID: 1267063409}
   race: {fileID: 695342751}
-  multSpeed: 0.01
-  pointsSpeed: 1
+  multSpeed: 0.1
+  pointsSpeed: 5
 --- !u!1 &2142593385
 GameObject:
   m_ObjectHideFlags: 0

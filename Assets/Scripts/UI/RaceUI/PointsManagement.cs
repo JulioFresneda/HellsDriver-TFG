@@ -59,16 +59,26 @@ public class PointsManagement : MonoBehaviour
         numlapMultGO.transform.Find("Mult").GetComponent<Text>().text = "";
         carmodelMultGO.transform.Find("Mult").GetComponent<Text>().text = "";
         positionMultGO.transform.Find("Mult").GetComponent<Text>().text = "";
+        secondsOfAdvGO.transform.Find("Mult").GetComponent<Text>().text = "";
 
         initialPointsGO.transform.Find("Points").GetComponent<Text>().text = "";
         difficultMultGO.transform.Find("Points").GetComponent<Text>().text = "";
         numlapMultGO.transform.Find("Points").GetComponent<Text>().text = "";
         carmodelMultGO.transform.Find("Points").GetComponent<Text>().text = "";
         positionMultGO.transform.Find("Points").GetComponent<Text>().text = "";
+        secondsOfAdvGO.transform.Find("Points").GetComponent<Text>().text = "";
 
+        totalCoinsGO.transform.Find("Points").GetComponent<Text>().text = "";
+        totalPointsGO.transform.Find("Points").GetComponent<Text>().text = "";
 
         StartCoroutine(StartAnimation());
 
+    }
+
+
+   private IEnumerator Wait(float seconds)
+    {
+        yield return new WaitForSecondsRealtime(seconds);
     }
 
     private IEnumerator StartAnimation()
@@ -83,78 +93,109 @@ public class PointsManagement : MonoBehaviour
 
 
         bools[0] = true;
-        StartCoroutine(IncrementAnimation(initialPointsGO, 0,1, "Mult",0));
-        StartCoroutine(IncrementAnimation(initialPointsGO, 0,initialPoints, "Points", 0));
+        yield return IncrementAnimation(initialPointsGO, 0,1, "Mult");
+        yield return IncrementAnimation(initialPointsGO, 0,initialPoints, "Points");
 
         yield return new WaitForSecondsRealtime(0.5f);
 
         
-        StartCoroutine(IncrementAnimation(secondsOfAdvGO, 0,1, "Mult", 1));
-        StartCoroutine(IncrementAnimation(secondsOfAdvGO, finalPoints,finalPoints+SecondsOfAdventage(), "Points",  1));
+        yield return IncrementAnimation(secondsOfAdvGO, 0,1, "Mult");
+        yield return IncrementAnimation(secondsOfAdvGO, finalPoints,finalPoints+SecondsOfAdventage(), "Points");
         finalPoints += SecondsOfAdventage();
 
         yield return new WaitForSecondsRealtime(0.5f);
 
-        StartCoroutine(IncrementAnimation(difficultMultGO, 0,DifficultMultiplier(), "Mult", 2));
-        StartCoroutine(IncrementAnimation(difficultMultGO,finalPoints,finalPoints*DifficultMultiplier(), "Points", 2));
+        yield return IncrementAnimation(difficultMultGO, 0,DifficultMultiplier(), "Mult");
+        yield return IncrementAnimation(difficultMultGO,finalPoints,finalPoints*DifficultMultiplier(), "Points");
         finalPoints *= DifficultMultiplier();
 
         yield return new WaitForSecondsRealtime(0.5f);
 
 
-        StartCoroutine(IncrementAnimation(numlapMultGO, 0, NumLapsMultiplier(), "Mult", 3));
-        StartCoroutine(IncrementAnimation(numlapMultGO, finalPoints, finalPoints * NumLapsMultiplier(), "Points", 3));
+        yield return IncrementAnimation(numlapMultGO, 0, NumLapsMultiplier(), "Mult");
+        yield return IncrementAnimation(numlapMultGO, finalPoints, finalPoints * NumLapsMultiplier(), "Points");
         finalPoints *= NumLapsMultiplier();
 
         yield return new WaitForSecondsRealtime(0.5f);
 
-    
-        StartCoroutine(IncrementAnimation(carmodelMultGO, 0, CarModelMultiplier(), "Mult", 4));
-        StartCoroutine(IncrementAnimation(carmodelMultGO, finalPoints, finalPoints * CarModelMultiplier(), "Points",4));
+
+        yield return IncrementAnimation(carmodelMultGO, 0, CarModelMultiplier(), "Mult");
+        yield return IncrementAnimation(carmodelMultGO, finalPoints, finalPoints * CarModelMultiplier(), "Points");
         finalPoints *= CarModelMultiplier();
 
         yield return new WaitForSecondsRealtime(0.5f);
 
-  
-        StartCoroutine(IncrementAnimation(positionMultGO, 0, PositionMultiplier(), "Mult", 5));
-        StartCoroutine(IncrementAnimation(positionMultGO, finalPoints, finalPoints * PositionMultiplier(), "Points", 5));
+
+        yield return IncrementAnimation(positionMultGO, 0, PositionMultiplier(), "Mult");
+        yield return IncrementAnimation(positionMultGO, finalPoints, finalPoints * PositionMultiplier(), "Points");
         finalPoints *= PositionMultiplier();
 
         yield return new WaitForSecondsRealtime(0.5f);
 
 
-        StartCoroutine(IncrementAnimation(totalPointsGO, 0, finalPoints, "Points", 6));
-        StartCoroutine(IncrementAnimation(totalCoinsGO, 0, coins, "Points", 6));
+        yield return IncrementAnimation(totalPointsGO, 0, finalPoints, "Points");
+        yield return IncrementAnimation(totalCoinsGO, 0, coins, "Points");
         
 
 
     }
 
-    private IEnumerator IncrementAnimation(GameObject go, double initial, double number, string find, int boolpos)
+    private IEnumerator IncrementAnimation(GameObject go, double initial, double number, string find)
     {
-        while (!bools[boolpos]) { }
-        while (initial < number)
+        if (initial < number)
         {
-            go.transform.Find(find).GetComponent<Text>().text = (Mathf.Round((float)initial*100)/100).ToString().Replace(',','.');
-            if (find == "Mult")
+            while (initial < number)
             {
-                go.transform.Find(find).GetComponent<Text>().text = "x" + go.transform.Find(find).GetComponent<Text>().text.Replace(',','.');
-                initial += multSpeed;
+                go.transform.Find(find).GetComponent<Text>().text = (Mathf.Round((float)initial * 100) / 100).ToString().Replace(',', '.');
+                if (find == "Mult")
+                {
+                    go.transform.Find(find).GetComponent<Text>().text = "x" + go.transform.Find(find).GetComponent<Text>().text.Replace(',', '.');
+                    initial += multSpeed;
+                    yield return new WaitForSecondsRealtime(0.002f);
+                }
+                else
+                {
+                    initial += pointsSpeed;
+                    yield return new WaitForSecondsRealtime(0.002f);
+                }
 
             }
-            else initial += pointsSpeed;
+            go.transform.Find(find).GetComponent<Text>().text = (Mathf.Round((float)number * 100) / 100).ToString().Replace(',', '.');
+            if (find == "Mult")
+            {
+                go.transform.Find(find).GetComponent<Text>().text = "x" + go.transform.Find(find).GetComponent<Text>().text.Replace(',', '.');
 
-            yield return new WaitForSecondsRealtime(0.1f);
+
+            }
         }
-        go.transform.Find(find).GetComponent<Text>().text = (Mathf.Round((float)number * 100) / 100).ToString().Replace(',', '.');
-        if (find == "Mult")
+        else
         {
-            go.transform.Find(find).GetComponent<Text>().text = "x" + go.transform.Find(find).GetComponent<Text>().text.Replace(',', '.');
- 
+            while (initial > number)
+            {
+                go.transform.Find(find).GetComponent<Text>().text = (Mathf.Round((float)initial * 100) / 100).ToString().Replace(',', '.');
+                if (find == "Mult")
+                {
+                    go.transform.Find(find).GetComponent<Text>().text = "x" + go.transform.Find(find).GetComponent<Text>().text.Replace(',', '.');
+                    initial -= multSpeed;
+                    yield return new WaitForSecondsRealtime(0.002f);
+                }
+                else
+                {
+                    initial -= pointsSpeed;
+                    yield return new WaitForSecondsRealtime(0.002f);
+                }
 
+            }
+            go.transform.Find(find).GetComponent<Text>().text = (Mathf.Round((float)number * 100) / 100).ToString().Replace(',', '.');
+            if (find == "Mult")
+            {
+                go.transform.Find(find).GetComponent<Text>().text = "x" + go.transform.Find(find).GetComponent<Text>().text.Replace(',', '.');
+
+
+            }
         }
+        
 
-        bools[boolpos+1] = true;
     
     }
 
