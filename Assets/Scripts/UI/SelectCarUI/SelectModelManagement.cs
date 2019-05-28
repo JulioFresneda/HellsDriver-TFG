@@ -20,11 +20,24 @@ public class SelectModelManagement : MonoBehaviour
     public ModelFeatures modelFeatures;
 
     public GameObject carMultiplier;
-    
+
+    private string GameMode;
+
+
+    public Texture modelButton, lockedModelButton, modelButtonH, lockedModelButtonH, modelButtonS, lockedModelButtonS;
+
+    private bool isChampionship;
+
+
+    public BuyModel buyModel;
 
 
     private void Start()
     {
+        GameMode = PlayerPrefs.GetString("GameMode");
+        if (GameMode == "Championship") isChampionship = true;
+        Profiles.LoadProfiles();
+
         brands = new List<string>();
         brands.Add("Duck");
         brands.Add("Audidas");
@@ -49,10 +62,21 @@ public class SelectModelManagement : MonoBehaviour
         PlayerPrefs.SetString("modelSelected", selectedModels[0].GetModel());
 
         UpdateCarMultiplier();
+
+        CheckChampionship();
     }
 
-  
+    private void CheckChampionship()
+    {
+        if (isChampionship)
+        {
+            LoadLockedButtonTextures();
+        }
+    }
 
+
+
+    public bool IsChampionship() => isChampionship;
 
     public void ChangeBrandSelection(int selected)
     {
@@ -64,6 +88,13 @@ public class SelectModelManagement : MonoBehaviour
             b.GetComponent<ButtonScript>().Desselect();
         }
         modelButtons[0].GetComponent<ButtonScript>().Select();
+        
+        if (isChampionship)
+        {
+            if (!Profiles.IsUnlocked(selectedModels[0].GetModel())) buyModel.BuyWindow(selectedModels[0]);
+            else buyModel.CloseWindow();
+            LoadLockedButtonTextures();
+        }
     }
 
 
@@ -117,9 +148,51 @@ public class SelectModelManagement : MonoBehaviour
         }
 
         Debug.Log(modelName);
-        PlayerPrefs.SetString("modelSelected", modelName);
+
 
         UpdateCarMultiplier();
+
+        if (GameMode == "FastRace" || (GameMode == "Championship" && Profiles.IsUnlocked(modelName)))
+        {
+            PlayerPrefs.SetString("modelSelected", modelName);
+            if (GameMode == "Championship") buyModel.CloseWindow();
+            
+        }
+        else
+        {
+            buyModel.BuyWindow(selectedModels[modelSelected]);
+        }
+     
+
+        
+    }
+
+
+    public void LoadLockedButtonTextures()
+    {
+        for(int i=0; i<modelButtons.Count; i++)
+        {
+            if (!Profiles.IsUnlocked(selectedModels[i].GetModel()))
+            {
+                if(i == 0) modelButtons[0].GetComponent<RawImage>().texture = lockedModelButtonS;
+                else modelButtons[i].GetComponent<RawImage>().texture = lockedModelButton;
+
+                modelButtons[i].GetComponent<ButtonScript>().TextureNotHighlighted = lockedModelButton;
+                modelButtons[i].GetComponent<ButtonScript>().TextureHighligted= lockedModelButtonH;
+                modelButtons[i].GetComponent<ButtonScript>().TextureSelected = lockedModelButtonS;
+            }
+            else
+            {
+                if (i == 0) modelButtons[0].GetComponent<RawImage>().texture = modelButtonS;
+                else modelButtons[i].GetComponent<RawImage>().texture = modelButton;
+
+                modelButtons[i].GetComponent<ButtonScript>().TextureNotHighlighted = modelButton;
+                modelButtons[i].GetComponent<ButtonScript>().TextureHighligted = modelButtonH;
+                modelButtons[i].GetComponent<ButtonScript>().TextureSelected = modelButtonS;
+            }
+        }
+
+        
     }
 
 
@@ -142,6 +215,21 @@ public class SelectModelManagement : MonoBehaviour
         carMultiplier.GetComponentInChildren<Text>().text = "x"+multiplier.ToString().Replace(',','.');
         PlayerPrefs.SetFloat("modelMult", multiplier);
     }
+
+
+    public string GetModelSelected()
+    {
+        return selectedModels[modelSelected].GetModel();
+    }
+
+    public CarModel GetCarModelSelected() => selectedModels[modelSelected];
+
+    public bool IsModelSelectedUnlocked()
+    {
+        return Profiles.IsUnlocked(selectedModels[modelSelected].GetModel());
+    }
+
+
 
     
 }

@@ -15,13 +15,16 @@ namespace VehicleSystem
         protected int stiffness;
         protected int throttle;
 
-        public CarModel(string brand, string model, int mass, int stiffness, int throttle)
+        protected int prize;
+
+        public CarModel(string brand, string model, int mass, int stiffness, int throttle, int prize)
         {
             this.brand = brand;
             this.model = model;
             this.mass = mass;
             this.stiffness = stiffness;
             this.throttle = throttle;
+            this.prize = prize;
    
         }
 
@@ -32,6 +35,8 @@ namespace VehicleSystem
         public int GetMass() => mass;
         public int GetStiffness() => stiffness;
         public int GetThrottle() => throttle;
+
+        public int GetPrize() => prize;
 
 
     }
@@ -48,7 +53,7 @@ namespace VehicleSystem
 
       
 
-        public CarModelAI(string brand, string model, int mass, int stiffness, int throttle, string map, double time, NeuralNet.NeuralNetwork nn) : base(brand,model,mass,stiffness,throttle)
+        public CarModelAI(string brand, string model, int mass, int stiffness, int throttle, string map, double time, NeuralNet.NeuralNetwork nn) : base(brand,model,mass,stiffness,throttle,0)
         {
             this.brand = brand;
             this.model = model;
@@ -58,6 +63,7 @@ namespace VehicleSystem
             this.map = map;
             this.time = time;
             this.nn = nn;
+            this.prize = 0;
         }
 
 

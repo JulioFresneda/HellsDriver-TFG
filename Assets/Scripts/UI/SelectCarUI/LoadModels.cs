@@ -68,23 +68,26 @@ public class LoadModels
         carModels = new List<CarModel>();
         foreach (var value in GetAllPossibleCarValues())
         {
+            float prize = (value.Item1 - 5) * 100 * (value.Item3 - 2);
+            if (value.Item2 == 1500) prize *= 2;
+            else if (value.Item2 == 2000) prize *= 1.5f;
             if (value.Item1 > 11)
             {
-                if (value.Item2 == 1500) carModels.Add(new CarModel("Raijin", "R" + value.Item1 + value.Item3, value.Item2, value.Item3, value.Item1));
-                else if (value.Item2 == 2000) carModels.Add(new CarModel("Poseidon", "P" + value.Item1 + value.Item3, value.Item2, value.Item3, value.Item1));
-                else if (value.Item2 == 2500) carModels.Add(new CarModel("Leviathan", "L" + value.Item1 + value.Item3, value.Item2, value.Item3, value.Item1));
+                if (value.Item2 == 1500) carModels.Add(new CarModel("Raijin", "R" + value.Item1 + value.Item3, value.Item2, value.Item3, value.Item1,(int)prize));
+                else if (value.Item2 == 2000) carModels.Add(new CarModel("Poseidon", "P" + value.Item1 + value.Item3, value.Item2, value.Item3, value.Item1, (int)prize));
+                else if (value.Item2 == 2500) carModels.Add(new CarModel("Leviathan", "L" + value.Item1 + value.Item3, value.Item2, value.Item3, value.Item1, (int)prize));
             }
             else if (value.Item1 > 8)
             {
-                if (value.Item2 == 1500) carModels.Add(new CarModel("Valkyria", "V" + value.Item1 + value.Item3, value.Item2, value.Item3, value.Item1));
-                else if (value.Item2 == 2000) carModels.Add(new CarModel("Xlynx", "X" + value.Item1 + value.Item3, value.Item2, value.Item3, value.Item1));
-                else if (value.Item2 == 2500) carModels.Add(new CarModel("DJED", "D" + value.Item1 + value.Item3, value.Item2, value.Item3, value.Item1));
+                if (value.Item2 == 1500) carModels.Add(new CarModel("Valkyria", "V" + value.Item1 + value.Item3, value.Item2, value.Item3, value.Item1, (int)prize));
+                else if (value.Item2 == 2000) carModels.Add(new CarModel("Xlynx", "X" + value.Item1 + value.Item3, value.Item2, value.Item3, value.Item1, (int)prize));
+                else if (value.Item2 == 2500) carModels.Add(new CarModel("DJED", "D" + value.Item1 + value.Item3, value.Item2, value.Item3, value.Item1, (int)prize));
             }
             else if (value.Item1 > 5)
             {
-                if (value.Item2 == 1500) carModels.Add(new CarModel("Duck", "Du" + value.Item1 + value.Item3, value.Item2, value.Item3, value.Item1));
-                else if (value.Item2 == 2000) carModels.Add(new CarModel("Audidas", "A" + value.Item1 + value.Item3, value.Item2, value.Item3, value.Item1));
-                else if (value.Item2 == 2500) carModels.Add(new CarModel("Hoa", "H" + value.Item1 + value.Item3, value.Item2, value.Item3, value.Item1));
+                if (value.Item2 == 1500) carModels.Add(new CarModel("Duck", "Du" + value.Item1 + value.Item3, value.Item2, value.Item3, value.Item1, (int)prize));
+                else if (value.Item2 == 2000) carModels.Add(new CarModel("Audidas", "A" + value.Item1 + value.Item3, value.Item2, value.Item3, value.Item1, (int)prize));
+                else if (value.Item2 == 2500) carModels.Add(new CarModel("Hoa", "H" + value.Item1 + value.Item3, value.Item2, value.Item3, value.Item1, (int)prize));
             }
         }
 

@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class NavigateButtonsManagement : MonoBehaviour
 {
 
-    
+    public SelectModelManagement smm;
 
 
     // Start is called before the first frame update
@@ -23,13 +23,14 @@ public class NavigateButtonsManagement : MonoBehaviour
 
 
 
-    public void GoBackClickButton(string scene)
+    public void GoBack()
     {
-        SceneManager.LoadScene(scene);
+        if (smm.IsChampionship()) SceneManager.LoadScene("ChampionshipStatus");
+        else SceneManager.LoadScene("SelectMap");
     }
 
     public void StartClickButton(string scene)
     {
-        SceneManager.LoadScene(scene);
+        if(!smm.IsChampionship() || smm.IsModelSelectedUnlocked()) SceneManager.LoadScene(scene);
     }
 }

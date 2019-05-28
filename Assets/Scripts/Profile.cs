@@ -20,9 +20,10 @@ public class Profile
             modelsUnlocked = new List<string>();
             mapsUnlocked = new List<string>();
 
+            this.nick = nick;
             UnlockBasic();
 
-            this.nick = nick;
+            
             
             coins = 0;
             points = 0;
@@ -36,12 +37,12 @@ public class Profile
         {
             modelsUnlocked = new List<string>();
             mapsUnlocked = new List<string>();
-
+            this.nick = nick;
             LoadUnlockItems();
 
             percentage = CalculatePercentageUnlocked();
 
-            this.nick = nick;
+            
             coins = PlayerPrefs.GetInt(nick + "_coins");
             points = PlayerPrefs.GetInt(nick + "_points");
 
@@ -71,7 +72,7 @@ public class Profile
     public void AddPoints(int points)
     {
         this.points += points;
-        PlayerPrefs.SetInt(nick + "_points", points);
+        PlayerPrefs.SetInt(nick + "_points", this.points);
     }
 
     public int GetPoints() => points;
@@ -79,7 +80,7 @@ public class Profile
     public void AddCoins(int coins)
     {
         this.coins += coins;
-        PlayerPrefs.SetInt(nick + "_coins", coins);
+        PlayerPrefs.SetInt(nick + "_coins", this.coins);
     }
 
     public int GetCoins() => coins;
@@ -90,7 +91,8 @@ public class Profile
         else
         {
             this.coins -= coins;
-            PlayerPrefs.SetInt(nick + "_coins", coins);
+            Debug.Log("SPEND" + coins + nick);
+            PlayerPrefs.SetInt(nick + "_coins", this.coins);
             return true;
         }
     }
@@ -124,7 +126,7 @@ public class Profile
         List<CarModel> carModels = LoadModels.GetAllCarModels();
         foreach(CarModel c in carModels)
         {
-            if(c.GetBrand() == "Duck" || c.GetBrand() == "Hoa" || c.GetBrand() == "Audidas")
+            if((c.GetBrand() == "Duck" && c.GetThrottle() == 6 && c.GetStiffness() == 3) || (c.GetThrottle() < 8 && c.GetBrand() == "Audidas") || c.GetBrand() == "Hoa")
             {
                 modelsUnlocked.Add(c.GetModel());
                 PlayerPrefs.SetString(nick + "_" + c.GetModel(),"Unlocked");

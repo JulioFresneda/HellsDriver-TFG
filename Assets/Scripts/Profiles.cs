@@ -83,6 +83,21 @@ public class Profiles
         if (profileSelected != null) profileSelected.AddPoints(points);
     }
 
+    public static bool IsUnlocked(string model)
+    {
+        if (profileSelected != null) return profileSelected.IsUnlocked(model);
+        else return false;
+    }
+
+    public static bool SpendCoins(int coins)
+    {
+        return profileSelected.SpendCoins(coins);
+    }
+
+    public static void UnlockModel(string model)
+    {
+        profileSelected.UnlockModel(model);
+    }
 
     public static void AddNewProfile(string name, int position)
     {
