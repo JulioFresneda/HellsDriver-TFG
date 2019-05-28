@@ -85,6 +85,11 @@ namespace Racing
             
         }
 
+       public void OnCollisionEnter(Collision col)
+        {
+            //gameObject.GetComponent<Rigidbody>().Sleep();
+        }
+
         public void SetCarModelAI(CarModelAI carModel)
         {
 
@@ -145,7 +150,8 @@ namespace Racing
             CheckColliderDisabled();
             CheckRestartSprintDistance();
             CheckUnfreeze();
-            seconds = Time.timeSinceLevelLoad - startRaceTime;
+            if(!finished) seconds = Time.timeSinceLevelLoad - startRaceTime;
+            
 
         }
 
@@ -206,8 +212,11 @@ namespace Racing
                 GoToLastCheckPoint();
                 crashed = false;
                 startCrashing = false;
-                SetSprintDistance(lowerSprintDistance);
+                gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 100);
+                //SetSprintDistance(lowerSprintDistance);
                 TimeLastCrash = Time.timeSinceLevelLoad;
+
+                if(this.tag != "PlayerDriver") gameObject.GetComponent<CarAI>().GoForward(3);
             }
         }
 
@@ -314,6 +323,9 @@ namespace Racing
                         GameObject.Find("RaceFinished").GetComponent<FinishedWindow>().SetDriver(Profiles.GetName(), finalPosition, seconds, carModel) ;
                     }
                     else GameObject.Find("RaceFinished").GetComponent<FinishedWindow>().SetDriver("xd", finalPosition, seconds, carModel);
+
+
+
                 }
                 else if (started && checkpoints_not_checked.Count == 0 && currentLap < Race.GetTotalLaps())
                 {
@@ -425,7 +437,7 @@ namespace Racing
 
 
 
-
+    
 
     }
 

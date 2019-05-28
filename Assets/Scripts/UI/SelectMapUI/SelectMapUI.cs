@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class CR_SelectMapUI : MonoBehaviour
+public class SelectMapUI : MonoBehaviour
 {
 
     private string mapSelected = "Eight";

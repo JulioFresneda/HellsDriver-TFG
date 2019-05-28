@@ -127,15 +127,18 @@ public class SelectModelManagement : MonoBehaviour
     {
 
         CarModel cm = selectedModels[modelSelected];
-        float throttleMult = 15 - cm.GetThrottle();
-        float stiffnessMult = 5 - cm.GetStiffness();
-        float massMult = 0.5f;
+        float throttleMult = 2.25f - (cm.GetThrottle() - 6) * 0.25f;
+
+        float stiffnessMult = 1 + 0.5f*(4 - cm.GetStiffness());
+        float massMult = 0.75f;
         if (cm.GetMass() == 2000) massMult = 1f;
-        if (cm.GetMass() == 2500) massMult = 2f;
+        if (cm.GetMass() == 2500) massMult = 1.5f;
 
 
         float multiplier = throttleMult * stiffnessMult * massMult;
-    
+        multiplier = (Mathf.Round(100 * multiplier) / 100);
+
+
         carMultiplier.GetComponentInChildren<Text>().text = "x"+multiplier.ToString().Replace(',','.');
         PlayerPrefs.SetFloat("modelMult", multiplier);
     }

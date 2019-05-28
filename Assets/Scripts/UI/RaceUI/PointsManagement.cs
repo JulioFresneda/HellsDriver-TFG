@@ -18,7 +18,7 @@ public class PointsManagement : MonoBehaviour
 
     public double multSpeed = 0.01;
     public double pointsSpeed = 1;
-
+    public double secondsMult = 10f;
 
     private List<bool> bools;
 
@@ -96,41 +96,41 @@ public class PointsManagement : MonoBehaviour
         yield return IncrementAnimation(initialPointsGO, 0,1, "Mult");
         yield return IncrementAnimation(initialPointsGO, 0,initialPoints, "Points");
 
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSecondsRealtime(0.2f);
 
         
-        yield return IncrementAnimation(secondsOfAdvGO, 0,1, "Mult");
+        yield return IncrementAnimation(secondsOfAdvGO, 0,secondsMult, "Mult");
         yield return IncrementAnimation(secondsOfAdvGO, finalPoints,finalPoints+SecondsOfAdventage(), "Points");
         finalPoints += SecondsOfAdventage();
 
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSecondsRealtime(0.2f);
 
         yield return IncrementAnimation(difficultMultGO, 0,DifficultMultiplier(), "Mult");
         yield return IncrementAnimation(difficultMultGO,finalPoints,finalPoints*DifficultMultiplier(), "Points");
         finalPoints *= DifficultMultiplier();
 
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSecondsRealtime(0.2f);
 
 
         yield return IncrementAnimation(numlapMultGO, 0, NumLapsMultiplier(), "Mult");
         yield return IncrementAnimation(numlapMultGO, finalPoints, finalPoints * NumLapsMultiplier(), "Points");
         finalPoints *= NumLapsMultiplier();
 
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSecondsRealtime(0.2f);
 
 
         yield return IncrementAnimation(carmodelMultGO, 0, CarModelMultiplier(), "Mult");
         yield return IncrementAnimation(carmodelMultGO, finalPoints, finalPoints * CarModelMultiplier(), "Points");
         finalPoints *= CarModelMultiplier();
 
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSecondsRealtime(0.2f);
 
 
         yield return IncrementAnimation(positionMultGO, 0, PositionMultiplier(), "Mult");
         yield return IncrementAnimation(positionMultGO, finalPoints, finalPoints * PositionMultiplier(), "Points");
         finalPoints *= PositionMultiplier();
 
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSecondsRealtime(0.2f);
 
 
         yield return IncrementAnimation(totalPointsGO, 0, finalPoints, "Points");
@@ -209,7 +209,7 @@ public class PointsManagement : MonoBehaviour
             if (ai.GetSeconds() > race.GetRaceDriverPlayer().GetSeconds()) points += ai.GetSeconds() - race.GetRaceDriverPlayer().GetSeconds();
         }
 
-        return points;
+        return points*secondsMult;
     }
 
     private double DifficultMultiplier()

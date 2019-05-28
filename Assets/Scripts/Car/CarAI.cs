@@ -96,7 +96,7 @@ namespace VehicleSystem
             outputs = nn.OutputValuesWithName();
 
             CheckSprint(sprintDistance);
-
+            CheckForward();
 
 
         
@@ -150,6 +150,33 @@ namespace VehicleSystem
                     if (outputs[i].Item1 == "brake") outputs[i] = new Tuple<string, double>("brake", 0);
   
 
+                }
+            }
+        }
+
+        private float startforward;
+        private bool goforward;
+        private float timegoforward;
+        public void GoForward(float seconds)
+        {
+            startforward = Time.timeSinceLevelLoad;
+            goforward = true;
+            timegoforward = seconds;
+        }
+
+        private void CheckForward()
+        {
+            if (goforward)
+            {
+                if (Time.timeSinceLevelLoad - startforward > timegoforward) goforward = false;
+                else
+                {
+                    for (int i = 0; i < outputs.Count; i++)
+                    {
+                        if (outputs[i].Item1 == "brake") outputs[i] = new Tuple<string, double>("brake", 0);
+
+
+                    }
                 }
             }
         }

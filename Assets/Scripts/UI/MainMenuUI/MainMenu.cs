@@ -17,12 +17,14 @@ public class MainMenu : MonoBehaviour
 
     public void FastRace()
     {
+        PlayerPrefs.SetString("GameMode", "FastRace");
         SceneManager.LoadScene(FastRaceScene);
   
     }
 
     public void Championship()
     {
+        PlayerPrefs.SetString("GameMode", "Championship");
         SceneManager.LoadScene(ChampionshipScene);
     }
 

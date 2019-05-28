@@ -67,7 +67,6 @@ namespace Racing
 
             InitializeDrivers();
 
-            
         }
 
 
@@ -81,6 +80,8 @@ namespace Racing
             {
                 UpdateDynamicDifficult();
             }
+
+           
 
 
         }
@@ -160,7 +161,7 @@ namespace Racing
 
             for (int i = 0; i < num_race_drivers; i++)
             {
-                start_positions.Add(new Vector3(x + 10 * (i % 3), start.position.y, z + 10 * i));
+                start_positions.Add(new Vector3(x + 10 * (i % 2), start.position.y, z + 10 * i));
 
                 race_drivers.Add(Instantiate(carPrefab, start_positions[i], start.rotation).GetComponent<RaceDriver>());
 
