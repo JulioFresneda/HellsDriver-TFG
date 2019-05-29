@@ -42,6 +42,8 @@ public class ScreenData : MonoBehaviour
             AICarsIcons[AICarsIcons.Count - 1].layer = LayerMask.NameToLayer("Minimap");
             AICarsIcons[AICarsIcons.Count - 1].transform.SetParent(AICars[AICarsIcons.Count - 1].transform);
             AICarsIcons[AICarsIcons.Count - 1].transform.localPosition = new Vector3(0, 250, -20);
+            AICarsIcons[AICarsIcons.Count - 1].GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            AICarsIcons[AICarsIcons.Count - 1].GetComponent<MeshRenderer>().receiveShadows = false;
         }
         PlayerCarIcon = Instantiate(CarMinimapIconPrefab);
         PlayerCarIcon.GetComponent<Renderer>().material = PlayerCarMinimapIconMaterial;
@@ -50,6 +52,9 @@ public class ScreenData : MonoBehaviour
 
         PlayerCarIcon.transform.SetParent(PlayerCar.transform);
         PlayerCarIcon.transform.localPosition = new Vector3(0, 280, -20);
+
+        PlayerCarIcon.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+        PlayerCarIcon.GetComponent<MeshRenderer>().receiveShadows = false;
     }
 
     // Update is called once per frame

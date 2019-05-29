@@ -212,7 +212,7 @@ namespace Racing
                 GoToLastCheckPoint();
                 crashed = false;
                 startCrashing = false;
-                gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 100);
+                
                 //SetSprintDistance(lowerSprintDistance);
                 TimeLastCrash = Time.timeSinceLevelLoad;
 
