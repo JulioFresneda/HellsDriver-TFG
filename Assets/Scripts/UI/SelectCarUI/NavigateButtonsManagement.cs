@@ -29,8 +29,14 @@ public class NavigateButtonsManagement : MonoBehaviour
         else SceneManager.LoadScene("SelectMap");
     }
 
-    public void StartClickButton(string scene)
+    public void StartClickButton()
     {
-        if(!smm.IsChampionship() || smm.IsModelSelectedUnlocked()) SceneManager.LoadScene(scene);
+        if (!smm.IsChampionship() || smm.IsModelSelectedUnlocked())
+        {
+            string scene = PlayerPrefs.GetString("mapname") + "Circuit";
+            Debug.Log(scene);
+            SceneManager.LoadScene(scene);
+        }
+     
     }
 }

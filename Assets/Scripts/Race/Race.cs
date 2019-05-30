@@ -15,7 +15,6 @@ namespace Racing
         private int num_race_drivers = 10;
 
 
-        public GameObject circuitsManagement;
 
         public GameObject carPrefab;
 
@@ -40,7 +39,6 @@ namespace Racing
 
 
 
-
         private List<CarModelAI> allCarModels;
 
 
@@ -53,9 +51,9 @@ namespace Racing
         {
             Profiles.LoadProfiles();
             setPosition = 1;
-            circuitsManagement.GetComponent<CircuitsManagement>().InitializeCircuit();
-            start = circuitsManagement.GetComponent<CircuitsManagement>().GetStartPosition();
-
+           
+            
+            start = GameObject.Find("StartPosition").transform;
 
             totalLaps = PlayerPrefs.GetInt("lapNumber");
             allCarModels = LoadModels.GetAllCarModelAIs(PlayerPrefs.GetString("mapname"));

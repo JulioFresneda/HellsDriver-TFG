@@ -6,14 +6,14 @@ public class Medal : MonoBehaviour
 {
 
     public GameObject goldenMedal, silverMedal, bronzeMedal;
-    public GameObject camera;
+    public GameObject playercamera;
     public GameObject directionalLight;
 
     private GameObject medal;
 
     private bool startAnimation = false;
 
-    private bool loadhorns = false;
+
     private int position;
 
     private bool finishAnimation = false;
@@ -41,7 +41,7 @@ public class Medal : MonoBehaviour
             fire.transform.localScale = new Vector3(0, 0, 0);
         }
 
-        medal.transform.SetParent(camera.transform);
+        medal.transform.SetParent(playercamera.transform);
         
         medal.transform.localPosition = new Vector3(-0.3f, 5f, 19f);
 
