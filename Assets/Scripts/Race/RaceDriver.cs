@@ -296,6 +296,7 @@ namespace Racing
         {
             if (col.gameObject.name == "CheckStart")
             {
+                Debug.Log("ESTARTED");
                 if (started && checkpoints_not_checked.Count == 0 && currentLap == Race.GetTotalLaps() && finalPosition < 6)
                 {
                     finalPosition = Race.GetPosition();
@@ -360,6 +361,7 @@ namespace Racing
             }
             else if(col.gameObject.tag == "CheckPoint")
             {
+                Debug.Log("chekopointo" + drivername + GetNumCheckpointsChecked() + "_" + lastCheckpointNumber);
                 if (!checkpoints_checked.Contains(col.gameObject))
                 {
                     checkpoints_checked.Add(col.gameObject);

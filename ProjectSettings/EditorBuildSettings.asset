@@ -12,14 +12,11 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: ea65e318dc386ce4b9e452d84543d151
   - enabled: 1
-    path: Assets/Scenes/SelectCar.unity
-    guid: 4adfd98e27d42a54cb4863634de3b186
-  - enabled: 1
     path: Assets/Scenes/SelectMap.unity
     guid: 412c400bf85ce6a428f4c7577371e2a5
   - enabled: 1
-    path: Assets/Scenes/Circuits/EightCircuit.unity
-    guid: a6555b3847f689a4ca9c38d0966db378
+    path: Assets/Scenes/SelectCar.unity
+    guid: 4adfd98e27d42a54cb4863634de3b186
   - enabled: 1
     path: Assets/Scenes/ChampionshipStatus.unity
     guid: dbf4ea5fa377c0540aafba2d5bf897ca
@@ -27,6 +24,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Championship.unity
     guid: 3cb61302c98ca644287cfebf0ea6806b
   - enabled: 1
+    path: Assets/Scenes/Circuits/EightCircuit.unity
+    guid: a6555b3847f689a4ca9c38d0966db378
+  - enabled: 1
     path: Assets/Scenes/Circuits/DizzyCircuit.unity
     guid: 797d0e6730c4a7c4891024eea119f364
+  - enabled: 1
+    path: Assets/Scenes/Circuits/SubwayCircuiit.unity
+    guid: f7750769f7e924b489d5835d5ff18f7e
+  - enabled: 1
+    path: Assets/Scenes/Circuits/WhirlCircuit.unity
+    guid: 31843803881decd4cb870ba0392f5a8e
   m_configObjects: {}
