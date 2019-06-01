@@ -17,7 +17,7 @@ public class SelectMapUI : MonoBehaviour
 
     private void Start()
     {
-        PlayerPrefs.SetString("mapname", "Eight");
+        PlayerPrefs.SetString("CurrentMap", "Eight");
         PlayerPrefs.SetInt("lapNumber", 1);
         PlayerPrefs.SetString("difficultSelected", "2");
     }
@@ -26,7 +26,7 @@ public class SelectMapUI : MonoBehaviour
     public void MapButtonClick(string map)
     {
         mapSelected = map;
-        PlayerPrefs.SetString("mapname", mapSelected);
+        PlayerPrefs.SetString("CurrentMap", mapSelected);
         Debug.Log(mapSelected);
      
     }

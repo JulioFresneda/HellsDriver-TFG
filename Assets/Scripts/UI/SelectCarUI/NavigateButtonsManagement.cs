@@ -31,11 +31,16 @@ public class NavigateButtonsManagement : MonoBehaviour
 
     public void StartClickButton()
     {
-        if (!smm.IsChampionship() || smm.IsModelSelectedUnlocked())
+        if (!smm.IsChampionship() )
         {
-            string scene = PlayerPrefs.GetString("mapname") + "Circuit";
+            string scene = PlayerPrefs.GetString("CurrentMap") + "Circuit";
             Debug.Log(scene);
             SceneManager.LoadScene(scene);
+        }
+        else if (smm.IsChampionship() && smm.IsModelSelectedUnlocked())
+        {
+            Debug.Log("CARGANDO" + PlayerPrefs.GetString("CurrentMap") + "Circuit");
+            SceneManager.LoadScene(PlayerPrefs.GetString("CurrentMap")+"Circuit");
         }
      
     }

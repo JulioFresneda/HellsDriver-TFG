@@ -18,6 +18,8 @@ public class Medal : MonoBehaviour
 
     private bool finishAnimation = false;
 
+    public bool inRace = true;
+
 
     // Start is called before the first frame update
     void Start()
@@ -43,7 +45,8 @@ public class Medal : MonoBehaviour
 
         medal.transform.SetParent(playercamera.transform);
         
-        medal.transform.localPosition = new Vector3(-0.3f, 5f, 19f);
+        if(inRace) medal.transform.localPosition = new Vector3(-0.3f, 5f, 19f);
+        else medal.transform.localPosition = new Vector3(0, 500, +2000);
 
         medal.transform.rotation = new Quaternion(0, 0, 0, 0);
         directionalLight.transform.rotation = medal.transform.rotation;
@@ -54,20 +57,22 @@ public class Medal : MonoBehaviour
 
     public void Update()
     {
+        int scale = 1;
+        if (!inRace) scale = 300;
         if (startAnimation)
         {
-            if (medal.transform.localScale.x < 0.1f)
+            if (medal.transform.localScale.x < 0.1f * scale)
             {
-                medal.transform.localScale += new Vector3(0.001f, 0.001f, 0.001f);
+                medal.transform.localScale += new Vector3(0.001f*scale, 0.001f * scale, 0.001f * scale);
                 foreach (var fire in medal.GetComponentsInChildren<ParticleSystem>())
                 {
-                    fire.transform.localScale += new Vector3(0.01f, 0.01f, 0.01f);
+                    fire.transform.localScale += new Vector3(0.01f * scale, 0.01f * scale, 0.01f * scale);
                 }
             }
 
             
 
-            if(medal.transform.localScale.x < 0.1f || Mathf.Abs(medal.transform.localEulerAngles.y) > 2)
+            if(medal.transform.localScale.x < 0.1f * scale || Mathf.Abs(medal.transform.localEulerAngles.y) > 2)
             {
                 
 
@@ -85,7 +90,7 @@ public class Medal : MonoBehaviour
 
 
         }
-        else if (finishAnimation)
+        else if (finishAnimation && inRace)
         {
             directionalLight.transform.rotation = medal.transform.rotation;
             if (medal.transform.localPosition.z > 0) medal.transform.localPosition -= new Vector3(0, 0, 0.5f);

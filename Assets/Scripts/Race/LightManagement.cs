@@ -9,28 +9,28 @@ public class LightManagement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(PlayerPrefs.GetString("mapname") == "Eight")
+        if(PlayerPrefs.GetString("CurrentMap") == "Eight")
         {
             EightLight.SetActive(true);
             DizzyLight.SetActive(false);
             WhirlLight.SetActive(false);
             SubwayLight.SetActive(false);
         }
-        if (PlayerPrefs.GetString("mapname") == "Dizzy")
+        if (PlayerPrefs.GetString("CurrentMap") == "Dizzy")
         {
             DizzyLight.SetActive(true);
             EightLight.SetActive(false);
             WhirlLight.SetActive(false);
             SubwayLight.SetActive(false);
         }
-        if (PlayerPrefs.GetString("mapname") == "Whirl")
+        if (PlayerPrefs.GetString("CurrentMap") == "Whirl")
         {
             WhirlLight.SetActive(true);
             DizzyLight.SetActive(false);
             EightLight.SetActive(false);
             SubwayLight.SetActive(false);
         }
-        if (PlayerPrefs.GetString("mapname") == "Subway")
+        if (PlayerPrefs.GetString("CurrentMap") == "Subway")
         {
             SubwayLight.SetActive(true);
             DizzyLight.SetActive(false);

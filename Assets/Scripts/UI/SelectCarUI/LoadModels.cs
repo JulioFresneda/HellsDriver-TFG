@@ -9,12 +9,12 @@ public class LoadModels
 {
 
 
-    public static List<CarModelAI> GetAllCarModelAIs(string mapname)
+    public static List<CarModelAI> GetAllCarModelAIs(string CurrentMap)
     {
         List<CarModelAI> listcmai = new List<CarModelAI>();
         foreach(CarModel model in GetAllCarModels())
         {
-            listcmai.Add(GetModelAI(model, mapname));
+            listcmai.Add(GetModelAI(model, CurrentMap));
         }
         return listcmai;
     }
@@ -95,10 +95,10 @@ public class LoadModels
     }
 
 
-    public static CarModelAI GetModelAI(string CarAIName, string mapname)
+    public static CarModelAI GetModelAI(string CarAIName, string CurrentMap)
     {
 
-        string rute = "AIs/" + mapname + "AI/";
+        string rute = "AIs/" + CurrentMap + "AI/";
 
         string temp = CarAIName;
         temp = temp.Substring(3);
@@ -126,16 +126,16 @@ public class LoadModels
 
         NNToFile ntf = new NNToFile();
         NeuralNetwork nn = ntf.Read(rute + CarAIName);
-        return new CarModelAI("", "", int.Parse(massstring), int.Parse(stiffnessstring), int.Parse(throttlestring), mapname, nn.GetFitness(), nn);
+        return new CarModelAI("", "", int.Parse(massstring), int.Parse(stiffnessstring), int.Parse(throttlestring), CurrentMap, nn.GetFitness(), nn);
 
 
     }
 
 
-    public static CarModelAI GetModelAI(CarModel carModel, string mapname)
+    public static CarModelAI GetModelAI(CarModel carModel, string CurrentMap)
     {
 
-        string rute = "AIs/" + mapname + "AI/";
+        string rute = "AIs/" + CurrentMap + "AI/";
 
         string CarAIName = "car" + carModel.GetThrottle() + "_" + carModel.GetMass() + "_" + carModel.GetStiffness() + ".txt";
 
@@ -169,7 +169,7 @@ public class LoadModels
 
         NNToFile ntf = new NNToFile();
         NeuralNetwork nn = ntf.Read(rute + CarAIName);
-        return new CarModelAI(carModel.GetBrand(), carModel.GetModel(), int.Parse(massstring), int.Parse(stiffnessstring), int.Parse(throttlestring), mapname, nn.GetFitness(), nn);
+        return new CarModelAI(carModel.GetBrand(), carModel.GetModel(), int.Parse(massstring), int.Parse(stiffnessstring), int.Parse(throttlestring), CurrentMap, nn.GetFitness(), nn);
 
 
     }

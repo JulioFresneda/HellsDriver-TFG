@@ -30,8 +30,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Circuits/DizzyCircuit.unity
     guid: 797d0e6730c4a7c4891024eea119f364
   - enabled: 1
-    path: Assets/Scenes/Circuits/SubwayCircuiit.unity
+    path: Assets/Scenes/Circuits/SubwayCircuit.unity
     guid: f7750769f7e924b489d5835d5ff18f7e
+  - enabled: 1
+    path: Assets/Scenes/ChampionshipAwards.unity
+    guid: a18190d1e8b78504c93610b462864c6d
   - enabled: 1
     path: Assets/Scenes/Circuits/WhirlCircuit.unity
     guid: 31843803881decd4cb870ba0392f5a8e

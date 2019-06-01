@@ -47,6 +47,11 @@ public class PointsManagement : MonoBehaviour
         Profiles.AddPoints((int)finalPoints);
         Profiles.AddCoins(coins);
 
+        if(PlayerPrefs.GetString("GameMode") == "Championship")
+        {
+            SetChampionshipPoints();
+        }
+
         SetAnimation();
 
     }
@@ -73,6 +78,22 @@ public class PointsManagement : MonoBehaviour
 
         StartCoroutine(StartAnimation());
 
+    }
+
+
+    private void SetChampionshipPoints()
+    {
+        PlayerPrefs.SetInt("Champ"+PlayerPrefs.GetString("CurrentMap")+"Position",race.GetRaceDriverPlayer().GetFinalPosition());
+        PlayerPrefs.SetFloat(("Champ" + PlayerPrefs.GetString("CurrentMap") + "Time"), race.GetRaceDriverPlayer().GetSeconds());
+        PlayerPrefs.SetString("Champ"+PlayerPrefs.GetString("CurrentMap")+"CarModel",race.GetRaceDriverPlayer().GetCarModel().GetModel());
+        PlayerPrefs.SetInt("Champ" + PlayerPrefs.GetString("CurrentMap") + "Points", (int)(finalPoints));
+
+        string cm = "";
+        if (PlayerPrefs.GetString("CurrentMap") == "Eight") cm = "Dizzy";
+        if (PlayerPrefs.GetString("CurrentMap") == "Dizzy") cm = "Whirl";
+        if (PlayerPrefs.GetString("CurrentMap") == "Whirl") cm = "Subway";
+        if (PlayerPrefs.GetString("CurrentMap") == "Subway") cm = "NoMore";
+        PlayerPrefs.SetString("CurrentMap", cm);
     }
 
 
@@ -133,7 +154,7 @@ public class PointsManagement : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.2f);
 
 
-        yield return IncrementAnimation(totalPointsGO, 0, finalPoints, "Points");
+        totalPointsGO.transform.Find("Points").GetComponent<Text>().text = Mathf.RoundToInt((float)finalPoints).ToString();
         yield return IncrementAnimation(totalCoinsGO, 0, coins, "Points");
         
 

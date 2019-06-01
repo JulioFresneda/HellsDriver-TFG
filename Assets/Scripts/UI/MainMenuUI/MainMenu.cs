@@ -25,7 +25,7 @@ public class MainMenu : MonoBehaviour
     public void Championship()
     {
         PlayerPrefs.SetString("GameMode", "Championship");
-        PlayerPrefs.SetString("ChampCurrentMap", "Eight");
+        PlayerPrefs.SetString("CurrentMap", "Eight");
         SceneManager.LoadScene(ChampionshipScene);
     }
 

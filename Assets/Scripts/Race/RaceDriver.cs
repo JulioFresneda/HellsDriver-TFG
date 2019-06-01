@@ -209,14 +209,19 @@ namespace Racing
             {
                 UnfreezeYAxisTemporally();
                 Debug.Log("CRASH");
-                GoToLastCheckPoint();
-                crashed = false;
-                startCrashing = false;
-                
-                //SetSprintDistance(lowerSprintDistance);
-                TimeLastCrash = Time.timeSinceLevelLoad;
+                if (finished) ;// this.GetComponent<Rigidbody>().isKinematic = true;
+                else
+                {
+                    GoToLastCheckPoint();
+                    crashed = false;
+                    startCrashing = false;
 
-                if(this.tag != "PlayerDriver") gameObject.GetComponent<CarAI>().GoForward(3);
+                    //SetSprintDistance(lowerSprintDistance);
+                    TimeLastCrash = Time.timeSinceLevelLoad;
+
+                    if (this.tag != "PlayerDriver") gameObject.GetComponent<CarAI>().GoForward(3);
+                }
+           
             }
         }
 
@@ -294,9 +299,10 @@ namespace Racing
         private bool started = false;
         void OnTriggerEnter(Collider col)
         {
+            if (gameObject.tag == "PlayerDriver")  Debug.Log( col.name);
             if (col.gameObject.name == "CheckStart")
             {
-                Debug.Log("ESTARTED");
+         
                 if (started && checkpoints_not_checked.Count == 0 && currentLap == Race.GetTotalLaps() && finalPosition < 6)
                 {
                     finalPosition = Race.GetPosition();
@@ -321,9 +327,13 @@ namespace Racing
 
 
                         else GameObject.Find("RaceFinished").transform.localScale = new Vector3(1, 1, 1);
-                        GameObject.Find("RaceFinished").GetComponent<FinishedWindow>().SetDriver(Profiles.GetName(), finalPosition, seconds, carModel) ;
+                        GameObject.Find("RaceFinished").GetComponent<FinishedWindow>().SetDriver(Profiles.GetName(), finalPosition, seconds, carModel);
                     }
-                    else GameObject.Find("RaceFinished").GetComponent<FinishedWindow>().SetDriver("xd", finalPosition, seconds, carModel);
+                    else
+                    {
+                        GameObject.Find("RaceFinished").GetComponent<FinishedWindow>().SetDriver("xd", finalPosition, seconds, carModel);
+                        //gameObject.SetActive(false);
+                    }
 
 
 
@@ -361,7 +371,7 @@ namespace Racing
             }
             else if(col.gameObject.tag == "CheckPoint")
             {
-                Debug.Log("chekopointo" + drivername + GetNumCheckpointsChecked() + "_" + lastCheckpointNumber);
+
                 if (!checkpoints_checked.Contains(col.gameObject))
                 {
                     checkpoints_checked.Add(col.gameObject);

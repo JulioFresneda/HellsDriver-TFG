@@ -56,7 +56,8 @@ namespace Racing
             start = GameObject.Find("StartPosition").transform;
 
             totalLaps = PlayerPrefs.GetInt("lapNumber");
-            allCarModels = LoadModels.GetAllCarModelAIs(PlayerPrefs.GetString("mapname"));
+
+            allCarModels = LoadModels.GetAllCarModelAIs(PlayerPrefs.GetString("CurrentMap"));
 
             OrderCarModels ocm = new OrderCarModels();
             allCarModels.Sort(ocm);
@@ -159,7 +160,7 @@ namespace Racing
 
             for (int i = 0; i < num_race_drivers; i++)
             {
-                start_positions.Add(new Vector3(x + 10 * (i % 2), start.position.y, z + 10 * i));
+                start_positions.Add(new Vector3(x + 10 * (i % 2), start.position.y, z + 15 * i));
 
                 race_drivers.Add(Instantiate(carPrefab, start_positions[i], start.rotation).GetComponent<RaceDriver>());
 

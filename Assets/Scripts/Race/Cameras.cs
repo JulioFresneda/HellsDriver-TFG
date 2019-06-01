@@ -24,7 +24,7 @@ public class Cameras : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("PlayerDriver");
         playercamera.transform.SetParent(player.transform);
         playercamera.transform.localPosition = cameraPosition;
-        playercamera.transform.localRotation = new Quaternion(0, 0, 0, 0);
+        playercamera.transform.localRotation = new Quaternion(cameraRotation, 0, 0, 0);
 
         minimap.transform.position = new Vector3(player.transform.position.x, player.transform.position.y+300, player.transform.position.z);
         minimap.transform.rotation = Quaternion.Euler(90f, player.transform.eulerAngles.y, 0);
