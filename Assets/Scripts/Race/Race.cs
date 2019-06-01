@@ -18,8 +18,8 @@ namespace Racing
 
         public GameObject carPrefab;
 
+        public GameObject pauseWindow;
 
-   
         private Transform start = null;
 
     
@@ -65,7 +65,7 @@ namespace Racing
 
 
             InitializeDrivers();
-
+            if (pauseWindow != null) pauseWindow.transform.localScale = new Vector3(0, 0, 0);
         }
 
 
@@ -80,7 +80,10 @@ namespace Racing
                 UpdateDynamicDifficult();
             }
 
-           
+            if (Input.GetKey(KeyCode.Escape) && pauseWindow != null)
+            {
+                pauseWindow.transform.localScale = new Vector3(1, 1, 1);
+            }
 
 
         }

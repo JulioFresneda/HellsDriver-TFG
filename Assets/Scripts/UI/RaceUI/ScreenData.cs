@@ -21,6 +21,8 @@ public class ScreenData : MonoBehaviour
     private GameObject PlayerCar;
     private GameObject PlayerCarIcon;
 
+    
+
     // Start is called before the first frame update
     void Initialize()
     {
@@ -74,6 +76,10 @@ public class ScreenData : MonoBehaviour
             }
         }
 
+
+
+
+        
         
     }
 }
