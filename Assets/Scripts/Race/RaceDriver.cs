@@ -85,9 +85,44 @@ namespace Racing
             
         }
 
-       public void OnCollisionEnter(Collision col)
+
+        new Rigidbody rigidbody;
+        public Vector3 position, velocity, angularVelocity;
+        public bool isColliding;
+
+        void OnCollisionEnter(Collision collision)
         {
-            //gameObject.GetComponent<Rigidbody>().Sleep();
+            Debug.Log("COLL" + collision.gameObject.tag);
+            if (collision.gameObject.tag == "PlayerDriver" || collision.gameObject.tag == "AIDriver")
+            {
+                isColliding = true;
+                Debug.Log("COLLISION");
+            }
+               
+        }
+
+        void OnCollisionExit(Collision collision)
+        {
+            if (collision.gameObject.tag == "PlayerDriver" || collision.gameObject.tag == "AIDriver")
+                isColliding = false;
+        }
+
+        public void FixedUpdate()
+        {
+            if (!isColliding)
+            {
+        
+                angularVelocity = rigidbody.angularVelocity;
+            }
+        }
+
+        void LateUpdate()
+        {
+            if (isColliding)
+            {
+              
+                rigidbody.angularVelocity = angularVelocity;
+            }
         }
 
         public void SetCarModelAI(CarModelAI carModel)
@@ -138,7 +173,7 @@ namespace Racing
             all_checkpoints = new List<GameObject>(GameObject.FindGameObjectsWithTag("CheckPoint"));
             checkpoints_checked = new List<GameObject>();
 
-            
+            rigidbody = GetComponent<Rigidbody>();
         }
 
 
@@ -180,7 +215,7 @@ namespace Racing
         private void CheckCrash()
         {
 
-            if(gameObject.GetComponentInParent<CarController>().Speed < minVelocity && (lastCheckpoint != null || checkpoints_checked.Count == 1) )
+            if(gameObject.tag == "AIDriver" && Mathf.Abs(gameObject.GetComponentInParent<CarController>().Speed) < minVelocity && (lastCheckpoint != null || checkpoints_checked.Count == 1) )
             {
                 if (!startCrashing)
                 {
@@ -207,6 +242,7 @@ namespace Racing
 
             if (crashed)
             {
+
                 UnfreezeYAxisTemporally();
                 Debug.Log("CRASH");
                 if (finished) ;// this.GetComponent<Rigidbody>().isKinematic = true;
