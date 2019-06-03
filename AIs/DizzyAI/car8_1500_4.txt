@@ -1,6 +1,6 @@
 NeuralNetwork
-112,947265625
-99998,8705273438
+109,55859375
+99998,9044140625
 0
 >Neuron 0
 0
@@ -82,156 +82,156 @@ boost
 0
 0
 13
-0
+-0,844619200492566
 Enabled
 >Connection 1
 1
 0
 14
-0
+0,0336211982561385
 Enabled
 >Connection 2
 2
 1
 13
-0
+-0,732284980424263
 Enabled
 >Connection 3
 3
 1
 14
-0
+-0,0270990977882906
 Enabled
 >Connection 4
 4
 2
 13
-0
+0,02903339838728
 Enabled
 >Connection 5
 5
 2
 14
-0
+0,472143212436661
 Enabled
 >Connection 6
 6
 3
 13
-0
+-0,0493352270650966
 Enabled
 >Connection 7
 7
 3
 14
-0
+-0,0345507639405166
 Enabled
 >Connection 8
 8
 4
 13
-0
+-0,0198699456081019
 Enabled
 >Connection 9
 9
 4
 14
-0
+0,354968660852787
 Enabled
 >Connection 10
 10
 5
 13
-0
+-0,0192709453573057
 Enabled
 >Connection 11
 11
 5
 14
-0
+0,014012285927286
 Enabled
 >Connection 12
 12
 6
 13
-0
+-0,00159679331131689
 Enabled
 >Connection 13
 13
 6
 14
-0
+-0,00976341144280873
 Enabled
 >Connection 14
 14
 7
 13
-0
+-0,0199438664064788
 Enabled
 >Connection 15
 15
 7
 14
-0
+0,354888455239377
 Enabled
 >Connection 16
 16
 8
 13
-0
+-0,0270609211697515
 Enabled
 >Connection 17
 17
 8
 14
-0
+0,00920016072897481
 Enabled
 >Connection 18
 18
 9
 13
-0
+-0,046683923575478
 Enabled
 >Connection 19
 19
 9
 14
-0
+0,0438382817373678
 Enabled
 >Connection 20
 20
 10
 13
-0
+0,0858371468681724
 Enabled
 >Connection 21
 21
 10
 14
-0
+-0,338623140630602
 Enabled
 >Connection 22
 22
 11
 13
-0
+-0,0316366975673464
 Enabled
 >Connection 23
 23
 11
 14
-0
+-0,00151952458877432
 Enabled
 >Connection 24
 24
 12
 13
-0
+0,0444109736008843
 Enabled
 >Connection 25
 25
 12
 14
-0
+-0,00257059943196506
 Enabled
 <<

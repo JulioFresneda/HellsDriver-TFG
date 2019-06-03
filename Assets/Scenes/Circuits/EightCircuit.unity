@@ -1635,7 +1635,7 @@ PrefabInstance:
         type: 3}
       propertyPath: carPrefab
       value: 
-      objectReference: {fileID: 5308753251888438714, guid: 5f4141469c12371448eaedb105a20c29,
+      objectReference: {fileID: 7189552964007677885, guid: 893dddeaace28d941ac457fdf6948a70,
         type: 3}
     - target: {fileID: 1099783127846245662, guid: 3b7743dbcce98a74e998e127e669779d,
         type: 3}
