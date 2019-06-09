@@ -1104,6 +1104,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1821821910254973684, guid: 22f1c00ad0f050347882c66d9ce87c90,
+        type: 3}
+      propertyPath: playercamera
+      value: 
+      objectReference: {fileID: 1152468266}
+    - target: {fileID: 1821821910254973684, guid: 22f1c00ad0f050347882c66d9ce87c90,
+        type: 3}
+      propertyPath: directionalLight
+      value: 
+      objectReference: {fileID: 982071076}
     - target: {fileID: 1821821910254973690, guid: 22f1c00ad0f050347882c66d9ce87c90,
         type: 3}
       propertyPath: m_Name
@@ -1164,16 +1174,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1821821910254973684, guid: 22f1c00ad0f050347882c66d9ce87c90,
-        type: 3}
-      propertyPath: playercamera
-      value: 
-      objectReference: {fileID: 1152468266}
-    - target: {fileID: 1821821910254973684, guid: 22f1c00ad0f050347882c66d9ce87c90,
-        type: 3}
-      propertyPath: directionalLight
-      value: 
-      objectReference: {fileID: 982071076}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22f1c00ad0f050347882c66d9ce87c90, type: 3}
 --- !u!1 &1127874835
@@ -1815,11 +1815,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1099783127846245662, guid: 3b7743dbcce98a74e998e127e669779d,
-        type: 3}
-      propertyPath: m_Name
-      value: Race
-      objectReference: {fileID: 0}
     - target: {fileID: 1099783127846245660, guid: 3b7743dbcce98a74e998e127e669779d,
         type: 3}
       propertyPath: circuitsManagement
@@ -1840,6 +1835,17 @@ PrefabInstance:
       propertyPath: pauseWindow
       value: 
       objectReference: {fileID: 752122378}
+    - target: {fileID: 1099783127846245660, guid: 3b7743dbcce98a74e998e127e669779d,
+        type: 3}
+      propertyPath: carPrefab
+      value: 
+      objectReference: {fileID: 6441278913362276491, guid: b1f9b8038b642044ca258d2c5060b46d,
+        type: 3}
+    - target: {fileID: 1099783127846245662, guid: 3b7743dbcce98a74e998e127e669779d,
+        type: 3}
+      propertyPath: m_Name
+      value: Race
+      objectReference: {fileID: 0}
     - target: {fileID: 1099783127846245667, guid: 3b7743dbcce98a74e998e127e669779d,
         type: 3}
       propertyPath: m_LocalPosition.x

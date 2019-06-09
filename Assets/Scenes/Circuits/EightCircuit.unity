@@ -1635,7 +1635,7 @@ PrefabInstance:
         type: 3}
       propertyPath: carPrefab
       value: 
-      objectReference: {fileID: 7189552964007677885, guid: 893dddeaace28d941ac457fdf6948a70,
+      objectReference: {fileID: 6441278913362276491, guid: b1f9b8038b642044ca258d2c5060b46d,
         type: 3}
     - target: {fileID: 1099783127846245662, guid: 3b7743dbcce98a74e998e127e669779d,
         type: 3}
@@ -1706,6 +1706,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1821821910254973684, guid: 22f1c00ad0f050347882c66d9ce87c90,
+        type: 3}
+      propertyPath: playercamera
+      value: 
+      objectReference: {fileID: 2142593385}
+    - target: {fileID: 1821821910254973684, guid: 22f1c00ad0f050347882c66d9ce87c90,
+        type: 3}
+      propertyPath: directionalLight
+      value: 
+      objectReference: {fileID: 8693705482685926666}
     - target: {fileID: 1821821910254973690, guid: 22f1c00ad0f050347882c66d9ce87c90,
         type: 3}
       propertyPath: m_Name
@@ -1766,16 +1776,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1821821910254973684, guid: 22f1c00ad0f050347882c66d9ce87c90,
-        type: 3}
-      propertyPath: playercamera
-      value: 
-      objectReference: {fileID: 2142593385}
-    - target: {fileID: 1821821910254973684, guid: 22f1c00ad0f050347882c66d9ce87c90,
-        type: 3}
-      propertyPath: directionalLight
-      value: 
-      objectReference: {fileID: 8693705482685926666}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22f1c00ad0f050347882c66d9ce87c90, type: 3}
 --- !u!1001 &4723700116703209523

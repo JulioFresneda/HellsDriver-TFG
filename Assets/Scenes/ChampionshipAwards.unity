@@ -241,7 +241,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Oro
+  m_Text: Cobre
 --- !u!222 &18279206
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -35,10 +35,11 @@ public class Awards : MonoBehaviour
         whirlText.text = whirlPosition.ToString();
         subwayText.text = subwayPosition.ToString();
 
-        float posweight = (float)(eightPosition + dizzyPosition + whirlPosition + subwayPosition); 
+        int posweight = (eightPosition + dizzyPosition + whirlPosition + subwayPosition);
         if (posweight <= 4) finalPosition = 1;
         else if (posweight <= 8) finalPosition = 2;
         else if (posweight <= 12) finalPosition = 3;
+        else finalPosition = 4;
 
         finalAward = PlayerPrefs.GetInt("Champ" + finalPosition.ToString());
         if (finalPosition == 1) finalCategoryText.text = "Oro";
@@ -129,7 +130,7 @@ public class Awards : MonoBehaviour
             yield return new WaitForSecondsRealtime(0.001f);
         }
 
-        medal.LoadMedalAnimation(finalPosition);
+        if(finalPosition <= 3) medal.LoadMedalAnimation(finalPosition);
 
         while (finalCategoryText.color.a < maxalpha)
         {

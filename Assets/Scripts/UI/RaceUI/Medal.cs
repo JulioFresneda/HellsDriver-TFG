@@ -33,25 +33,34 @@ public class Medal : MonoBehaviour
 
     public void LoadMedalAnimation(int position)
     {
-        this.position = position;
-        if (position == 1) medal = goldenMedal;
-        else if (position == 2) medal = silverMedal;
-        else if (position == 3) medal = bronzeMedal;
-
-        foreach (var fire in medal.GetComponentsInChildren<ParticleSystem>())
+        if(position <= 3 && position >= 1)
         {
-            fire.transform.localScale = new Vector3(0, 0, 0);
+            this.position = position;
+            if (position == 1) medal = goldenMedal;
+            else if (position == 2) medal = silverMedal;
+            else if (position == 3) medal = bronzeMedal;
+
+
+            if (medal.GetComponentsInChildren<ParticleSystem>() != null)
+            {
+                foreach (var fire in medal.GetComponentsInChildren<ParticleSystem>())
+                {
+                    fire.transform.localScale = new Vector3(0, 0, 0);
+                }
+            }
+
+
+            medal.transform.SetParent(playercamera.transform);
+
+            if (inRace) medal.transform.localPosition = new Vector3(-0.3f, 5f, 19f);
+            else medal.transform.localPosition = new Vector3(0, 500, +2000);
+
+            medal.transform.rotation = new Quaternion(0, 0, 0, 0);
+            directionalLight.transform.rotation = medal.transform.rotation;
+
+            startAnimation = true;
         }
-
-        medal.transform.SetParent(playercamera.transform);
         
-        if(inRace) medal.transform.localPosition = new Vector3(-0.3f, 5f, 19f);
-        else medal.transform.localPosition = new Vector3(0, 500, +2000);
-
-        medal.transform.rotation = new Quaternion(0, 0, 0, 0);
-        directionalLight.transform.rotation = medal.transform.rotation;
-
-        startAnimation = true;
         
     }
 
@@ -64,9 +73,12 @@ public class Medal : MonoBehaviour
             if (medal.transform.localScale.x < 0.1f * scale)
             {
                 medal.transform.localScale += new Vector3(0.001f*scale, 0.001f * scale, 0.001f * scale);
-                foreach (var fire in medal.GetComponentsInChildren<ParticleSystem>())
+                if (medal.GetComponentsInChildren<ParticleSystem>() != null)
                 {
-                    fire.transform.localScale += new Vector3(0.01f * scale, 0.01f * scale, 0.01f * scale);
+                    foreach (var fire in medal.GetComponentsInChildren<ParticleSystem>())
+                    {
+                        fire.transform.localScale += new Vector3(0.01f * scale, 0.01f * scale, 0.01f * scale);
+                    }
                 }
             }
 

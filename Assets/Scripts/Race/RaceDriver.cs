@@ -86,8 +86,8 @@ namespace Racing
         }
 
 
-        new Rigidbody rigidbody;
-        public Vector3 position, velocity, angularVelocity;
+    
+        public Vector3 angularVelocity;
         public bool isColliding;
 
         void OnCollisionEnter(Collision collision)
@@ -112,7 +112,7 @@ namespace Racing
             if (!isColliding)
             {
         
-                angularVelocity = rigidbody.angularVelocity;
+                angularVelocity = gameObject.GetComponent<Rigidbody>().angularVelocity;
             }
         }
 
@@ -120,8 +120,8 @@ namespace Racing
         {
             if (isColliding)
             {
-              
-                rigidbody.angularVelocity = angularVelocity;
+
+                gameObject.GetComponent<Rigidbody>().angularVelocity = angularVelocity;
             }
         }
 
@@ -173,7 +173,7 @@ namespace Racing
             all_checkpoints = new List<GameObject>(GameObject.FindGameObjectsWithTag("CheckPoint"));
             checkpoints_checked = new List<GameObject>();
 
-            rigidbody = GetComponent<Rigidbody>();
+            
         }
 
 
