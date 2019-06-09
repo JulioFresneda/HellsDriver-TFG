@@ -971,8 +971,6 @@ MonoBehaviour:
   currentPosition: 0
   distance: 0
   minVelocity: 15
-  position: {x: 0, y: 0, z: 0}
-  velocity: {x: 0, y: 0, z: 0}
   angularVelocity: {x: 0, y: 0, z: 0}
   isColliding: 0
   timeColliderDisabledOnCrash: 5
@@ -1203,11 +1201,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeviathanModelStandard
       objectReference: {fileID: 0}
-    - target: {fileID: -8044700271467719561, guid: 45070e33cb45956438d77f4e17215d9d,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 276d32c6ce58421468617618701b8b5c, type: 2}
     - target: {fileID: -4216859302048453862, guid: 45070e33cb45956438d77f4e17215d9d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1282,7 +1275,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: b132f07316fb84741bfbb1dd4c43c05d, type: 2}
+      objectReference: {fileID: 2100000, guid: 7dabc641b127c4d459d94eb4c14f7fc3, type: 2}
+    - target: {fileID: -8044700271467719561, guid: 45070e33cb45956438d77f4e17215d9d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 276d32c6ce58421468617618701b8b5c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45070e33cb45956438d77f4e17215d9d, type: 3}
 --- !u!4 &4440733457215829432 stripped
