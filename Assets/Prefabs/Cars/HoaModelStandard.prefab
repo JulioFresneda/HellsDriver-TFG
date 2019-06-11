@@ -165,7 +165,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 785a04165a35ac34db2cc2b934bbf657, type: 3}
+  - {fileID: 2100000, guid: 003f24d5378d8f54f81db701b8f663a6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -247,7 +247,7 @@ GameObject:
   - component: {fileID: 5470703653579029558}
   - component: {fileID: 8103570751456789940}
   m_Layer: 10
-  m_Name: DuckModelStandard
+  m_Name: HoaModelStandard
   m_TagString: Car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -451,6 +451,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentPosition: 0
   distance: 0
+  minVelocity: 15
+  angularVelocity: {x: 0, y: 0, z: 0}
+  isColliding: 0
   timeColliderDisabledOnCrash: 5
 --- !u!1 &6300338543384499253
 GameObject:
@@ -509,7 +512,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 785a04165a35ac34db2cc2b934bbf657, type: 3}
+  - {fileID: 2100000, guid: 003f24d5378d8f54f81db701b8f663a6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -587,7 +590,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 785a04165a35ac34db2cc2b934bbf657, type: 3}
+  - {fileID: 2100000, guid: 003f24d5378d8f54f81db701b8f663a6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -665,7 +668,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 785a04165a35ac34db2cc2b934bbf657, type: 3}
+  - {fileID: 2100000, guid: 003f24d5378d8f54f81db701b8f663a6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1100,6 +1103,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 16.54434
       objectReference: {fileID: 0}
+    - target: {fileID: 2639872586051000187, guid: db2c319d7eba1c948a69e01aaac2e091,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 560dd0064a1ffab429de8a646b0863d6, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db2c319d7eba1c948a69e01aaac2e091, type: 3}
 --- !u!4 &1719836032400736212 stripped

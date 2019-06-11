@@ -2484,6 +2484,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1821821910254973684, guid: 22f1c00ad0f050347882c66d9ce87c90,
+        type: 3}
+      propertyPath: playercamera
+      value: 
+      objectReference: {fileID: 1643597762}
+    - target: {fileID: 1821821910254973684, guid: 22f1c00ad0f050347882c66d9ce87c90,
+        type: 3}
+      propertyPath: directionalLight
+      value: 
+      objectReference: {fileID: 617749868}
+    - target: {fileID: 1821821910254973684, guid: 22f1c00ad0f050347882c66d9ce87c90,
+        type: 3}
+      propertyPath: inRace
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1821821910254973690, guid: 22f1c00ad0f050347882c66d9ce87c90,
         type: 3}
       propertyPath: m_Name
@@ -2542,21 +2557,6 @@ PrefabInstance:
     - target: {fileID: 1821821910254973691, guid: 22f1c00ad0f050347882c66d9ce87c90,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1821821910254973684, guid: 22f1c00ad0f050347882c66d9ce87c90,
-        type: 3}
-      propertyPath: playercamera
-      value: 
-      objectReference: {fileID: 1643597762}
-    - target: {fileID: 1821821910254973684, guid: 22f1c00ad0f050347882c66d9ce87c90,
-        type: 3}
-      propertyPath: directionalLight
-      value: 
-      objectReference: {fileID: 617749868}
-    - target: {fileID: 1821821910254973684, guid: 22f1c00ad0f050347882c66d9ce87c90,
-        type: 3}
-      propertyPath: inRace
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
