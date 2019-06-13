@@ -437,6 +437,7 @@ namespace NEAT
             foreach (NeuralNetwork n in nn_poblation)
             {
                 cars.Add(Instantiate(car, start));
+                cars[cars.Count - 1].GetComponent<Transform>().localPosition += new Vector3(rnd.Next(-20, 20), 0, rnd.Next(-50, 50));
                 cars[cars.Count - 1].GetComponent<CarAI>().SetNeuralNetwork(n);
                 cars[cars.Count - 1].GetComponent<CarFitnessTest>().checkbonus = CheckpointBonus;
                 cars[cars.Count - 1].GetComponent<CarFitnessTest>().MAX_TIME_RUNNING = MaxTimeRunning;
