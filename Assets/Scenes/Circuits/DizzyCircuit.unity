@@ -704,7 +704,7 @@ PrefabInstance:
     - target: {fileID: 5904241223741323474, guid: bdc9729059f279142a5c9d5bd4ad280b,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.74876904
+      value: 0.7093565
       objectReference: {fileID: 0}
     - target: {fileID: 5904241223741323474, guid: bdc9729059f279142a5c9d5bd4ad280b,
         type: 3}
@@ -714,7 +714,7 @@ PrefabInstance:
     - target: {fileID: 5904241223741323474, guid: bdc9729059f279142a5c9d5bd4ad280b,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.662831
+      value: 0.7048499
       objectReference: {fileID: 0}
     - target: {fileID: 5904241223741323474, guid: bdc9729059f279142a5c9d5bd4ad280b,
         type: 3}
@@ -724,7 +724,7 @@ PrefabInstance:
     - target: {fileID: 5904241223741323474, guid: bdc9729059f279142a5c9d5bd4ad280b,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 96.968
+      value: 90.365005
       objectReference: {fileID: 0}
     - target: {fileID: 5904241223741323474, guid: bdc9729059f279142a5c9d5bd4ad280b,
         type: 3}
@@ -739,12 +739,12 @@ PrefabInstance:
     - target: {fileID: 5904241223741323474, guid: bdc9729059f279142a5c9d5bd4ad280b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 476.9
+      value: 477
       objectReference: {fileID: 0}
     - target: {fileID: 5904241223741323474, guid: bdc9729059f279142a5c9d5bd4ad280b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1896.1
+      value: 1886.3
       objectReference: {fileID: 0}
     - target: {fileID: 5904241224008640118, guid: bdc9729059f279142a5c9d5bd4ad280b,
         type: 3}
@@ -927,6 +927,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 24be8e1643b8a474fbb57fcda8a1c454,
     type: 3}
   m_PrefabInstance: {fileID: 802994387}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &859172203 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5904241223741323474, guid: bdc9729059f279142a5c9d5bd4ad280b,
+    type: 3}
+  m_PrefabInstance: {fileID: 603579039}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &982071076 stripped
 GameObject:
@@ -1820,6 +1826,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Race
       objectReference: {fileID: 0}
+    - target: {fileID: 1099783127846245662, guid: 3b7743dbcce98a74e998e127e669779d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1099783127846245660, guid: 3b7743dbcce98a74e998e127e669779d,
         type: 3}
       propertyPath: carModelPrefabs.Array.size
@@ -2572,7 +2583,7 @@ PrefabInstance:
     - target: {fileID: 5848164920150770578, guid: 8ca937df81a2fa74b88bfabe7c518ac0,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5848164920150770576, guid: 8ca937df81a2fa74b88bfabe7c518ac0,
         type: 3}
@@ -2633,7 +2644,7 @@ PrefabInstance:
         type: 3}
       propertyPath: start
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 859172203}
     - target: {fileID: 5848164920150770579, guid: 8ca937df81a2fa74b88bfabe7c518ac0,
         type: 3}
       propertyPath: SaveBestInGeneration
@@ -2642,7 +2653,7 @@ PrefabInstance:
     - target: {fileID: 5848164920150770579, guid: 8ca937df81a2fa74b88bfabe7c518ac0,
         type: 3}
       propertyPath: MultipleTraining
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5848164920150770579, guid: 8ca937df81a2fa74b88bfabe7c518ac0,
         type: 3}
