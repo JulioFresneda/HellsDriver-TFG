@@ -9,9 +9,11 @@ public class ProfileDataUpdater : MonoBehaviour
 
     public GameObject selectProfilePanel;
 
+    public DeleteProfiles deleteProfiles;
+
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         
         selectProfilePanel.transform.localScale = new Vector3(0, 0, 0);
@@ -32,6 +34,9 @@ public class ProfileDataUpdater : MonoBehaviour
             GameObject T = selectProfilePanel.transform.Find("Profiles").Find(prof).gameObject;
             T.GetComponentInChildren<Text>().text = PlayerPrefs.GetString("profile" + i.ToString(), "Nuevo perfil");
         }
+
+
+        deleteProfiles.UpdateDeleteButtons();
         
 
     }
@@ -42,6 +47,8 @@ public class ProfileDataUpdater : MonoBehaviour
         coinstText.text = Profiles.GetCoins().ToString();
         percentageText.text = Profiles.GetPercentage().ToString();
         profileName.text = Profiles.GetName();
+
+        deleteProfiles.UpdateDeleteButtons();
     }
 
 
@@ -62,7 +69,7 @@ public class ProfileDataUpdater : MonoBehaviour
         
         foreach(Button b in selectProfilePanel.GetComponentsInChildren<Button>())
         {
-            if (b.GetComponent<ButtonScript>().IsSelected())
+            if (b.GetComponent<ButtonScript>() != null && b.GetComponent<ButtonScript>().IsSelected())
             {
                 b.GetComponentInChildren<Text>().text = name.text;
                 b.GetComponentInParent<PermanentButtonsAdmin>().NewSelection(gameObject.name);
@@ -73,6 +80,8 @@ public class ProfileDataUpdater : MonoBehaviour
         selectProfilePanel.transform.localScale = new Vector3(0, 0, 0);
         GameObject.Find("Profile").GetComponent<ProfileDataUpdater>().UpdateData();
 
+
+        deleteProfiles.UpdateDeleteButtons();
     }
 
 

@@ -51,7 +51,19 @@ public class Profile
         
     }
 
+    public void RemoveProfile()
+    {
+        List<CarModel> carModels = LoadModels.GetAllCarModels();
+        foreach (CarModel c in carModels)
+        {
+            PlayerPrefs.DeleteKey(nick + "_" + c.GetModel());
+       
+        }
 
+        PlayerPrefs.DeleteKey(nick + "_coins");
+        PlayerPrefs.DeleteKey(nick + "_points");
+        PlayerPrefs.DeleteKey(nick + "_percentage");
+    }
     private void LoadUnlockItems()
     {
         List<CarModel> carModels = LoadModels.GetAllCarModels();
@@ -62,6 +74,7 @@ public class Profile
                 modelsUnlocked.Add(c.GetModel());
             }
         }
+
 
         if (PlayerPrefs.GetString(nick + "_Eight", "Locked") == "Unlocked") mapsUnlocked.Add("Eight");
         if (PlayerPrefs.GetString(nick + "_Dizzy", "Locked") == "Unlocked") mapsUnlocked.Add("Dizzy");

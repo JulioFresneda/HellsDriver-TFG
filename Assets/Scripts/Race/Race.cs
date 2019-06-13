@@ -15,9 +15,6 @@ namespace Racing
         private int num_race_drivers = 10;
 
 
-
-        public GameObject carPrefab;
-
         public GameObject pauseWindow;
 
         private Transform start = null;
@@ -40,6 +37,9 @@ namespace Racing
 
 
         private List<CarModelAI> allCarModels;
+
+
+        public List<GameObject> carModelPrefabs;
 
 
         private bool dynamicDifficult = false;
@@ -111,7 +111,7 @@ namespace Racing
                 {
                     lastChange = Time.timeSinceLevelLoad;
                     currentDifficult++;
-                    SetAIDrivers(currentDifficult.ToString());
+                    UpdateDifficult(currentDifficult.ToString());
                 }
             }
             else if (updateDown)
@@ -121,7 +121,7 @@ namespace Racing
                 {
                     lastChange = Time.timeSinceLevelLoad;
                     currentDifficult--;
-                    SetAIDrivers(currentDifficult.ToString());
+                    UpdateDifficult(currentDifficult.ToString());
                 }
             }
         }
@@ -151,7 +151,14 @@ namespace Racing
         }
 
         
-
+        private GameObject GetCarModelPrefab(string model)
+        {
+            foreach(GameObject car in carModelPrefabs)
+            {
+                if (car.name == model) return car;
+            }
+            return carModelPrefabs[0];
+        }
 
 
         private void InitializeDrivers()
@@ -160,20 +167,27 @@ namespace Racing
             float x = start.position.x - 10;
             float z = start.position.z - 10;
 
+            List<CarModelAI> AIModels = GenerateDriverCarModels(num_race_drivers - 1, PlayerPrefs.GetString("difficultSelected"));
+            Debug.Log(PlayerPrefs.GetString("difficultSelected") + " changed");
+
+            if (PlayerPrefs.GetString("difficultSelected") == "D")
+            {
+                dynamicDifficult = true;
+            }
 
             for (int i = 0; i < num_race_drivers; i++)
             {
                 start_positions.Add(new Vector3(x + 10 * (i % 2), start.position.y, z + 15 * i));
 
-                race_drivers.Add(Instantiate(carPrefab, start_positions[i], start.rotation).GetComponent<RaceDriver>());
+                if(i<AIModels.Count) race_drivers.Add(Instantiate(GetCarModelPrefab(AIModels[i].GetModel()), start_positions[i], start.rotation).GetComponent<RaceDriver>());
+                else race_drivers.Add(Instantiate(GetCarModelPrefab(PlayerPrefs.GetString("modelSelected")), start_positions[i], start.rotation).GetComponent<RaceDriver>());
 
 
-                
-                
+
 
             }
 
-            SetAIDrivers(PlayerPrefs.GetString("difficultSelected"));
+            SetAIDrivers(AIModels);
             SetPlayerDriver();
 
           
@@ -194,17 +208,17 @@ namespace Racing
 
         }
 
-
-        private void SetAIDrivers(string difficult)
+        private void UpdateDifficult(string difficult)
         {
-            Debug.Log(difficult + " changed");
-
-            if(difficult == "D")
-            {
-                dynamicDifficult = true;
-            }
-
             List<CarModelAI> AIModels = GenerateDriverCarModels(num_race_drivers - 1, difficult);
+            SetAIDrivers(AIModels);
+        }
+
+        private void SetAIDrivers(List<CarModelAI> AIModels)
+        {
+            
+
+            
 
             race_drivers_AI = new List<RaceDriver>();
             for(int i=0; i<AIModels.Count; i++)

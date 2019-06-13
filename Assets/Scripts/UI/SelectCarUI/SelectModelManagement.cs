@@ -32,6 +32,9 @@ public class SelectModelManagement : MonoBehaviour
     public BuyModel buyModel;
 
 
+    public StageManagement stageManagement;
+
+
     private void Start()
     {
         GameMode = PlayerPrefs.GetString("GameMode");
@@ -88,13 +91,16 @@ public class SelectModelManagement : MonoBehaviour
             b.GetComponent<ButtonScript>().Desselect();
         }
         modelButtons[0].GetComponent<ButtonScript>().Select();
-        
+        ModelSelected(selectedModels[0].GetModel());
+
         if (isChampionship)
         {
             if (!Profiles.IsUnlocked(selectedModels[0].GetModel())) buyModel.BuyWindow(selectedModels[0]);
             else buyModel.CloseWindow();
             LoadLockedButtonTextures();
         }
+
+        Debug.Log(PlayerPrefs.GetString("modelSelected"));
     }
 
 
@@ -121,17 +127,25 @@ public class SelectModelManagement : MonoBehaviour
 
     public void ModelHighlighted(string modelName, bool highlighted)
     {
-        
+
         if (highlighted)
         {
             for (int i = 0; i < selectedModels.Count; i++)
             {
-                if (selectedModels[i].GetModel() == modelName) modelFeatures.UpdateFeatures(selectedModels[i]);
+                if (selectedModels[i].GetModel() == modelName)
+                {
+                    modelFeatures.UpdateFeatures(selectedModels[i]);
+                    stageManagement.ChangeStageCar(selectedModels[i].GetModel());
+                }
             }
-            
+
         }
 
-        else modelFeatures.UpdateFeatures(selectedModels[modelSelected]);
+        else
+        {
+            modelFeatures.UpdateFeatures(selectedModels[modelSelected]);
+            stageManagement.ChangeStageCar(selectedModels[modelSelected].GetModel());
+        }
         
     }
 
@@ -162,6 +176,9 @@ public class SelectModelManagement : MonoBehaviour
         {
             buyModel.BuyWindow(selectedModels[modelSelected]);
         }
+
+        stageManagement.ChangeStageCar(selectedModels[modelSelected].GetModel());
+
      
 
         

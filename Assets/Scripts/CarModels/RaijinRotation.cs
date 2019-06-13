@@ -10,6 +10,6 @@ public class RaijinRotation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.transform.Rotate(new Vector3(0, 0, 1 * GetComponentInParent<CarController>().Speed * constant));
+        if(GetComponentInParent<CarController>() != null) this.transform.Rotate(new Vector3(0, 0, 1 * GetComponentInParent<CarController>().Speed * constant));
     }
 }

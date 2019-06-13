@@ -109,4 +109,18 @@ public class Profiles
         }
     }
 
+    public static void RemoveProfile(string name, int position)
+    {
+        foreach(Profile p in profiles)
+        {
+            if(p.GetNick() == name)
+            {
+                PlayerPrefs.DeleteKey("profile" + position.ToString());
+                p.RemoveProfile();
+            }
+        }
+            
+        
+    }
+
 }
