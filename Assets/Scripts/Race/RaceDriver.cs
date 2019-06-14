@@ -196,7 +196,7 @@ namespace Racing
             CheckCrash();
             CheckColliderDisabled();
             CheckRestartSprintDistance();
-            //CheckUnfreeze();
+            CheckUnfreeze();
             if(!finished) seconds = Time.timeSinceLevelLoad - startRaceTime;
             
 
@@ -368,6 +368,7 @@ namespace Racing
 
                     if (gameObject.tag == "PlayerDriver")
                     {
+                        if(GameObject.Find("Music") != null) GameObject.Find("Music").GetComponent<AudioSource>().volume = 0.4f;
                         if (finalPosition <= 3)
                         {
                             GameObject.Find("MedalAnimation").GetComponent<Medal>().LoadMedalAnimation(finalPosition);
@@ -482,6 +483,7 @@ namespace Racing
         private float lastunfreezed;
         private void UnfreezeYAxisTemporally()
         {
+            Debug.Log("Unfreezed");
             unfreezed = true;
             lastunfreezed = Time.timeSinceLevelLoad;
             this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;

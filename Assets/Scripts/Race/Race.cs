@@ -49,6 +49,9 @@ namespace Racing
         // Start is called before the first frame update
         void Awake()
         {
+            if (GameObject.Find("Music") != null) GameObject.Find("Music").GetComponent<AudioSource>().volume = 0.1f;
+
+
             Profiles.LoadProfiles();
             setPosition = 1;
            
