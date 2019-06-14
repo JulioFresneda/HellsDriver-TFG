@@ -96,7 +96,7 @@ namespace Racing
             if (collision.gameObject.tag == "PlayerDriver" || collision.gameObject.tag == "AIDriver")
             {
                 isColliding = true;
-                Debug.Log("COLLISION");
+                //Debug.Log("COLLISION");
             }
                
         }
@@ -114,6 +114,13 @@ namespace Racing
         
                 angularVelocity = gameObject.GetComponent<Rigidbody>().angularVelocity;
             }
+        }
+    
+
+
+        private void AdjustSoundPitch()
+        {
+            this.GetComponent<AudioSource>().pitch = 1 + (this.GetComponent<CarController>().Speed / 250);
         }
 
         void LateUpdate()
@@ -172,6 +179,10 @@ namespace Racing
             checkpoints_not_checked = new List<GameObject>(GameObject.FindGameObjectsWithTag("CheckPoint"));
             all_checkpoints = new List<GameObject>(GameObject.FindGameObjectsWithTag("CheckPoint"));
             checkpoints_checked = new List<GameObject>();
+            foreach(GameObject g in checkpoints_not_checked)
+            {
+                if (g.name == "CheckStart") lastCheckpoint = g;
+            }
 
             
         }
@@ -181,10 +192,11 @@ namespace Racing
 
         private void Update()
         {
+            AdjustSoundPitch();
             CheckCrash();
             CheckColliderDisabled();
             CheckRestartSprintDistance();
-            CheckUnfreeze();
+            //CheckUnfreeze();
             if(!finished) seconds = Time.timeSinceLevelLoad - startRaceTime;
             
 
@@ -215,7 +227,7 @@ namespace Racing
         private void CheckCrash()
         {
 
-            if(gameObject.tag == "AIDriver" && Mathf.Abs(gameObject.GetComponentInParent<CarController>().Speed) < minVelocity && (lastCheckpoint != null || checkpoints_checked.Count == 1) )
+            if(gameObject.tag == "AIDriver" && Mathf.Abs(gameObject.GetComponentInParent<CarController>().Speed) < minVelocity  )
             {
                 if (!startCrashing)
                 {
@@ -224,7 +236,7 @@ namespace Racing
                 }
                 else
                 {
-                    if (Time.timeSinceLevelLoad-crashTime > 3f)
+                    if (checkpoints_checked.Count > 0 && Time.timeSinceLevelLoad-crashTime > 3f || checkpoints_checked.Count == 0 && Time.timeSinceLevelLoad-crashTime > 10f)
                     {
                         crashed = true;
                     }

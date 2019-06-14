@@ -38310,6 +38310,7 @@ GameObject:
   - component: {fileID: 788962320607520246}
   - component: {fileID: 6192083742189950568}
   - component: {fileID: 7958087102487703530}
+  - component: {fileID: 1023090155961464082}
   m_Layer: 10
   m_Name: R134
   m_TagString: Car
@@ -38519,6 +38520,102 @@ MonoBehaviour:
   angularVelocity: {x: 0, y: 0, z: 0}
   isColliding: 0
   timeColliderDisabledOnCrash: 5
+--- !u!82 &1023090155961464082
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2832405136773504069}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 3cd886b9726bc9d44ad522093ddc0def, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 10
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &3430394168455726620
 GameObject:
   m_ObjectHideFlags: 0
@@ -105788,11 +105885,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6946831451868445747}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 526394cb17a13cc489aed2c676285eba,
-        type: 3}
-      propertyPath: m_Name
-      value: RaijinModelStandard
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 526394cb17a13cc489aed2c676285eba,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -105863,6 +105955,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.44
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 526394cb17a13cc489aed2c676285eba,
+        type: 3}
+      propertyPath: m_Name
+      value: RaijinModelStandard
+      objectReference: {fileID: 0}
     - target: {fileID: -5580916350219692131, guid: 526394cb17a13cc489aed2c676285eba,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -105873,11 +105970,6 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 6656f19bfe8c13044b50f614109dc4ac, type: 2}
-    - target: {fileID: 5452068790998213776, guid: 526394cb17a13cc489aed2c676285eba,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 393eab12e384f5e479fb42c381bc9201, type: 2}
     - target: {fileID: 8405317065323677370, guid: 526394cb17a13cc489aed2c676285eba,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -105888,6 +105980,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 95749bc44b423bc4a8d4e810a2094da3, type: 2}
+    - target: {fileID: 5452068790998213776, guid: 526394cb17a13cc489aed2c676285eba,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 393eab12e384f5e479fb42c381bc9201, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 526394cb17a13cc489aed2c676285eba, type: 3}
 --- !u!4 &5577953993112671590 stripped

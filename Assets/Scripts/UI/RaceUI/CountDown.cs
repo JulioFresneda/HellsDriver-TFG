@@ -14,6 +14,8 @@ public class CountDown : MonoBehaviour
 
     public RawImage countdown;
 
+    public AudioClip countdownAudio;
+
     void Start()
     {
 
@@ -43,14 +45,19 @@ public class CountDown : MonoBehaviour
     }
 
 
-  
+    private void LoadAudio()
+    {
+        this.GetComponent<AudioSource>().PlayOneShot(countdownAudio);
+    }
 
 
     private IEnumerator StartCountDownAnimation(float time)
     {
-        
-        yield return new WaitForSecondsRealtime(time);
 
+        yield return new WaitForSecondsRealtime(1);
+        LoadAudio();
+        yield return new WaitForSecondsRealtime(time);
+        
         countdown.texture = g2;
 
         yield return new WaitForSecondsRealtime(1);
