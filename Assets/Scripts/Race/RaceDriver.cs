@@ -184,6 +184,9 @@ namespace Racing
                 if (g.name == "CheckStart") lastCheckpoint = g;
             }
 
+
+            SetRandomNames();
+
             
         }
 
@@ -380,7 +383,7 @@ namespace Racing
                     }
                     else
                     {
-                        GameObject.Find("RaceFinished").GetComponent<FinishedWindow>().SetDriver("xd", finalPosition, seconds, carModel);
+                        GameObject.Find("RaceFinished").GetComponent<FinishedWindow>().SetDriver(GetRandomName(), finalPosition, seconds, carModel);
                         //gameObject.SetActive(false);
                     }
 
@@ -446,6 +449,38 @@ namespace Racing
 
 
 
+        }
+
+        private static List<string> randomNames = new List<string>();
+
+        private void SetRandomNames()
+        {
+            if(randomNames.Count == 0)
+            {
+                randomNames.Add("Jose38");
+                randomNames.Add("SonicSSS");
+                //randomNames.Add("ThisIsARandomName");
+                randomNames.Add("IDKWhatsMyName");
+                randomNames.Add("LightSpeed");
+                randomNames.Add("FatThor");
+                randomNames.Add("Turbine64");
+                randomNames.Add("Firework");
+                randomNames.Add("Justice");
+                randomNames.Add("DanceWithTheDead");
+                randomNames.Add("InfectedMushroom");
+                randomNames.Add("Scorpions");
+                randomNames.Add("Kavinsky");
+                randomNames.Add("SunsetNeon");
+            }
+            
+        }
+        private string GetRandomName()
+        {
+            System.Random rnd = new System.Random();
+            int r = rnd.Next(randomNames.Count);
+            string name = randomNames[r];
+            randomNames.RemoveAt(r);
+            return name;
         }
 
         public double GetDistanceNextCheckpoint()

@@ -331,7 +331,7 @@ namespace NEAT
         {
             if (SaveWhenComplete)
             {
-                if (Completed) currentGenSinceCompleted++;
+                
                 if (Completed && currentGenSinceCompleted == GenerationsSinceCompleted)
                 {
                     currentGenSinceCompleted = 0;
@@ -448,6 +448,8 @@ namespace NEAT
 
             readyforruncars = true;
             generation++;
+
+            if (Completed) currentGenSinceCompleted++;
         }
 
 

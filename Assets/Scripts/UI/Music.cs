@@ -12,16 +12,23 @@ public class Music : MonoBehaviour
 
     public Text songNameText;
 
+    private static bool started = false;
+
 
     // Start is called before the first frame update
     void Start()
     {
-
-        DontDestroyOnLoad(gameObject);
-        rnd = new System.Random();
-        source = GetComponent<AudioSource>();
-        source.volume = 0.4f;
-        PlaySong();
+        if (!started)
+        {
+            started = true;
+            DontDestroyOnLoad(gameObject);
+            rnd = new System.Random();
+            source = GetComponent<AudioSource>();
+            source.volume = 0.4f;
+            PlaySong();
+        }
+        else Destroy(this);
+        
     }
 
     // Update is called once per frame

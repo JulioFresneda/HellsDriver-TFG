@@ -56,11 +56,7 @@ namespace VehicleSystem
             this.gameObject.transform.Translate(new Vector3(0, 100, 0));
 
 
-            if(raycastposition == RayCastPosition.Left && this.gameObject.transform.parent.transform.parent.GetComponent<RaceDriver>() != null)
-            {
-                
-                Instantiate(this.gameObject.transform.parent.transform.parent.gameObject.transform.Find("ChasisCollider"), this.gameObject.transform.parent.transform.parent).Translate(0, 100, 0);
-            }
+           
 
 
 
@@ -92,17 +88,16 @@ namespace VehicleSystem
                     
                 }
 
-                if (!NEAT.NEATAlgorithm.Training() && Physics.Raycast(transform.position, transform.TransformDirection(raysDirection[i]), out hit, 1000f, LayerMask.GetMask("Vehicles")))
+                if (!NEAT.NEATAlgorithm.Training() && Physics.Raycast(transform.position, transform.TransformDirection(raysDirection[i]), out hit, 1000f, LayerMask.GetMask("IgnoreCollisions")))
                 {
 
-                    if (!hit.transform.gameObject.Equals(this.gameObject) && hit.transform.gameObject.GetComponent<Rigidbody>() != null)
+                    if (!hit.transform.gameObject.Equals(this.gameObject) )
                     {
-                        if (hit.transform.gameObject.GetComponent<CarController>().Speed < this.gameObject.GetComponentInParent<CarController>().Speed)
-                        {
-                            
+                        
+                            //Debug.Log("CARRRRRR");
                             rayDistances[i] = hit.distance;
                             color = Color.yellow;
-                        }
+                        
                            
                     }
                 }

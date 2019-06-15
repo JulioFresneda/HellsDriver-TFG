@@ -13,6 +13,7 @@ public class SelectProfileClick : MonoBehaviour
             gameObject.GetComponentInParent<PermanentButtonsAdmin>().NewSelection(gameObject.name);
             GameObject.Find("SelectProfile").transform.localScale = new Vector3(0, 0, 0);
             GameObject.Find("Profile").GetComponent<ProfileDataUpdater>().UpdateData();
+            GameObject.Find("InputNick").transform.localScale = new Vector3(0, 0, 0);
         }
         else
         {

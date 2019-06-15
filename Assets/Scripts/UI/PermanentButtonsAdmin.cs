@@ -28,6 +28,8 @@ public class PermanentButtonsAdmin : MonoBehaviour
             {
                 b.GetComponent<ButtonScript>().Desselect();
             }
+            
+            
         }
     }
 

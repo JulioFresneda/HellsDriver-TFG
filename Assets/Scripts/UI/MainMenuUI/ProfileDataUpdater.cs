@@ -15,7 +15,7 @@ public class ProfileDataUpdater : MonoBehaviour
     // Start is called before the first frame update
     public void Start()
     {
-        
+        //PlayerPrefs.DeleteAll();
         selectProfilePanel.transform.localScale = new Vector3(0, 0, 0);
         GameObject.Find("InputNick").transform.localScale = new Vector3(0, 0, 0);
         Profiles.LoadProfiles();
@@ -73,6 +73,7 @@ public class ProfileDataUpdater : MonoBehaviour
             {
                 b.GetComponentInChildren<Text>().text = name.text;
                 b.GetComponentInParent<PermanentButtonsAdmin>().NewSelection(gameObject.name);
+
             }
         }
 

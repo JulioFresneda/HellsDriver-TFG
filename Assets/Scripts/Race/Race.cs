@@ -41,6 +41,7 @@ namespace Racing
 
         public List<GameObject> carModelPrefabs;
 
+        public CarRayCastChasis crc;
 
         private bool dynamicDifficult = false;
         private int currentDifficult;
@@ -69,6 +70,8 @@ namespace Racing
 
             InitializeDrivers();
             if (pauseWindow != null) pauseWindow.transform.localScale = new Vector3(0, 0, 0);
+
+            crc.LoadChasis();
         }
 
 

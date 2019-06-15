@@ -2406,6 +2406,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flag
       objectReference: {fileID: 0}
+    - target: {fileID: 7315336157732059583, guid: e7d2833a276ed044bb883e584d170cd4,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c9cefd0631b354f44997cb376d87bfea, type: 2}
     m_RemovedComponents:
     - {fileID: 7315336157732059576, guid: e7d2833a276ed044bb883e584d170cd4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e7d2833a276ed044bb883e584d170cd4, type: 3}
@@ -4124,6 +4129,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flag (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7315336157732059583, guid: e7d2833a276ed044bb883e584d170cd4,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c9cefd0631b354f44997cb376d87bfea, type: 2}
     m_RemovedComponents:
     - {fileID: 7315336157732059576, guid: e7d2833a276ed044bb883e584d170cd4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e7d2833a276ed044bb883e584d170cd4, type: 3}

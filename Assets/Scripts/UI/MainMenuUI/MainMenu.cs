@@ -8,7 +8,7 @@ public class MainMenu : MonoBehaviour
 {
 
 
-    public string FastRaceScene, ChampionshipScene, GarageScene, CreditsScene;
+    public string FastRaceScene, ChampionshipScene, CreditsScene;
     
 
 
@@ -27,11 +27,6 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetString("GameMode", "Championship");
         PlayerPrefs.SetString("CurrentMap", "Eight");
         SceneManager.LoadScene(ChampionshipScene);
-    }
-
-    public void Garage()
-    {
-        SceneManager.LoadScene(GarageScene);
     }
 
     public void Credits()
