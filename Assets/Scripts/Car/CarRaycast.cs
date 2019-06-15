@@ -54,7 +54,13 @@ namespace VehicleSystem
             }
 
             this.gameObject.transform.Translate(new Vector3(0, 100, 0));
-           
+
+
+            if(raycastposition == RayCastPosition.Left && this.gameObject.transform.parent.transform.parent.GetComponent<RaceDriver>() != null)
+            {
+                
+                Instantiate(this.gameObject.transform.parent.transform.parent.gameObject.transform.Find("ChasisCollider"), this.gameObject.transform.parent.transform.parent).Translate(0, 100, 0);
+            }
 
 
 
@@ -93,6 +99,7 @@ namespace VehicleSystem
                     {
                         if (hit.transform.gameObject.GetComponent<CarController>().Speed < this.gameObject.GetComponentInParent<CarController>().Speed)
                         {
+                            
                             rayDistances[i] = hit.distance;
                             color = Color.yellow;
                         }
