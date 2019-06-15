@@ -147,6 +147,9 @@ namespace NEAT
 
         private static bool training = false;
 
+        public bool SaveWhenComplete = false;
+        private bool Completed = false;
+
         public static bool Training() => training;
 
         // Start is called before the first frame update
@@ -315,9 +318,29 @@ namespace NEAT
             readyforruncars = true;
             generation = 0;
 
+            Completed = false;
+
 
             cars.Clear();
           
+        }
+
+        public int GenerationsSinceCompleted = 3;
+        private int currentGenSinceCompleted = 0;
+        private bool SaveWhenCompleteFunction()
+        {
+            if (SaveWhenComplete)
+            {
+                if (Completed) currentGenSinceCompleted++;
+                if (Completed && currentGenSinceCompleted == GenerationsSinceCompleted)
+                {
+                    currentGenSinceCompleted = 0;
+                    return true;
+                }
+                else return false;
+            }
+            else return false;
+            
         }
 
         private void Update()
@@ -326,7 +349,7 @@ namespace NEAT
 
 
             if (readyforruncars) RunCars();  
-            else if (generation == SaveBestInGeneration || SaveThisGeneration)
+            else if (generation == SaveBestInGeneration || SaveThisGeneration || (SaveWhenCompleteFunction()))
             {
                 CompareByFitness cmpf = new CompareByFitness();
                 nn_poblation.Sort(cmpf);
@@ -370,6 +393,7 @@ namespace NEAT
                 foreach (GameObject car in cars)
                 {
                     car.GetComponent<CarAI>().GetNeuralNetwork().SetFitness(car.GetComponent<CarFitnessTest>().GetFitness());
+                    if (car.GetComponent<CarFitnessTest>().Completed()) Completed = true;
                 }
                 readyforevolve = true;
                 readyforruncars = false;

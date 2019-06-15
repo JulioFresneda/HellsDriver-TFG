@@ -50,6 +50,11 @@ namespace VehicleSystem
 
         private bool started = false;
 
+        private bool completed = false;
+
+        public bool Completed() => completed;
+
+
         public static void ResetDoneNumber()
         {
             num_done = 0;
@@ -162,8 +167,8 @@ namespace VehicleSystem
                         done_calculating_fitness = true;
                         time_running = Time.timeSinceLevelLoad - initializationTime;
                         fitness = 10000000 - time_running;
-                        
 
+                        completed = true;
                         throttleweight = minthrottlerange + (1 - minthrottlerange) * (mean_throttle / total_throttle);
                         
                         if (throttleweight < minthrottle)

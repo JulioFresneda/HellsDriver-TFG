@@ -1,5 +1,6 @@
 ﻿#define DEBUGGING
 
+using Racing;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -52,7 +53,10 @@ namespace VehicleSystem
                 
             }
 
-            
+            this.gameObject.transform.Translate(new Vector3(0, 100, 0));
+           
+
+
 
         }
 
@@ -74,15 +78,15 @@ namespace VehicleSystem
                 color = Color.green;
                 rayDistances[i] = 1000.0f;
 
-                if (Physics.Raycast(transform.position, transform.TransformDirection(raysDirection[i]), out hit, Mathf.Infinity, LayerMask.GetMask("Border")))
+                if (Physics.Raycast(transform.position, transform.TransformDirection(raysDirection[i]), out hit, 1000f, LayerMask.GetMask("Border")))
                 {
                     rayDistances[i] = hit.distance;
-
+                   
                     //Debug.Log(hit.distance + " " + i);
                     
                 }
 
-                if (!NEAT.NEATAlgorithm.Training() && Physics.Raycast(transform.position, transform.TransformDirection(raysDirection[i]), out hit, Mathf.Infinity, LayerMask.GetMask("Vehicles")))
+                if (!NEAT.NEATAlgorithm.Training() && Physics.Raycast(transform.position, transform.TransformDirection(raysDirection[i]), out hit, 1000f, LayerMask.GetMask("Vehicles")))
                 {
 
                     if (!hit.transform.gameObject.Equals(this.gameObject) && hit.transform.gameObject.GetComponent<Rigidbody>() != null)
@@ -96,9 +100,17 @@ namespace VehicleSystem
                     }
                 }
 
-
-                if( HasFitnessTest && !GetComponentInParent<CarFitnessTest>().DoneCalculatingFitness()) Debug.DrawRay(transform.position, transform.TransformDirection(raysDirection[i]), color);
+                Debug.DrawRay(transform.position, transform.TransformDirection(raysDirection[i]), color);
+                if ( HasFitnessTest && !GetComponentInParent<CarFitnessTest>().DoneCalculatingFitness()) Debug.DrawRay(transform.position, transform.TransformDirection(raysDirection[i]), color);
                 else if(!HasFitnessTest) Debug.DrawRay(transform.position, transform.TransformDirection(raysDirection[i]), color);
+
+                /*
+                if(rayDistances[i] == 1000.0f)
+                {
+                    RaycastHit h;
+                    Physics.Raycast(transform.position, transform.TransformDirection(raysDirection[i]), out h, Mathf.Infinity);
+                    Debug.Log("OJO " + h.collider.name);
+                }*/
             }
 
            
