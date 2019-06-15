@@ -230,7 +230,7 @@ namespace Racing
         private void CheckCrash()
         {
 
-            if(gameObject.tag == "AIDriver" && Mathf.Abs(gameObject.GetComponentInParent<CarController>().Speed) < minVelocity  )
+            if(Mathf.Abs(gameObject.GetComponentInParent<CarController>().Speed) < minVelocity  )
             {
                 if (!startCrashing)
                 {
@@ -460,9 +460,9 @@ namespace Racing
                 randomNames.Add("Jose38");
                 randomNames.Add("SonicSSS");
                 //randomNames.Add("ThisIsARandomName");
-                randomNames.Add("IDKWhatsMyName");
+                randomNames.Add("Midnight");
                 randomNames.Add("LightSpeed");
-                randomNames.Add("FatThor");
+                randomNames.Add("Carpenter Brut");
                 randomNames.Add("Turbine64");
                 randomNames.Add("Firework");
                 randomNames.Add("Justice");

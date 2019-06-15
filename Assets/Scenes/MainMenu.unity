@@ -736,7 +736,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FastRaceScene: SelectMap
   ChampionshipScene: Championship
-  CreditsScene: 
+  CreditsScene: Credits
 --- !u!1 &203737524
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,6 +18,7 @@ public class Music : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        songName = "";
         if (!started)
         {
             started = true;
@@ -27,7 +28,15 @@ public class Music : MonoBehaviour
             source.volume = 0.4f;
             PlaySong();
         }
-        else Destroy(this);
+        else
+        {
+            foreach(Music m in GameObject.FindObjectsOfType<Music>())
+            {
+                m.songNameText = GameObject.Find("SongTitle").GetComponent<Text>();
+                m.SetSongNameOnScreen();
+            }
+            Destroy(this);
+        }
         
     }
 
@@ -35,6 +44,13 @@ public class Music : MonoBehaviour
     void Update()
     {
         if (!source.isPlaying) PlaySong();
+
+
+    }
+
+    public void SetSongNameOnScreen()
+    {
+        if (songNameText != null && songName != "") songNameText.text = "Escuchando:    " + songName;
     }
 
     private void PlaySong()
