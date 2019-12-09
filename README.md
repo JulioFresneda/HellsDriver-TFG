@@ -1,5 +1,4 @@
 # Hell's Driver - Trabajo de fin de grado
-### 2019
 
 El proyecto presentado es un videojuego de carreras de coches, donde la mayor parte del desarrollo ha sido relativo a la inteligencia artificial.
 El videojuego proporciona suficiente variedad de contextos (circuitos, trazados, tipos de vehículos, ...). Uno de los aspectos prioritarios en el diseño del videojuego será la incorporación de modelos adaptativos de Inteligencia Artificial para hacer atractivo para jugadores con niveles distintos de habilidad del usuario. Puesto que soy de la rama de Computación y Sistemas Inteligentes, la inteligencia artificial es la parte más destacable de este proyecto.
